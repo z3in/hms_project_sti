@@ -1,5 +1,5 @@
 <?php
 
-Router::route('/samplepath/new', function(){
-    //invoke action here
+Router::route('/app/user/login', function(){
+    User::UserLogin();
 });

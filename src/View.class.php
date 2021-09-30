@@ -15,4 +15,9 @@ Class View {
         $path = ROOT . DS . 'view'. DS . 'web ' . DS . 'index.html';
         include($path);
     }
+
+    public static function get404(){
+        $path = ROOT . DS . '404.html';
+        include($path);
+    }
 }

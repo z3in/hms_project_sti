@@ -5,10 +5,152 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Hip Nautic Beach Resort</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            padding:0;
+            margin:0;
+        }
+        .container-fluid{
+            padding:0;
+            margin:0;
+        }
+        .flex{
+            display:flex;
+        }
+        .flex-row{
+            flex-direction: row!important;
+        }
+        header{
+            max-width:350px;
+            height:100vh;
+            width:100%;
+            border-right:1px solid #EAEAEA;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        header nav ul{
+            list-style: none;
+            padding:0 2em;
+        }
+        header nav ul.top-level{
+            margin-top:2em;
+        }
+        
+        header nav ul li{
+            padding:.75em 2em;
+        }
+        header nav ul li a {
+           text-decoration: none;
+           color:#9f9f9f;
+           transition: .25s ease-in-out;
+        }
+        header nav ul li a:hover {
+            color:#222222;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        header nav ul li a span{
+           margin-left:1em;
+           font-size:1.25rem;
+        }
+        header nav ul li.selected{
+            font-weight: 700;
+            background-color:#e9ecef;
+            border-radius: 10px;
+        }
+        
+        header nav ul.top-level li.main-menu.selected a{
+        color:#222222;
+        }
+        header nav ul.top-level li.main-menu ul{
+            margin-top:.5em;
+            padding:0 1em;
+        }
+        header nav ul.top-level li.main-menu ul li{
+            padding:.75em 1em;
+        }
+        header nav ul.top-level li.main-menu ul li a span{
+            font-size: 1rem;
+        }
+
+        main{
+            background-color:#e1e1e1;
+            width:100%;
+            padding:2em;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top:0;
+        }
+        main .container-main{
+            width:100%;
+            height:100%;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #EAEAEA;
+            box-shadow: 2px 0px 5px rgb(0 0 0 / 10%);
+        }
+        main .top-container{
+            background-color: #fff;
+            margin-bottom:2em;
+            height:150px;
+        }
+        .signout{
+            position:absolute;
+            bottom:25px;
+            left:55px;
+        }
+        .signout p a span {
+            margin-left:.5em;
+        }
+        .signout p a {
+           background-color:#222222;
+           color:#e9ecef;
+           padding:.5em 1.5em;
+           border-radius: 5px;
+        }
+        .logo{
+            text-align: center;
+            margin-top:2em;
+        }
+    </style>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="flex flex-row">
+            <header>
+            <div class="logo">
+                <img src="view/dashboard/assets/img/288841591.jpg" style="width:50%;margin:0 auto;opacity:.5;">
+            </div>
+            <nav>
+                <ul class="top-level">
+                    <li class="main-menu selected"><a href="#"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
+                    <li class="main-menu"><a href="#"><i class="fas fa-cogs"></i><span>Maintenance</span></a></li>
+                    <li class="main-menu"><a href="#"><i class="fas fa-tools"></i><span>Utilities</span></a>
+                        <ul>
+                            <li><a href=""><span>User Maintenance</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="signout">
+                <p><a href="#"><i class="fas fa-sign-out-alt"></i><span>sign out</span></a></p>
+            </div>
+            </header>
+            <main>
+                <div class="top-container"></div>
+                <div class="container-main"></div>
+            </main>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
     <script src="view/dashboard/js/common.lib.js"></script>
     <script src="view/dashboard/js/validate.security.js"></script>
 </body>

@@ -5,10 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login to Hip Nautic Beach Resort Dashboard</title>
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300;1,900&display=swap" rel="stylesheet">
     <!--bootstrap library-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            padding:0;
+            margin:0;
+        }
         .col-fill{
             height:100vh;
             overflow:hidden;
@@ -50,6 +59,40 @@
         .tagline .sub-header {
             color: rgba(55, 55, 55, 0.5);
         }
+        .col.col-fill.col-left h1{
+            color:#fff;
+            font-weight: 700;
+            font-size: 5rem;
+            text-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+        .banner-text{
+            margin-left:5em;
+            margin-top:10em;
+        }
+        @media (max-width:768px){
+            .col-left{
+                display:none;
+            }
+            .flex-row{
+            flex-direction: row!important;
+            }
+            .col-right{
+                width:100%;
+            }
+        }
+        .form-group{
+            display:flex;
+            flex-direction: row!important;
+            align-items: center;
+        }
+        .form-group i{
+            position:absolute;
+            transform: translateX(12px);
+            color:#989a9c;
+        }
+        .form-group input{
+            padding-left:2.5em;
+        }
     </style>
 </head>
 <body>
@@ -64,17 +107,34 @@
                         <h2 class="tagline-header">Welcome !</h2>
                         <p class="sub-header">please enter your credentials to continue.</p>
                     </div>
-                    <div>
-
+                    <div class="p-5">
+                    <form>
+                        <div class="form-group">
+                            <i class="far fa-envelope"></i><input type="email" class="form-control" id="email_input" aria-describedby="emailHelp" placeholder="Enter email"><i></i>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-lock"></i><input type="password" class="form-control" id="password_input" placeholder="Password">
+                        </div>
+                        <p style="float:right;"><a href="#"><i class="fas fa-key mr-2"></i>Recover Access</a></p>
+                        <p style="clear:both"></p>
+                        <button type="submit" id="btn_signin" class="btn btn-primary btn-lg btn-block mt-5">SIGN IN</button>
+                      </form>
                     </div>
                 </div>
             </div>
             <div class="col col-fill col-left">
-                
+                <div class="tagline banner-text">
+                <h1>Hip Nautic</h1>
+                <h1>Beach</h1>
+                <h1>Resort</h1>
+                </div>
             </div>
         </div>
     </div>
+    <!---custom scripts-->
+    <script src="../../view/dashboard/secure/authentication.js"></script>
     <!--javascript libraries-->
+    <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

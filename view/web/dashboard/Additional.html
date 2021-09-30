@@ -1,0 +1,176 @@
+<!Doctype HTML>
+<html>
+<head>
+	<title>Additional Services Module</title>
+	<link rel="stylesheet" href="Additional.css" type="text/css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+	<link rel="stylesheet" href="https://fontawesome.com/v4.7">
+
+</head>
+
+
+<body>
+	
+	<div id="mySidenav" class="sidenav">
+		<!-- this one is for the logo -->
+	<p class="logo">Hip Nautic Beach Resort <span class="menu">&#9776;</span></p>
+<!-- this one is for the bar icon  -->
+	<p class="logo1"> <span class="menu1">&#9776;</span></p>
+	
+  <a href="index.html" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
+
+
+  <a href="#"class="icon-a"><i class="fa fa-briefcase icons"></i> &nbsp;&nbsp;Transactions  <i class="fa fa-caret-down"></i></a>
+ <!-- nagcreate ako ng dropdown container para maexpand po siya at maghohold ng submenus  -->
+  <div class="dropdown-container">
+ <a href="AdBooking.html"class="icon-a"><i class="fa fa-book icons"></i> &nbsp;&nbsp;Booking</a>
+ <a href="AdBilling.html"class="icon-a"><i class="las la-file-invoice-dollar icons"></i> &nbsp;&nbsp;Billing</a>
+ <a href="Check-In.html"class="icon-a"><i class="fa fa-calendar-check-o icons"></i> &nbsp;&nbsp;Check-In</a>
+ <a href="Check-Out.html"class="icon-a"><i class="fa fa-sign-out icons"></i> &nbsp;&nbsp;Check-Out</a>
+ <a href="AdPayment.html"class="icon-a"><i class="las la-money-bill-wave icons"></i> &nbsp;&nbsp;Payment</a>
+  </div>
+
+  <a href="BookAdjust.html"class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Booking Adjustments</a>
+  <a href="Additional.html"class="icon-a"><i class="las la-cogs icons"></i> &nbsp;&nbsp;Additional Services</a>
+  
+ 
+  <a href="#"class="icon-a"><i class="fa fa-wrench icons"></i> &nbsp;&nbsp;Maintenance<i class="fa fa-caret-down"></i></a>
+  <div class="dropdown-container">
+	<a href="AdAccommodation.html"class="icon-a"><i class="fa fa-bed icons"></i> &nbsp;&nbsp;Accomodation </a>
+	<a href="FacAct.html"class="icon-a"><i class="las la-skiing icons"></i> &nbsp;&nbsp;Facilities & Activities</a>
+	<a href="AddMaintenance.html"class="icon-a"><i class="las la-cogs icons"></i> &nbsp;&nbsp;Additional Services</a>
+	<a href="Gallery.html"class="icon-a"><i class="fa fa-picture-o icons"></i> &nbsp;&nbsp;Gallery</a>
+  </div>
+
+
+  <a href="#"class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Reports<i class="fa fa-caret-down"></i></a>
+  <div class="dropdown-container">
+	<a href="Income.html"class="icon-a"><i class="fa fa-money icons"></i> &nbsp;&nbsp;Income Reports</a>
+	<a href="DailyAudit.html"class="icon-a"><i class="fa fa-bar-chart icons"></i> &nbsp;&nbsp;Daily Audit</a>
+	<a href="BookingReport.html"class="icon-a"><i class="fa fa-book icons"></i> &nbsp;&nbsp;Booking Reports</a>
+  </div>
+
+
+  <a href="#"class="icon-a"><i class=" fa fa-cog  icons"></i> &nbsp;&nbsp;Utilities<i class="fa fa-caret-down"></i></a>
+  <div class="dropdown-container">
+	<a href="AuditTrail.html"class="icon-a"><i class="fa fa-check-square-o icons"></i> &nbsp;&nbsp;Audit Trail</a>
+	<a href="User.html"class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;User-Maintenance</a>
+	<a href="Backup.html"class="icon-a"><i class="fa fa-cloud icons"></i> &nbsp;&nbsp;Back-up & Restore</a>
+	<br>
+</div>
+
+</div>
+
+<!-- so nagcreate ng main for contents na ilalagay sa right side -->
+<div id="main">
+<!-- so ito yung top part, unang line ganern na compose si dashboard hanggang kay profile
+	 tas same lang sila ng div class -->
+	<div class="head">
+		<div class="col-div-6">	
+	<p class="nav"> Additional Services Module</p>
+		</div>
+	
+		<div class="col-div-6">
+		<div class="profile">
+		<img src="images/user.png" class="pro-img" />
+		<p>Admin Cutie<i class="fa fa-ellipsis-v dots" aria-hidden="true"></i></p>
+
+		<div class="profile-div">
+			<a href="Login.html"> <p><i class="fa fa-power-off"></i> &nbsp;&nbsp;Log Out</p></a>
+		</div>
+
+		</div>
+		</div>
+
+	<div class="clearfix"></div>
+	</div>
+	<!-- clearfix is for pang space siya -->
+	<div class="clearfix"></div>
+	<br/>
+
+
+
+
+	
+	<div class="clearfix"></div>
+	<br/>
+
+	<div class="clearfix"></div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+  $(".menu").click(function(){
+    $("#mySidenav").css('width','70px');
+    $("#main").css('margin-left','70px');
+    $(".logo").css('display', 'none');
+    $(".logo1").css('display','block');
+    $(".logo span").css('visibility', 'visible');
+     $(".logo span").css('margin-left', '-10px');
+     $(".icon-a").css('visibility', 'hidden');
+     $(".icon-a").css('height', '25px');
+     $(".icons").css('visibility', 'visible');
+     $(".icons").css('margin-left', '-8px');
+      $(".menu1").css('display','block');
+      $(".menu").css('display','none');
+
+  });
+
+$(".menu1").click(function(){
+    $("#mySidenav").css('width','300px');
+    $("#main").css('margin-left','300px');
+    $(".logo").css('visibility', 'visible');
+    $(".logo").css('display','block');
+     $(".icon-a").css('visibility', 'visible');
+     $(".icons").css('visibility', 'visible');
+     $(".menu").css('display','block');
+      $(".menu1").css('display','none');
+ });
+
+</script>
+<script>
+$(document).ready(function(){
+  $(".profile p").click(function(){
+    $(".profile-div").toggle();
+    
+  });
+  $(".noti-icon").click(function(){
+    $(".notification-div").toggle();
+  });
+
+
+
+  
+});
+
+var dropdown = document.getElementsByClassName("icon-a");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+$(document).ready(function() {
+    $("[href]").each(function() {
+        if (this.href == window.location.href) {
+            $(this).addClass("active");
+        }
+    });
+});
+
+</script>
+</body>
+
+
+</html>

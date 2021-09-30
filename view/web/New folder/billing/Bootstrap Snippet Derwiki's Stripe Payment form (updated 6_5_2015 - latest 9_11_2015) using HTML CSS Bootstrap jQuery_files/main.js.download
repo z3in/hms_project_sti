@@ -1,0 +1,394 @@
+/* -------------------------------------------------- */
+
+/* VARIABLES */
+
+/* -------------------------------------------------- */
+var $ = function(slt) {
+	return document.querySelector(slt);
+};
+
+var main, 
+    layout = "image",
+    interval,
+    index = 0;
+
+/* -------------------------------------------------- */
+
+/* PLATFORM RELATED - DOUBLECLICK STUDIO */
+
+/* -------------------------------------------------- */
+function init() {
+	if (Enabler.isInitialized()) {
+		enablerInitHandler();
+	} else {
+		Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+	}
+}
+
+function enablerInitHandler() {	
+	if (Enabler.isPageLoaded()) {
+		pageLoadedHandler();
+	} else {
+		Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, pageLoadedHandler);
+	}
+}
+
+function pageLoadedHandler() {
+	if (Enabler.isVisible()) {
+		adVisibilityHandler();
+	} else {
+		Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, adVisibilityHandler);
+	}
+}
+
+function adVisibilityHandler() {	
+	loadDynamicData();	
+}
+
+function loadDynamicData() {
+
+    Enabler.setProfileId(10587651);
+    var devDynamicContent = {};
+
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed = [{}];
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0]._id = 0;
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Unique_ID = 1;
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Reporting_Label = "eCommerce";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].is_Active = false;
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Product_Var = "hosting-wc_plus,hosting-wc_pro,hosting-wc_starter";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Country = "";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Headline = "Online Stores by WooCommerce";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Sub_Headline_1 = "Sell Online";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].AdCopy_1 = "Create an online store quickly and easily";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_1 = {};
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_1.Type = "file";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_1.Url = "https://s0.2mdn.net/ads/richmedia/studio/60006830/60006830_20201214131403647_blank.png";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Sub_Headline_2 = "Secured Payments";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].AdCopy_2 = "Keep personal information and transactions safe";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_2 = {};
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_2.Type = "file";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_2.Url = "https://s0.2mdn.net/ads/richmedia/studio/60006830/60006830_20201214131403647_blank.png";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Sub_Headline_3 = "Ship Worldwide";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].AdCopy_3 = "Fast and easy delivery to your customers";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_3 = {};
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_3.Type = "file";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Icon_3.Url = "https://s0.2mdn.net/ads/richmedia/studio/60006830/60006830_20201214131403647_blank.png";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].CTA_Text = "Get Started";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Landing_Page = {};
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Landing_Page.Url = "https://t.myvisualiq.net/click_pixel?et=c&ago=212&ao=771&aca=%ebuy!&si=%esid!&ci=%ecid!&pi=%epid!&ad=%eaid!&sv1=-7&advt=%eadv!&chnl=-7&vndr=115&sz=6508&red=https://www.bluehost.com/track/rtpromo?page=wordpress/woocommerce-hosting&utm_source=dcm&utm_medium=retargeting";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Background_Image = {};
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Background_Image.Type = "file";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Background_Image.Url = "https://s0.2mdn.net/ads/richmedia/studio/60006830/60006830_20201215110319383_SharedHosting_728x90.jpg";
+    // devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].Background_Image.Url = "https://s0.2mdn.net/ads/richmedia/studio/60006830/60006830_20201214131403647_blank.png";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].RD_1 = "image";
+    devDynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0].RD_2 = "";
+    Enabler.setDevDynamicContent(devDynamicContent);    
+
+    main = dynamicContent.ENDU__Product_RTG_Feed__2020_BlueHost_Feed[0];
+
+    setLayout();
+    setValues();
+}
+
+/* -------------------------------------------------- */
+
+/* SET/INIT VALUES */
+
+/* -------------------------------------------------- */
+function setValues() {
+
+    // Settings    
+    $('#bg').style.backgroundImage = "url("+ Enabler.getUrl(main.Background_Image.Url) + ")";
+
+    $('#headline').innerHTML = main.Headline;
+    $('#subheadline').innerHTML = main.Sub_Headline_1;
+    $('#copy').innerHTML = main.AdCopy_1;
+
+    setTimeout(function(){
+        $('#headline').autoResizeWidth($('#headline'), $('#headline').innerHTML);
+        // $('#subheadline').autoResizeWidth($('#subheadline'), $('#subheadline').innerHTML);
+        // $('#copy').autoResizeWidth($('#copy'), $('#copy').innerHTML);
+    }, 100);
+
+    $('#cta_btn p').innerHTML = main.CTA_Text;
+    //
+
+    // Events
+    $('#bg_btn').addEventListener('click', clickBG);
+    $('#logo_btn').addEventListener('click', clickLogo);
+    $('#cta_btn').addEventListener('click', clickCTA);
+    $('#cta_btn').addEventListener('mouseover', over);
+    $('#cta_btn').addEventListener('mouseout', out);
+
+    $('#rightarrow').addEventListener('click', clickRight);
+    $('#leftarrow').addEventListener('click', clickLeft);
+
+    playAnimation();
+}
+
+function setLayout(){
+
+    var imagepath = "";
+    imagepath = main.Background_Image.Url;
+
+    if(imagepath.includes("blank.png")){
+        // layout is no image
+        layout = "noimage";
+
+        $('#logo').src = Enabler.getUrl("logo2.png");
+
+        $('#leftarrow').src = Enabler.getUrl("leftarrow2.png");
+        $('#rightarrow').src = Enabler.getUrl("rightarrow2.png");
+
+        $('#leftarrow').style.top = "30px";
+        $('#leftarrow').style.left = "300px";
+
+        $('#rightarrow').style.top = "30px";
+        $('#rightarrow').style.left = "482px";
+
+        $('#headline_holder').style.width = "270px";
+        $('#headline_holder').style.height = "90px";
+
+        $('#headline').style.left = "18px";
+        $('#headline').style.width = "270px";
+        $('#headline').style.fontSize = "28px";
+
+        $('#content_holder').style.left = "312px";
+        $('#content_holder').style.width = "188px";
+
+        $('#logo_btn').style.width = "160px";
+
+        // $('#subheadline').style.width = "160px";
+        $('#subheadline').style.color = "#000000";
+        $('#subheadline').style.fontSize = "18px";
+
+        // $('#copy').style.width = "140px";
+        $('#copy').style.color = "#000000";
+        $('#copy').style.fontSize = "14px";
+
+        $('#cta_holder').style.left = "578px";
+
+    }
+    else{
+        // layout is with image // default
+        layout = "image";
+        $('#logo').src = Enabler.getUrl("logo.png");
+    }
+
+}
+
+/* -------------------------------------------------- */
+
+/* ANIMATION & SETTINGS */
+
+/* -------------------------------------------------- */
+
+function playAnimation() {
+    $(".container").style.display = "block";
+
+    TweenMax.set($('#bg'), {alpha:0});
+    TweenMax.set($('#headline'), {alpha:0});
+    TweenMax.set($('#content_holder'), {alpha:0});
+    TweenMax.set($('#rightarrow'), {x:-15, autoAlpha:0});
+    TweenMax.set($('#leftarrow'), {x:15, autoAlpha:0});
+    TweenMax.set($('#cta_btn'), {autoAlpha:0});
+
+    TweenMax.to($('#headline'), 0.5, {alpha:1, ease:Linear.easeNone, delay:0.2});
+    TweenMax.to($('#bg'), 0.5, {alpha:1, ease:Linear.easeNone, delay:0.5});
+    TweenMax.to($('#content_holder'), 0.5, {alpha:1, ease:Linear.easeNone, delay:0.5});
+    TweenMax.to($('#rightarrow'), 0.75, {x:0, autoAlpha:1, ease:Power2.easeOut, delay:1.5});
+    TweenMax.to($('#leftarrow'), 0.75, {x:0, autoAlpha:1, ease:Power2.easeOut, delay:1.5});
+    TweenMax.to($('#cta_btn'), 0.5, {autoAlpha:1, ease:Linear.easeNone, delay:1});
+
+    TweenMax.delayedCall(2, autoAnimate);
+}
+
+/* -------------------------------------------------- */
+
+/* EVENTS */
+
+/* -------------------------------------------------- */
+function over(e){
+    TweenMax.killTweensOf(e.target);
+    TweenMax.to(e.target, 0.5, {css:{backgroundColor: "#ffffff", color: "#1c2a3c"}, ease:Power2.easeOut});
+}
+
+function out(e){
+    TweenMax.killTweensOf(e.target);
+    TweenMax.to(e.target, 0.5, {css:{backgroundColor: "#1c2a3c", color: "#ffffff"}, ease:Power2.easeOut});
+}
+
+function clickBG(e) {
+    Enabler.exitOverride('BG Exit', main.Landing_Page.Url);
+}
+
+function clickCTA(e) {
+    Enabler.exitOverride('CTA Exit', main.Landing_Page.Url);
+}
+
+function clickLogo(e) {
+    Enabler.exitOverride('Logo Exit', main.Landing_Page.Url);
+}
+
+function clickRight(e){
+    clearInterval(interval);
+    if(index<2){
+        index+=1;
+    }
+    else{
+        index=0;
+    }
+
+    TweenMax.to($('#subheadline'), 0.3, {x:50, alpha:0, ease:Power2.easeOut, 
+        onComplete:function(){
+            TweenMax.set($('#subheadline'), {x:-50, alpha:0});
+            showCopy();
+        }
+    });
+
+    TweenMax.to($('#copy'), 0.3, {x:50, alpha:0, ease:Power2.easeOut, 
+        onComplete:function(){
+            TweenMax.set($('#copy'), {x:-50, alpha:0});
+        }
+    });
+
+    TweenMax.to($('#subheadline'), 0.5, {x:0, alpha:1, ease:Power2.easeOut, delay:0.3});
+    TweenMax.to($('#copy'), 0.5, {x:0, alpha:1, ease:Power2.easeOut, delay:0.3});
+
+    Enabler.counter("Right Arrow Click");
+}
+
+function clickLeft(e){
+    clearInterval(interval);
+    if(index==0){
+        index=2;
+    }
+    else{
+        index-=1;
+    }
+
+    TweenMax.to($('#subheadline'), 0.3, {x:-50, alpha:0, ease:Power2.easeOut, 
+        onComplete:function(){
+            TweenMax.set($('#subheadline'), {x:50, alpha:0});
+            showCopy();
+        }
+    });
+
+    TweenMax.to($('#copy'), 0.3, {x:-50, alpha:0, ease:Power2.easeOut, 
+        onComplete:function(){
+            TweenMax.set($('#copy'), {x:50, alpha:0});
+        }
+    });
+
+    TweenMax.to($('#subheadline'), 0.5, {x:0, alpha:1, ease:Power2.easeOut, delay:0.3});
+    TweenMax.to($('#copy'), 0.5, {x:0, alpha:1, ease:Power2.easeOut, delay:0.3});
+
+    Enabler.counter("Left Arrow Click");
+}
+
+function showCopy(){
+    switch(index){
+        case 0:
+            $('#subheadline').innerHTML = main.Sub_Headline_1;
+            $('#copy').innerHTML = main.AdCopy_1;
+            break;
+        case 1:
+            $('#subheadline').innerHTML = main.Sub_Headline_2;
+            $('#copy').innerHTML = main.AdCopy_2;
+            break;
+        case 2:
+            $('#subheadline').innerHTML = main.Sub_Headline_3;
+            $('#copy').innerHTML = main.AdCopy_3;
+            break;            
+    }
+}
+
+function autoAnimate(){
+    interval = setInterval(function(){
+        if(index<2){
+            index+=1;
+        }
+        else{
+            index=0;
+            clearInterval(interval);
+        }
+
+        TweenMax.to($('#subheadline'), 0.3, {x:50, alpha:0, ease:Power2.easeOut, 
+            onComplete:function(){
+                TweenMax.set($('#subheadline'), {x:-50, alpha:0});
+                showCopy();
+            }
+        });
+
+        TweenMax.to($('#copy'), 0.3, {x:50, alpha:0, ease:Power2.easeOut, 
+            onComplete:function(){
+                TweenMax.set($('#copy'), {x:-50, alpha:0});
+            }
+        });
+
+        TweenMax.to($('#subheadline'), 0.5, {x:0, alpha:1, ease:Power2.easeOut, delay:0.3});
+        TweenMax.to($('#copy'), 0.5, {x:0, alpha:1, ease:Power2.easeOut, delay:0.3});
+
+    }, 2000)
+}
+
+/* -------------------------------------------------- */ 
+
+/* MISC/TOOLS */
+
+/* -------------------------------------------------- */
+
+Element.prototype.autoResizeHeight = function (parentEl, copy) {
+    if (this.nodeType !== 1 || copy.length <= 0) return false;
+    this.innerHTML = copy;
+    let el, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = copy.length; _i < _len; _i++) {
+        el = this;        
+        _results.push((function (el) {
+            var resizeText, _results1;
+            resizeText = function () {
+                var elNewFontSize;
+                elNewFontSize = (parseInt(window.getComputedStyle(el, null).getPropertyValue('font-size').slice(0, -2)) - 1) + 'px';
+                // el.style.lineHeight = elNewFontSize;
+                return el.style.fontSize = elNewFontSize;
+            };
+            _results1 = [];
+            while (el.scrollHeight > parentEl.offsetHeight) {
+                _results1.push(resizeText());
+            }
+            return _results1;
+        })(el));
+    }
+    return _results;
+}
+
+Element.prototype.autoResizeWidth = function (parentEl, copy) {
+    if (this.nodeType !== 1 || copy.length <= 0) return false;
+    this.innerHTML = copy;
+    let el, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = copy.length; _i < _len; _i++) {
+        el = this;        
+        _results.push((function (el) {
+            var resizeText, _results1;
+            resizeText = function () {
+                var elNewFontSize;
+                elNewFontSize = (parseInt(window.getComputedStyle(el, null).getPropertyValue('font-size').slice(0, -2)) - 1) + 'px';
+                // el.style.lineHeight = elNewFontSize;
+                return el.style.fontSize = elNewFontSize;
+            };
+            _results1 = [];
+            while (el.scrollWidth > parentEl.offsetWidth) {
+                _results1.push(resizeText());
+            }
+            return _results1;
+        })(el));
+    }
+    return _results;
+}
+
+function addClass(t,s){t.classList?t.classList.add(s):t.className+=" "+s}
+function removeClass(t,s){t.classList?t.classList.remove(s):t.className=t.className.replace(new RegExp("(^|\\b)"+s.split(" ").join("|")+"(\\b|$)","gi")," ")}
+
+window.onload = init;

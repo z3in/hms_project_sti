@@ -11,7 +11,7 @@ spl_autoload_register(function($className){
     $path_model = ROOT . DS . 'model' . DS . $className . '.model.php';
     $path_model_ref = ROOT . DS . 'model' . DS . 'ref' . DS . $className . '.model.php';
     $path_src = ROOT . DS . 'src' . DS . $className . '.class.php';
-    $path_src_user = ROOT . DS . 'src' . DS . 'user'. DS . $className . '.php';
+    $path_src_user = ROOT . DS . 'src' . DS . 'user'. DS . $className . '.class.php';
     $path_src_ref = ROOT . DS . 'src' . DS . 'ref'. DS . $className . '.php';
     $path_src_ipcr = ROOT . DS . 'src' . DS . 'ipcr'. DS . $className . '.php';
     $path_src_psc = ROOT . DS . 'src' . DS . 'psc'. DS . $className . '.php';

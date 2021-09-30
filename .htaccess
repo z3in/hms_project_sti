@@ -1,4 +1,6 @@
+ErrorDocument 404 /404.php
 RewriteEngine On
+
 RewriteCond $1 !^(index\.php|assets)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

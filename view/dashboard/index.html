@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Hip Nautic Beach Resort</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: "Poppins", Arial, sans-serif;
             box-sizing: border-box;
             padding:0;
             margin:0;
@@ -29,7 +28,7 @@
             flex-direction: row!important;
         }
         header{
-            max-width:350px;
+            max-width:250px;
             height:100vh;
             width:100%;
             border-right:1px solid #EAEAEA;
@@ -37,19 +36,21 @@
         }
         header nav ul{
             list-style: none;
-            padding:0 2em;
+            padding:0 1em;
         }
         header nav ul.top-level{
-            margin-top:2em;
+            margin-top:100px;
         }
         
         header nav ul li{
-            padding:.75em 2em;
+           
         }
         header nav ul li a {
            text-decoration: none;
            color:#9f9f9f;
            transition: .25s ease-in-out;
+           padding: .75em 1em;
+           display: block;
         }
         header nav ul li a:hover {
             color:#222222;
@@ -58,49 +59,51 @@
         }
         header nav ul li a span{
            margin-left:1em;
-           font-size:1.25rem;
+           font-size:1rem;
         }
-        header nav ul li.selected{
+        header nav ul li.selected a.main-link{
             font-weight: 700;
             background-color:#e9ecef;
             border-radius: 10px;
+            
         }
         
         header nav ul.top-level li.main-menu.selected a{
-        color:#222222;
+            color:#222222;
         }
         header nav ul.top-level li.main-menu ul{
             margin-top:.5em;
             padding:0 1em;
+            opacity: 0;
+            transition: all 0.5s ease 0s;
         }
-        header nav ul.top-level li.main-menu ul li{
-            padding:.75em 1em;
+        header nav ul.top-level li.main-menu.selected ul li a{
+            color:#9f9f9f;
         }
         header nav ul.top-level li.main-menu ul li a span{
             font-size: 1rem;
+            display: block;
         }
 
         main{
             background-color:#e1e1e1;
             width:100%;
-            padding:2em;
+            padding-bottom:1em;
             display:flex;
             flex-direction: column;
             justify-content: center;
-            padding-top:0;
         }
         main .container-main{
             width:100%;
             height:100%;
-            background-color: #fff;
-            border-radius: 10px;
-            border: 1px solid #EAEAEA;
-            box-shadow: 2px 0px 5px rgb(0 0 0 / 10%);
+            padding:0em 1em;
         }
         main .top-container{
             background-color: #fff;
             margin-bottom:2em;
-            height:150px;
+            height:350px;
+            background: linear-gradient(180deg, #07163E 0%, #0E1A39 52.08%, #696A6B 100%);
+            padding:1em 2em;
         }
         .signout{
             position:absolute;
@@ -117,8 +120,43 @@
            border-radius: 5px;
         }
         .logo{
-            text-align: center;
             margin-top:2em;
+            width:70%;
+            height:150px;
+            background-color: #b69100cc;
+            
+        }
+        .logo a{
+            font-weight: 700;
+            font-size: 20px;
+            margin-left:1em;
+            margin-top:1em;
+            padding-right:2em;
+            text-transform: uppercase;
+            color:#fff;
+            display: block;
+            transform: translateY(20%);
+        }
+        .highlight-font{
+            color:#222222!important;
+            font-weight: 700;
+        }
+        .show {
+            display:block;
+            visibility: visible;
+            opacity: 1!important;
+        }
+        .hidden{
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+        }
+        a:not([href]):not([tabindex]){
+            color: #9f9f9f;
+            cursor: pointer;
+        }
+        header nav ul.top-level li.main-menu.selected ul li a:hover{
+            color:#222222;
         }
     </style>
 </head>
@@ -127,31 +165,46 @@
         <div class="flex flex-row">
             <header>
             <div class="logo">
-                <img src="view/dashboard/assets/img/288841591.jpg" style="width:50%;margin:0 auto;opacity:.5;">
+                <a href="#dashboard">HIPNAUTIC BEACH RESORT</a>
             </div>
             <nav>
                 <ul class="top-level">
-                    <li class="main-menu selected"><a href="#"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
-                    <li class="main-menu"><a href="#"><i class="fas fa-cogs"></i><span>Maintenance</span></a></li>
-                    <li class="main-menu"><a href="#"><i class="fas fa-tools"></i><span>Utilities</span></a>
-                        <ul>
-                            <li><a href=""><span>User Maintenance</span></a></li>
+                    <li class="main-menu selected" data-nav="dashboard"><a class="main-link" href="#dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
+                    <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
+                        <ul class="submenu hidden" data-nav="sub-maintenance">
+                            <li><a href="#accomodation"><span>Accomodation</span></a></li>
+                            <li><a href="#facilities"><span>Facilities and Services</span></a></li>
+                            <li><a href="#gallery"><span>Gallery</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="main-menu withsub" data-nav="utilities" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Utilities</span></a>
+                        <ul class="submenu hidden" data-nav="sub-utilities">
+                            <li><a href="#usermaintenance"><span>User Maintenance</span></a></li>
+                            <li><a href="#backup"><span>Back up and Restore</span></a></li>
+                            <li><a href="#audit"><span>Audit Trail</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="main-menu withsub" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Reports</span></a>
+                        <ul class="submenu hidden" data-nav="sub-reports">
+                            <li><a href="#incomereport"><span>Income Reports</span></a></li>
+                            <li><a href="#dailyaudit"><span>Daily Audit</span></a></li>
+                            <li><a href="#bookingreport"><span>Booking Report</span></a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
             <div class="signout">
-                <p><a href="#"><i class="fas fa-sign-out-alt"></i><span>sign out</span></a></p>
+                <p><a href="#"><i class="fas fa-power-off"></i><span>sign out</span></a></p>
             </div>
             </header>
             <main>
-                <div class="top-container"></div>
-                <div class="container-main"></div>
+                
             </main>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
     <script src="view/dashboard/js/common.lib.js"></script>
     <script src="view/dashboard/js/validate.security.js"></script>
+    <script src="view/dashboard/js/load.content.js"></script>
 </body>
 </html>

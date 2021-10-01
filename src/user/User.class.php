@@ -28,4 +28,6 @@ Class User {
             exit(Response::success('test only.',null,'data',$response));
         }
     }
+
+    
 }

@@ -2,17 +2,17 @@
 
 Class View {
     public static function dashboardDisplay(){
-        $path = ROOT . DS . 'view'. DS . 'dashboard '. DS . 'index.html';
+        $path = ROOT . DS . 'view'. DS . 'dashboard'. DS . 'index.html';
         require_once($path);
     }
 
     public static function dashboardLogin(){
-        $path = ROOT . DS . 'view'. DS . 'dashboard '. DS . 'secure' . DS . 'login.html';
+        $path = ROOT . DS . 'view'. DS . 'dashboard'. DS . 'secure' . DS . 'login.html';
         require_once($path);
     }
 
     public static function webClientDisplay(){
-        $path = ROOT . DS . 'view'. DS . 'web ' . DS . 'index.html';
+        $path = ROOT . DS . 'view'. DS . 'web' . DS . 'index.html';
         require_once($path);
     }
 

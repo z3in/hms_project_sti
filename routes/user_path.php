@@ -1,12 +1,5 @@
 <?php
 
-/* DB management */
-
-Router::route('/app/system/backup', function(){
-    Dbmanage::makeBackup();
-});
-
-
 /* USER CLASS PATH */
 
 Router::route('/app/user/login', function(){

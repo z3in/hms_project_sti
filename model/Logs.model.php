@@ -47,6 +47,24 @@ Class Logs extends Helpers{
         $stmt->execute($data);
     }
 
-    
+    public function countAllRow(){
+
+        $sql = "SELECT COUNT(*) FROM logs";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+    }
+
+    public function selectALlLog($offset,$rowsperpage){
+        $sql = "SELECT * FROM logs LIMIT ?, ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(1, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(2, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
 
 }

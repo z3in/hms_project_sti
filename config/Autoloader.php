@@ -8,13 +8,12 @@ define('ROOT', dirname(__DIR__));
 spl_autoload_register(function($className){
     $path_config = ROOT . DS . 'config' . DS . $className . '.php';
     $path_control = ROOT . DS . 'control' . DS . $className . '.control.php';
+    $path_lib = ROOT . DS . 'lib' . DS . $className . '.lib.php';
     $path_model = ROOT . DS . 'model' . DS . $className . '.model.php';
     $path_model_ref = ROOT . DS . 'model' . DS . 'ref' . DS . $className . '.model.php';
     $path_src = ROOT . DS . 'src' . DS . $className . '.class.php';
     $path_src_user = ROOT . DS . 'src' . DS . 'user'. DS . $className . '.class.php';
-    $path_src_ref = ROOT . DS . 'src' . DS . 'ref'. DS . $className . '.php';
-    $path_src_ipcr = ROOT . DS . 'src' . DS . 'ipcr'. DS . $className . '.php';
-    $path_src_psc = ROOT . DS . 'src' . DS . 'psc'. DS . $className . '.php';
+    $path_src_ref = ROOT . DS . 'src' . DS . 'references'. DS . $className . '.class.php';
 
     if(file_exists($path_config)){
         require_once($path_config);
@@ -30,10 +29,8 @@ spl_autoload_register(function($className){
         require_once($path_src_user);
     }else if(file_exists($path_src_ref)){
         require_once($path_src_ref);
-    }else if(file_exists($path_src_ipcr)){
-        require_once($path_src_ipcr);
-    }else if(file_exists($path_src_psc)){
-        require_once($path_src_psc);
+    }else if(file_exists($path_lib)){
+            require_once($path_lib);
     }else{
         echo '404 Page not Found';
     }

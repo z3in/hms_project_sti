@@ -50,8 +50,11 @@
         .content-feature .card small{
             color:#9f9f9f;
         }
-        .btn{
+        .btn-group .btn{
             color:#222!important;
+        }
+        .card .btn-danger, .card:last-child .btn{
+            color:#fff!important;
         }
         .card-button{
             display:flex!important;
@@ -80,13 +83,21 @@
                         <h3>20</h3>
                         <p><span>Active Users</span><small>shows number of total users in the system</small></p>
                     </div>
-                  </div>
+                </div>
                 <div class="card col3">
                     <div class="card-body">
                         <p><span>User Management</span><small>create or deactivate users</small></p>
                         <div class="btn-group" role="group" aria-label="user management">
                             <a href="#createuser" data-nonnav=true type="button" class="btn btn-warning"><i class="fas fa-plus-square"></i>create new user</a>
                             <a href="#deleteuser" data-nonnav=true type="button" class="btn btn-danger"><i class="fas fa-trash"></i>delete user</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col3">
+                    <div class="card-body">
+                        <p><span>Manage Roles/Position</span><small>create or modify position/roles for your employees</small></p>
+                        <div class="btn-group" role="group" aria-label="user management">
+                            <a href="#createuser" data-nonnav=true type="button" class="btn btn-primary"><i class="fas fa-tasks"></i>manage</a>
                         </div>
                     </div>
                   </div>

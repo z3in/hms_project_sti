@@ -67,7 +67,7 @@ const checkNonNav = (hash) => {
     let nonNavs = {
         createuser: "#usermaintenance"
     }
-        subMenuEffect((hash.substring(1) in nonNavs) ? nonNavs[`${hash.substring(1)}`]:pageContents.dashboard)
+    subMenuEffect((hash.substring(1) in nonNavs) ? nonNavs[`${hash.substring(1)}`] : "#dashboard")
 }
 
 const requestPage = async (endpoint) => {

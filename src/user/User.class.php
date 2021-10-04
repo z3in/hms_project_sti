@@ -24,7 +24,7 @@ Class User {
         $result = $user->getAllData();
         $count = $result->rowCount();
         if($count == 0) {
-            exit(Response::success(200,'test only.'));
+            exit(Response::send(200,'test only.'));
         }
     }
 
@@ -46,9 +46,9 @@ Class User {
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
                 array_push($response['list'],$row);
             }
-            exit(Response::success(200,'Showing Result'));
+            exit(Response::send(200,'Showing Result'));
         }
-        exit(Response::success(200,'No Result Found.'));
+        exit(Response::send(200,'No Result Found.'));
     }
 
     public static function addUser(){

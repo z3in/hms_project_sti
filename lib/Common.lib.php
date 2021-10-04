@@ -104,3 +104,50 @@ class TimeAndDate{
         return $date;
     }
 }
+
+class Pagination{
+
+    private $page_num;
+    private $total_rows;
+    private $total_page;
+    private $rows_perpage;
+    private $offset;
+    
+    public function __construct(int $rows,int $total,$page = null){
+        $this->page_num = isset($page) ? $page : 1; 
+        $this->total_rows = $total;
+        $this->rows_perpage = $rows;
+
+        $this->getTotalPage();
+        $this->findOffset();
+    }
+
+    private function getTotalPage(){
+        $total = ceil($this->total_rows / $this->rows_perpage);
+        $this->total_page = $total;
+    }
+
+    private function findOffset(){
+        $offset = ($this->page_num - 1) * $this->rows_perpage;
+        $this->offset = $offset;
+    }
+
+    public function getOffset(){
+        return $this->offset;
+    }
+
+    public function getRowsPerPage(){
+        return $this->rows_perpage;
+    }
+
+    public function getPaginatedInfo(){
+        $data = [
+            "page_num" => $this->page_num,
+            "rows_per_page" => $this->rows_perpage,
+            "total_page" => $this->total_page,
+            "total_rows" => $this->total_rows
+        ];
+
+        return $data;
+    }
+}

@@ -52,10 +52,22 @@ Class UserRole extends Helpers{
 
 
     /* class methods */
-    public function getAllPosition(){
-        $sql = "SELECT * FROM user_role";
+
+    public function countAllRow(){
+
+        $sql = "SELECT COUNT(*) FROM user_role";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+    }
+
+    public function getAllPosition($offset,$rowsperpage){
+        $sql = "SELECT * FROM user_role LIMIT ?, ?";
 
         $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(1, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(2, $rowsperpage, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt;

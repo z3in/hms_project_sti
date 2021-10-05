@@ -23,13 +23,20 @@ Class Audit{
         Validate::defineMethod("GET");
 
         $error = '';
-        $error .= Validate::defineError(!isset($data['limit']),$error,'limit');
+        $error .= Validate::defineError(!isset($data['limit']) && !isset($_GET['limit']),$error,'limit');
         
         Validate::errorvalue($error);
 
         try{
-            if(!is_int($data['limit'])){
-                throw new ErrorValueException('`limit` parameter cannot be ' . gettype($stats));
+            if(isset($data['limit'])){
+                if(!is_int($data['limit'])){
+                    throw new ErrorValueException('`limit` parameter cannot be ' . gettype($data['limit']));
+                }
+            }
+            if(isset($_GET['limit'])){
+                if(!is_numeric($_GET['limit'])){
+                    throw new ErrorValueException('`limit` parameter cannot be ' . gettype($_GET['limit']));
+                }
             }
         }catch(ErrorValueException $e){
             exit(Response::send(422,$e->errorMessage()));
@@ -38,7 +45,8 @@ Class Audit{
         $logs = self::createInstance();
         $count = $logs->countAllRow()->fetchColumn();
         $response = Array();
-        $page_info = new Pagination($data['limit'],$count);
+        $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
+        $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
         $response['page_info'] = $page_info->getPaginatedInfo();
         $result = $logs->selectALlLog($page_info->getOffset(),$page_info->getRowsPerPage());
         if($count > 0){

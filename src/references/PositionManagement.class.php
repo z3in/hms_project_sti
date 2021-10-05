@@ -15,20 +15,46 @@ Class PositionManagement{
         $data = Validate::JSONdata();
         Validate::defineMethod("GET");
 
-        $user = self::createInstance();
+        $error = '';
+        $error .= Validate::defineError(!isset($data['limit']) && !isset($_GET['limit']),$error,'limit');
+        
+        Validate::errorvalue($error);
 
-        $result = $user->getAllPosition();
-        $count = $result->rowCount();
-
-        if($count > 0) {
-            $response =  array();
-            $response['count'] = $count;
-            while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                array_push($response['list'],$row);
+        try{
+            if(isset($data['limit'])){
+                if(!is_int($data['limit'])){
+                    throw new ErrorValueException('`limit` parameter cannot be ' . gettype($data['limit']));
+                }
             }
-            exit(Response::send(200,'Showing Result',null,'data',$response));
+            if(isset($_GET['limit'])){
+                if(!is_numeric($_GET['limit'])){
+                    throw new ErrorValueException('`limit` parameter cannot be ' . gettype($_GET['limit']));
+                }
+            }
+        }catch(ErrorValueException $e){
+            exit(Response::send(422,$e->errorMessage()));
         }
-        exit(Response::send(200,'No Result Found.'));
+
+        $pos = self::createInstance();
+        $count = $pos->countAllRow()->fetchColumn();
+
+        $response = Array();
+
+        $page_number = isset($_GET['page_number']) || isset($data['page_number']);
+        $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
+        $page_info->setUrl('app/user/role/list');
+        $response['page_info'] = $page_info->getPaginatedInfo();
+
+        $result = $pos->getAllPosition($page_info->getOffset(),$page_info->getRowsPerPage());
+        
+        if($count > 0) {
+            $response['data'] = Array();
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                array_push($response['data'],$row);
+            }
+           
+        }
+        exit(Response::send(200,'Showing Result','result',$response));
     }
 
     public static function addPosition(){

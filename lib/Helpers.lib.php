@@ -28,4 +28,5 @@ Class Helpers{
         $date = date("Y-m-d H:i:s");
         return $date;
     }
+
 }

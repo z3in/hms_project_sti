@@ -34,6 +34,14 @@ Class Logs extends Helpers{
 
 
     /*class methods */
+    public function countAllRow(){
+
+        $sql = "SELECT COUNT(*) FROM logs";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+    }
 
     public function insertLog(){
         $sql = "INSERT INTO logs(`userid`,`action`,`module`)VALUES(:userid,:act,:module)";
@@ -45,16 +53,6 @@ Class Logs extends Helpers{
             "module" => $this->getModule()
         ];
         $stmt->execute($data);
-    }
-
-    public function countAllRow(){
-
-        $sql = "SELECT COUNT(*) FROM logs";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt;
-        
     }
 
     public function selectALlLog($offset,$rowsperpage){

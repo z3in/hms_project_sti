@@ -26,24 +26,50 @@ const toggleSubMenu = (nav) =>{
     }
 }
 
+const pageContents = () =>{
+    return  {
+        dashboard: {url:"view/dashboard/content/dashboard/dashboard.html",script:null},
+        usermaintenance: {url:"view/dashboard/content/util/user_maintenance/usermaintenance.html",script:null},
+        audit: {url:"view/dashboard/content/util/audit/audit.html",script:"view/dashboard/content/util/audit/audit.js"},
+        createuser: {url:"view/dashboard/content/util/user_maintenance/createuser.html",script:"view/dashboard/content/util/user_maintenance/createuser.js"},
+        manageposition: {url:"view/dashboard/content/util/user_maintenance/manageposition/manageposition.html",script:"view/dashboard/content/util/user_maintenance/manageposition/manageposition.js"},
+        backup: {url:"view/dashboard/content/util/backupandrestore/backup.html",script:null}
+    }
+}
+
 const getContent = (hash) =>{
     document.querySelectorAll(".top-level li").forEach(item => item.classList.remove("selected"))
     document.querySelectorAll(".top-level li ul li a").forEach(item => item.classList.remove("highlight-font"))
     subMenuEffect(hash);
-    let request = requestPage(getContentBaseOnURL(hash))
+    let request = requestPage(`${getContentBaseOnURL(hash)}`,{},"text")
     return request;
 }
+
 const getContentBaseOnURL = (url) =>{
-    let pageContents = {
-        dashboard: "view/dashboard/content/dashboard/dashboard.html",
-        usermaintenance: "view/dashboard/content/util/user_maintenance/usermaintenance.html",
-        audit: "view/dashboard/content/util/audit/audit.html",
-        createuser: "view/dashboard/content/util/user_maintenance/createuser.html",
-        backup: "view/dashboard/content/util/backupandrestore/backup.html"
+    let pageContent = pageContents()
+    let page = url.substring(1)
+    let endpoint = (page in pageContent) ? pageContent[`${page}`].url : pageContent.dashboard;
+    if(pageContent[`${page}`].script){
+    getScript((page in pageContent) ? pageContent[`${page}`].script : null)
     }
-    let endpoint = (url.substring(1) in pageContents) ? pageContents[`${url.substring(1)}`] : pageContents.dashboard;
     return endpoint;
 }
+
+const getScript = (path) =>{
+        if(path === null){
+            return
+        }
+        let p = document.getElementById("script-adapter")
+        if(p){
+            p.remove()
+            script = document.createElement("script");
+            script.type = 'text/javascript'
+            script.id = "script-adapter"
+            script.src = path
+        }
+        document.body.appendChild(script)
+}
+
 const subMenuEffect = (hash) =>{
     let ref = document.querySelector(`a[href='${hash}']`);
     if(ref){
@@ -65,15 +91,10 @@ const subMenuEffect = (hash) =>{
 
 const checkNonNav = (hash) => {
     let nonNavs = {
-        createuser: "#usermaintenance"
+        createuser: "#usermaintenance",
+        manageposition: "#usermaintenance"
     }
     subMenuEffect((hash.substring(1) in nonNavs) ? nonNavs[`${hash.substring(1)}`] : "#dashboard")
-}
-
-const requestPage = async (endpoint) => {
-    const result = await fetch(endpoint)
-                .then(data=>data.text())
-    return result
 }
 
 const getURLHash = () =>{

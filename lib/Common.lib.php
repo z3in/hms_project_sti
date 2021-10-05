@@ -31,7 +31,7 @@ class Validate{
     public static function defineMethod($method){
         
         if($_SERVER["REQUEST_METHOD"] != $method){
-            exit(Response::resError(405,'Invalid Method. Please use '. $method. ' Method'));
+            exit(Response::send(405,'Invalid Method. Please use '. $method. ' Method'));
         }
     }
     
@@ -74,6 +74,7 @@ class Response{
             'timestamp' => TimeAndDate::timestamp(),
             $data_name => $data
         );
+        header('Content-type: application/json');
         $filtered_res = array_filter($suc_msg);
         print_r(json_encode(self::utf8ize($filtered_res)));
         http_response_code($code);
@@ -107,19 +108,31 @@ class TimeAndDate{
 
 class Pagination{
 
-    private $page_num;
-    private $total_rows;
-    private $total_page;
-    private $rows_perpage;
-    private $offset;
+    private $page_num,
+            $total_rows,
+            $total_page,
+            $rows_perpage,
+            $offset,
+            $next_path,
+            $prev_path;
     
     public function __construct(int $rows,int $total,$page = null){
         $this->page_num = isset($page) ? $page : 1; 
         $this->total_rows = $total;
         $this->rows_perpage = $rows;
-
+        
         $this->getTotalPage();
+        $this->validatePage();
         $this->findOffset();
+    }
+
+    private function validatePage(){
+        if($this->page_num > $this->total_page){
+            $this->page_num = $this->total_page;
+        }
+        if ($this->page_num < 1) {
+            $this->page_num = 1;
+        }
     }
 
     private function getTotalPage(){
@@ -145,9 +158,32 @@ class Pagination{
             "page_num" => $this->page_num,
             "rows_per_page" => $this->rows_perpage,
             "total_page" => $this->total_page,
-            "total_rows" => $this->total_rows
+            "total_rows" => $this->total_rows,
+            "next_url" => $this->next_path,
+            "prev_url" => $this->prev_path
         ];
 
-        return $data;
+        return array_filter($data, function($value) { return !is_null($value) && $value !== ''; });
+    }
+
+    public function setUrl($path){
+        $this->generateUrl($path);
+    }
+
+    private function generateUrl($path){
+        if($this->page_num == 1){
+            $this->prev_path = null;
+        }
+        if($this->page_num > 1){
+            $this->prev_path = $path . '?limit=' . $this->rows_perpage .'&page_number=' . ($this->page_num-1);
+        }
+
+        if($this->page_num > $this->total_page){
+            $this->next_path = null;
+        }
+
+        if($this->page_num < $this->total_page){
+            $this->next_path = $path . '?limit=' . $this->rows_perpage .'&page_number=' . ($this->page_num + 1);
+        }
     }
 }

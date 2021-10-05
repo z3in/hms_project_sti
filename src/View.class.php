@@ -17,7 +17,7 @@ Class View {
     }
 
     public static function get404(){
-        $path = ROOT . DS . '404.html';
+        $path = ROOT . DS . '404.php';
         require_once($path);
     }
 }

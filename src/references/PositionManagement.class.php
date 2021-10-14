@@ -37,16 +37,12 @@ Class PositionManagement{
 
         $pos = self::createInstance();
         $count = $pos->countAllRow()->fetchColumn();
-
         $response = Array();
-
-        $page_number = isset($_GET['page_number']) || isset($data['page_number']);
+        $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
         $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
         $page_info->setUrl('app/user/role/list');
         $response['page_info'] = $page_info->getPaginatedInfo();
-
         $result = $pos->getAllPosition($page_info->getOffset(),$page_info->getRowsPerPage());
-        
         if($count > 0) {
             $response['data'] = Array();
             while($row = $result->fetch(PDO::FETCH_ASSOC)){

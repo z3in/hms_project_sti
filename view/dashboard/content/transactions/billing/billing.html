@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .top-container h1{
+            margin-top:1em;
+        }
+        .content-feature .card-body{
+            justify-content: center;
+            align-items: center;
+        }
+        .content-feature .card h3{
+            font-size: 50px;
+            text-decoration: none;
+            color:#dc3545;
+            float: left;
+            margin-right:.5em;
+            padding-left:.25em;
+        }
+        .content-feature .card span{
+            font-size: 1.5rem;
+            text-decoration: none;
+            color:inherit;
+        }
+        .content-feature .card p{
+            text-decoration: none;
+            color:inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+        .content-feature .card{
+            border-radius: 10px;
+            color:#222;
+            margin:0 1em;
+        }
+        .content-feature .card-body{
+            width:100%;
+        }
+        .content-feature .card small{
+            color:#9f9f9f;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-container">
+        <h1 style="color:#fff">Billing</h1>
+    </div>
+    <div class="container-main">
+            <div class="content-feature">
+                <div class="card col3">
+                    <div class="card-body">
+                        <h3>3</h3>
+                        <p><span>Overdue</span><small>number of unpaid reservation</small></p>
+                        <div class="form-group mb-0" aria-label="user management">
+                            <a href="#manageposition" data-nonnav=true type="button" class="btn btn-block btn-secondary" ><i class="fas fa-list-ul"></i> view reservatons</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-table">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">View Guest's Bill</h5>
+                            
+                            <form>
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Start by Searching Guest Name or Booking Number.</p>
+                                <hr>
+                                <div class="form-group row">
+                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Search : </label>
+                                    <div class="col-sm">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control w-50"  id="datecheck_in" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" id="btn_checkin" type="button"><i class="fas fa-search"></i> Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="content-table">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Search Result</h5>
+                                                
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">Booking number #</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Date of Birth</th>
+                                                        <th scope="col">Date of Stay</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>    
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

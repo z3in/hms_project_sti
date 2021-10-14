@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .top-container h1{
+            margin-top:1em;
+        }
+        .top-container small{
+            color:#fff;
+        }
+        .top-container .fas{
+            margin-right:.75em;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        form{
+            margin-top:3em;
+        }
+        hr{
+            margin:0;
+            margin-bottom:.5em;
+        }
+        .card-body .fas{
+            margin-right:.60em;
+        }
+        .top-container{
+            height:200px!important;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-container">
+        <h1 style="color:#fff">Create Position</h1>
+        <a href="#manageposition"><small><i class="fas fa-arrow-left"></i>go back</small></a>
+    </div>
+    <div class="container-main">
+        <div class="content-table">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Please fill out the form to create position</h5>
+                        
+                        <form>
+                            <hr>
+                            <div class="form-group row">
+                                <label for="inputPosition" class="col-sm-2 col-form-label">Position Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputPosition" placeholder="email@example.com">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputType" class="col-sm-2 col-form-label">Access Type</label>
+                                <div class="col-sm-8">
+                                   <select id="inputType" class="form-control">
+                                       <option>Admin</option>
+                                       <option>User</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <p style="margin-top:3em;"><button type="submit" id="btnCreateUserSubmit" class="btn btn-warning"><i class="fas fa-check-circle"></i>Submit</button></p>
+                            
+                        </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

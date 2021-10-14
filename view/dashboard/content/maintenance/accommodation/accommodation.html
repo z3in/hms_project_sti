@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card{
+            background-color: none!important;
+            height:50vh;
+        }
+        .top-container h1{
+            margin-top:1em;
+        }
+        
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+        <div class="top-container">
+            <h1 style="color:#fff;">Accommodation</h1>
+        </div>
+        <div class="container-main flex">
+            
+            <div class="card col2">
+                <div class="card-body">
+                    <h5 class="card-title">Room Descriptions,Feature and Category</h5>
+                </div>
+            </div>
+            <div class="card col">
+                <div class="card-body">
+                    
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-warning">Add Rooms</button>
+                        <button class="btn btn-secondary">Create a Room Category</button>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="inputSearch" class="col-sm-5 col-form-label">Search</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputSearch" placeholder="Search by Name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Room Number</th>
+                                <th scope="col">Room Category</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody id="data-container">
+                            </tbody>
+                        </table>    
+                    
+                </div>
+            </div>
+        </div>
+</body>
+</html>

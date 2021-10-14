@@ -29,10 +29,17 @@ const toggleSubMenu = (nav) =>{
 const pageContents = () =>{
     return  {
         dashboard: {url:"view/dashboard/content/dashboard/dashboard.html",script:null},
+        booking:{url:"view/dashboard/content/transactions/booking/booking.html",script:"view/dashboard/content/transactions/booking/booking.js"},
+        billing:{url:"view/dashboard/content/transactions/billing/billing.html",script:null},
+        booking_adjustment:{url:"view/dashboard/content/booking_adjustment/adjustment.html",script:null},
+        accommodation:{url:"view/dashboard/content/maintenance/accommodation/accommodation.html",script:null},
+        facilities:{url:"view/dashboard/content/maintenance/facilities/facilities.html",script:null},
+        gallery: {url:"view/dashboard/content/maintenance/gallery/gallery.html",script:null},
         usermaintenance: {url:"view/dashboard/content/util/user_maintenance/usermaintenance.html",script:null},
         audit: {url:"view/dashboard/content/util/audit/audit.html",script:"view/dashboard/content/util/audit/audit.js"},
         createuser: {url:"view/dashboard/content/util/user_maintenance/createuser.html",script:"view/dashboard/content/util/user_maintenance/createuser.js"},
         manageposition: {url:"view/dashboard/content/util/user_maintenance/manageposition/manageposition.html",script:"view/dashboard/content/util/user_maintenance/manageposition/manageposition.js"},
+        createposition:{url:"view/dashboard/content/util/user_maintenance/manageposition/createposition.html",script:"view/dashboard/content/util/user_maintenance/manageposition/createposition.js"},
         backup: {url:"view/dashboard/content/util/backupandrestore/backup.html",script:null}
     }
 }
@@ -48,9 +55,11 @@ const getContent = (hash) =>{
 const getContentBaseOnURL = (url) =>{
     let pageContent = pageContents()
     let page = url.substring(1)
-    let endpoint = (page in pageContent) ? pageContent[`${page}`].url : pageContent.dashboard;
-    if(pageContent[`${page}`].script){
-    getScript((page in pageContent) ? pageContent[`${page}`].script : null)
+    let endpoint = (page in pageContent) ? pageContent[`${page}`].url : pageContent.dashboard.url;
+    if(pageContent[`${page}`]){
+        if(pageContent[`${page}`].script){
+            getScript((page in pageContent) ? pageContent[`${page}`].script : null)
+        }
     }
     return endpoint;
 }
@@ -92,7 +101,8 @@ const subMenuEffect = (hash) =>{
 const checkNonNav = (hash) => {
     let nonNavs = {
         createuser: "#usermaintenance",
-        manageposition: "#usermaintenance"
+        manageposition: "#usermaintenance",
+        createposition: "#usermaintenance"
     }
     subMenuEffect((hash.substring(1) in nonNavs) ? nonNavs[`${hash.substring(1)}`] : "#dashboard")
 }

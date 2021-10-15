@@ -4,6 +4,7 @@ window.onload = (event) =>{
     const input_email = document.querySelector("#email_input")
     const input_pass = document.querySelector("#password_input")
     btn_signin.addEventListener("click",()=> authenticateUser(input_email.value, input_pass.value))
+    
 }
 
 const authenticateUser = (user,pass) => {

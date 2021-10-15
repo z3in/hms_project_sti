@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <title>Hip Nautic Beach Resort</title>
     <style>
         body {
@@ -46,11 +47,12 @@
             margin-top:100px;
         }
         header nav ul li a {
-           text-decoration: none;
-           color:#9f9f9f;
-           transition: .25s ease-in-out;
-           padding: .75em 1em;
-           display: block;
+            text-decoration: none;
+            color:#9f9f9f;
+            transition: .25s ease-in-out;
+            padding: .75em 1em;
+            display: flex;
+            align-items: center;
         }
         header nav ul li a:hover {
             color:#222222;
@@ -58,8 +60,8 @@
             font-weight: 700;
         }
         header nav ul li a span{
-           margin-left:1em;
-           font-size:1rem;
+            margin-left:1em;
+            font-size:1rem;
         }
         header nav ul li.selected a.main-link{
             font-weight: 700;
@@ -116,10 +118,10 @@
             margin-left:.5em;
         }
         .signout p a {
-           background-color:#222222;
-           color:#e9ecef;
-           padding:.5em 1.5em;
-           border-radius: 5px;
+            background-color:#222222;
+            color:#e9ecef;
+            padding:.5em 1.5em;
+            border-radius: 5px;
         }
         .logo{
             margin-top:2em;
@@ -176,7 +178,9 @@
             width:auto;
         }
         .col2{
-            width:50%;
+            max-width:50%;
+            min-width:200px;
+            width:auto;
         }
     </style>
 </head>
@@ -190,10 +194,20 @@
             <nav>
                 <ul class="top-level">
                     <li class="main-menu" data-nav="dashboard"><a class="main-link" href="#dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
+                    <li class="main-menu withsub" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Transactions</span></a>
+                        <ul class="submenu hidden" data-nav="sub-transactions">
+                            <li><a href="#booking"><span>Booking</span></a></li>
+                            <li><a href="#billing"><span>Billing</span></a></li>
+                            <li><a href="#checkin"><span>Check-In</span></a></li>
+                            <li><a href="#checkout"><span>Check-Out</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="main-menu" data-nav="booking_adjustment"><a class="main-link" href="#booking_adjustment"><i class="fas fa-money-check-alt"></i><span>Booking Adjustments</span></a></li>
                     <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
                         <ul class="submenu hidden" data-nav="sub-maintenance">
-                            <li><a href="#accomodation"><span>Accomodation</span></a></li>
+                            <li><a href="#accommodation"><span>Accomodation</span></a></li>
                             <li><a href="#facilities"><span>Facilities and Services</span></a></li>
+                            <li><a href="#events"><span>Events</span></a></li>
                             <li><a href="#gallery"><span>Gallery</span></a></li>
                         </ul>
                     </li>
@@ -204,7 +218,7 @@
                             <li><a href="#audit"><span>Audit Trail</span></a></li>
                         </ul>
                     </li>
-                    <li class="main-menu withsub" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Reports</span></a>
+                    <li class="main-menu withsub" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-file-alt"></i><span>Reports</span></a>
                         <ul class="submenu hidden" data-nav="sub-reports">
                             <li><a href="#incomereport"><span>Income Reports</span></a></li>
                             <li><a href="#dailyaudit"><span>Daily Audit</span></a></li>
@@ -224,6 +238,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="view/dashboard/js/common.lib.js"></script>
     <script src="view/dashboard/js/validate.security.js"></script>
     <script src="view/dashboard/js/load.content.js"></script>

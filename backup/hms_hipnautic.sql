@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `additional_service`
 --
-
+DROP TABLE IF EXISTS `additional_service`;
 CREATE TABLE `additional_service` (
   `id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `additional_service` (
 --
 -- Table structure for table `amenities`
 --
-
+DROP TABLE IF EXISTS `amenities`;
 CREATE TABLE `amenities` (
   `id` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `amenities` (
 --
 -- Table structure for table `booking`
 --
-
+DROP TABLE IF EXISTS `booking`;
 CREATE TABLE `booking` (
   `ID` varchar(12) NOT NULL,
   `reservation_type` varchar(100) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `booking` (
 --
 -- Table structure for table `employee`
 --
-
+DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE `employee` (
 --
 -- Table structure for table `logs`
 --
-
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
   `action` varchar(255) NOT NULL,
@@ -124,7 +124,7 @@ INSERT INTO `logs` (`id`, `action`, `module`, `timestamp`, `userid`) VALUES
 --
 -- Table structure for table `rooms`
 --
-
+DROP TABLE IF EXISTS `rooms`;
 CREATE TABLE `rooms` (
   `ID` int(11) NOT NULL,
   `room_number` varchar(10) NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE `rooms` (
 --
 -- Table structure for table `room_feature`
 --
-
+DROP TABLE IF EXISTS `room_feature`;
 CREATE TABLE `room_feature` (
   `id` int(11) NOT NULL,
   `room_id` varchar(12) NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE `room_feature` (
 --
 -- Table structure for table `room_types`
 --
-
+DROP TABLE IF EXISTS `room_types`;
 CREATE TABLE `room_types` (
   `id` int(11) NOT NULL,
   `room_description` varchar(255) NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE `room_types` (
 --
 -- Table structure for table `transactions`
 --
-
+DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE `transactions` (
   `id` varchar(12) NOT NULL,
   `booking_id` varchar(12) NOT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE `transactions` (
 --
 -- Table structure for table `user`
 --
-
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` varchar(12) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE `user` (
 --
 -- Table structure for table `user_role`
 --
-
+DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
   `id` int(11) NOT NULL,
   `position` varchar(255) NOT NULL,

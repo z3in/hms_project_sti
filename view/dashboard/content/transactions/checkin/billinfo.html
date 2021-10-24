@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .top-container h1{
+            margin-top:1em;
+        }
+        .content-feature .card-body{
+            justify-content: center;
+            align-items: center;
+        }
+        .content-feature .card h3{
+            font-size: 50px;
+            text-decoration: none;
+            color:#b69100cc;
+            float: left;
+            margin-right:.5em;
+            padding-left:.25em;
+        }
+        .content-feature .card span{
+            font-size: 1.25 rem;
+            text-decoration: none;
+            color:inherit;
+        }
+        .content-feature .card p{
+            text-decoration: none;
+            color:inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+            margin-bottom:0;
+        }
+        .content-feature .card{
+            border-radius: 10px;
+            color:#222;
+            margin:0 1em;
+        }
+        .content-feature .card-body{
+            width:100%;
+        }
+        .content-feature .card small{
+            color:#9f9f9f;
+        }
+        .content-feature .card .card-body {
+            display:flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .content-feature .card .card-body div{
+            width:100%
+        }
+        .progress-bar{
+            background-color:#b69100cc;
+        }
+        #three-ds-container {
+            width: 550px;
+            height: 450px;
+            line-height: 200px;
+            position: fixed;
+            top: 25%;
+            left: 40%;
+            margin-top: -100px;
+            margin-left: -150px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 11; /* 1px higher than the overlay layer */
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-container">
+        <h1 style="color:#fff">Create Reservation</h1>
+    </div>
+    <div class="container-main">
+            <div class="content-feature">
+                <div class="card col3">
+                    <div class="card-body">
+                        <p><small>Check-in Date</small><span id="checkin"></span></p>
+                        <p><small>Check-out Date</small><span id="checkout"></span></p>
+                        <div class="form-group mb-0" aria-label="guest details">
+                            <a href="#checkin" data-nonnav=true type="button" class="btn btn-block btn-warning"> Change Reservation</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col3">
+                    <div class="card-body">
+                        <p><small>Number of Guest</small><span id="guestnum"></span></p>
+                        <p><small>Nights</small><span id="nights"></span></span></p>
+                        <p><small>Room Type</small><span id="roomtype"></span></span></p>
+                    </div>
+                </div>
+                <div class="card col3">
+                    <div class="card-body">
+                        <p><small>Full Name</small><span id="guestname"></span></p>
+                        <p><small>Email Address</small><span id="emailadd"></span></p>
+                        <p><small>Phone</small><span id="phonenum"></span></p>
+                        <div class="form-group mb-0" aria-label="guest details">
+                            <button class="btn btn-block btn-warning" onclick="window.history.back();"> Change Guest Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-table">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title mt-4">Almost Done! Complete Card Details to proceed with your Booking</h5>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>
+                            
+                            <form id="billinginfo_form" class="mt-4">
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Card information</p>
+                                <hr>
+                                <div class="form-group row px-3">
+                                        <label for="inputCardNumber">Card Number</label>
+                                        <input type="text" class="form-control" id="inputCardNumber" aria-describedby="emailHelp" placeholder="Enter card number">
+                                       
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputCardNumber">Expiration</label>
+                                            <div class="input-group row col-sm">
+                                                <input type="text" class="form-control" placeholder="Month" maxlength="2">
+                                                <input type="text" class="form-control" placeholder="Year" maxlength="2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="inputCardNumber">Security CVV</label>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control" id="inputSecurity" placeholder="CVV" required>
+                                                <small id="emailHelp" class="form-text text-muted">Found in the back of the credit card.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Address Information</p>
+                                <hr>
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" value="" id="sameAddress">
+                                    <label class="form-check-label" for="sameAddress">
+                                      Use Permanent Address as Billing Address
+                                    </label>
+                                  </div>
+                                <div class="form-group row">
+                                    <div class="col-sm">
+                                        <input type="text" class="form-control" id="inputStreetAddress" placeholder="Street Address" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control" id="inputCity" placeholder="City" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group row">
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control" id="inputZipCode" placeholder="Zip Code" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p style="margin-top:1em;float:right"><button type="submit" class="btn btn-lg btn-warning" id="btn_SumbitPayment"><i class="fas fa-check-circle"></i> Submit</button></p>
+                                </div>
+                            </form>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div id="three-ds-container" style="display: none;">
+        <iframe height="450" width="550" id="sample-inline-frame" name="sample-inline-frame"> </iframe>
+    </div>
+</body>
+</html>

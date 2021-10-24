@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .top-container h1{
+            margin-top:1em;
+        }
+        .top-container small{
+            color:#fff;
+        }
+        .top-container .fas{
+            margin-right:.75em;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        .content-feature .card-body{
+            justify-content: center;
+            align-items: center;
+        }
+        .content-feature .card h3{
+            font-size: 50px;
+            text-decoration: none;
+            color:#b69100cc;
+            float: left;
+            margin-right:.5em;
+            padding-left:.25em;
+        }
+        .content-feature .card span{
+            font-size: 1.5rem;
+            text-decoration: none;
+            color:inherit;
+        }
+        .content-feature .card p{
+            text-decoration: none;
+            color:inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+        .content-feature .card{
+            border-radius: 10px;
+            color:#222;
+            margin:0 1em;
+        }
+        .content-feature .card-body{
+            width:100%;
+        }
+        .content-feature .card small{
+            color:#9f9f9f;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-container">
+        <h1 style="color:#fff">Room</h1>
+        <a href="#accommodation"><small><i class="fas fa-arrow-left"></i>go back</small></a>
+    </div>
+    <div class="container-main">
+            <div class="content-table">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">Create New Room</h5>
+                            
+                            <form id="room_details">
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Room Information</p>
+                                <hr>
+                                <div class="form-group row">
+                                    <label for="inputTypeName" class="col-sm-5 col-form-label">Room Number</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="inputRoomNumber" placeholder="e.g. 201"  required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPosition" class="col-sm-5 col-form-label">Room Type</label>
+                                    <div class="col-sm-5">
+                                        <select class="custom-select" id="inputRoomType" required>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPosition" class="col-sm-5 col-form-label">Room Occupancy</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="inputOccupancy" placeholder="Number of adult allowed in the room"  required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPosition" class="col-sm-5 col-form-label">Room Status</label>
+                                    <div class="col-sm-5">
+                                        <select class="custom-select" id="inputRoomStatus" required> 
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputTypeName" class="col-sm-5 col-form-label">Policy</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="inputPolicy" placeholder="e.g. No Cancellation / No Smoking"  required>
+                                    </div>
+                                </div>
+                                
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Room Rates/Prices</p>
+                                <div class="form-group row">
+                                    <label for="inputTypeRate" class="col-sm-5 col-form-label">Price Per Night</label>
+                                    <div class="input-group col-sm-5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Php</span>
+                                        </div>
+                                        <input id="inputTypeRate" type="text" class="form-control" aria-label="Room Rate" data-type='currency' placeholder="0.00" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAdtlAdult" class="col-sm-5 col-form-label">Price Per Additional Adult</label>
+                                    <div class="input-group col-sm-5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Php</span>
+                                        </div>
+                                        <input id="inputAdtlAdult" type="text" class="form-control" aria-label="Adult Price" data-type='currency'  placeholder="0.00" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAdtlChild" class="col-sm-5 col-form-label">Price Per Additional Child</label>
+                                    <div class="input-group col-sm-5">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Php</span>
+                                        </div>
+                                        <input id="inputAdtlChild" type="text" class="form-control" aria-label="Child Price" data-type='currency'  placeholder="0.00" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-10">
+                                    <p style="margin-top:1em;text-align:right"><button type="submit" id="btnSubmitCategory" class="btn btn-lg btn-warning"><i class="fas fa-check-circle"></i> Submit</button></p>
+                                </div>
+                            </form>
+                            
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

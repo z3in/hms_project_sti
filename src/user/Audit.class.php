@@ -50,9 +50,9 @@ Class Audit{
         $response['page_info'] = $page_info->getPaginatedInfo();
         $result = $logs->selectALlLog($page_info->getOffset(),$page_info->getRowsPerPage());
         if($count > 0){
-            $response['data'] = Array();
+            $response['list'] = Array();
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                array_push($response['data'],$row);
+                array_push($response['list'],$row);
             }
         }
         exit(Response::send(200,'Showing Result','result',$response));

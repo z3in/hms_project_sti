@@ -43,6 +43,12 @@
         .content-feature .card small{
             color:#9f9f9f;
         }
+        .content-feature .card .card-body {
+            display:flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -54,68 +60,68 @@
             <div class="content-feature">
                 <div class="card col3">
                     <div class="card-body">
-                        <h3>16</h3>
-                        <p><span>Available Rooms</span><small>shows number of all unoccupied and reserved rooms</small></p>
+                        <div>
+                        <h3>3</h3>
+                        <p><span>Reservation for today</span><small>number of expected check-ins for today</small></p>
+                        </div>
+                        <div class="form-group mb-0 w-100" aria-label="user management">
+                            <a href="#manageposition" data-nonnav=true type="button" class="btn btn-block btn-secondary" ><i class="fas fa-list-ul"></i> View Guest's Reservations</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col3">
+                    <div class="card-body">
+                        <p><span>No reservation or Checking out? </span><small>create new reservation here or check-out guest's reservation</small></p>
+                        <div class="btn-group mb-0" role="group" aria-label="checkin">
+                            <a href="#checkin" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check In</a>
+                            <a href="#checkout" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> Check Out</a>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="content-table">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title">Booking Details</h5>
+                    <h5 class="card-title">Guest's Reservations</h5>
                             
                             <form>
-                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Select Dates for your booking</p>
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Start by Searching Guest Name or Booking Number.</p>
                                 <hr>
                                 <div class="form-group row">
-                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Check-In Date : </label>
-                                    <div class="col-sm-5">
+                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Search : </label>
+                                    <div class="col-sm">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control w-50"  id="datecheck_in" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2">
+                                            <input type="text" class="form-control w-50"  id="datecheck_in" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="btn_checkin" type="button"><i class="fas fa-calendar"></i></button>
+                                                <button class="btn btn-outline-secondary" id="btn_checkin" type="button"><i class="fas fa-search"></i> Search</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Check-Out Date : </label>
-                                    <div class="col-sm-5">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control w-50"  id="datecheck_out" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="btn_checkout" type="button"><i class="fas fa-calendar"></i></button>
-                                            </div>
+                                <hr>
+                                <div class="content-table">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Search Result</h5>
+                                                
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">Booking number #</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Date of Birth</th>
+                                                        <th scope="col">Date of Stay</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>    
+                                            
                                         </div>
                                     </div>
-                                </div>
-                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Guest Details</p>
-                                <div class="form-group row">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Number of Guest</label>
-                                    <div class="col-sm-5">
-                                        <select class="form-control form-control-lg">
-                                            <option>1 Adult</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Room Details</p>
-                                <hr>
-                                <div class="form-group row">
-                                    <label for="inputFirstName" class="col-sm-2 col-form-label">Room</label>
-                                    <div class="col-sm-5">
-                                        <select class="form-control form-control-lg">
-                                            <option value="">Select Room</option>
-                                            <option value="">Suite</option>
-                                            <option value="">Family Room</option>
-                                            <option value="">Deluxe Room</option>
-                                            <option value="">Classic Room</option>
-                                            <option value="">Superior Room</option>
-                                            <option value="">Luxury Room</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-7">
-                                <p style="margin-top:1em;float:right"><button type="submit" id="btnCreateUserSubmit" class="btn btn-lg btn-warning">Next <i class="fas fa-arrow-right"></i></button></p>
                                 </div>
                             </form>
                         

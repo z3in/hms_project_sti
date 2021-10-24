@@ -56,7 +56,7 @@ Class Logs extends Helpers{
     }
 
     public function selectALlLog($offset,$rowsperpage){
-        $sql = "SELECT * FROM logs LIMIT ?, ?";
+        $sql = "SELECT a.id,a.action,a.module,a.timestamp,a.userid,CONCAT(b.fname,' ',b.mname,' ',b.lname) as fullname FROM logs a LEFT JOIN EMPLOYEE b ON a.userid = b.userid LIMIT ?, ?";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(1, $offset, PDO::PARAM_INT);

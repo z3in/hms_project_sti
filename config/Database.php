@@ -3,9 +3,9 @@
 class Database{
 
         private $_host = 'localhost'; // change credentials here servername
-        private $_username = 'remote'; // change credentials here username
+        private $_username = 'root'; // change credentials here username
         private $_db_name = null; // DO NOT CHANGE THIS
-        private $_password = 'VFVCb1lXSmhhR0ZpWVc1blVFQTFOWGN3Y21ReGREQWg=';// change credentials here password
+        private $_password = '';// change credentials here password
         private $_port = 3306; // change port here/
         private $_conn;
 

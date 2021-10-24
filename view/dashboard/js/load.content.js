@@ -29,13 +29,20 @@ const toggleSubMenu = (nav) =>{
 const pageContents = () =>{
     return  {
         dashboard: {url:"view/dashboard/content/dashboard/dashboard.html",script:null},
-        booking:{url:"view/dashboard/content/transactions/booking/booking.html",script:"view/dashboard/content/transactions/booking/booking.js"},
+        booking:{url:"view/dashboard/content/transactions/booking/booking.html",script:null},
+        checkin:{url:"view/dashboard/content/transactions/checkin/checkin.html",script:"view/dashboard/content/transactions/checkin/checkin.js"},
+        guestinfo:{url:"view/dashboard/content/transactions/checkin/guestdetails.html",script:"view/dashboard/content/transactions/checkin/guestdetails.js"},
+        billinfo:{url:"view/dashboard/content/transactions/checkin/billinfo.html",script:"view/dashboard/content/transactions/checkin/billinfo.js"},
+        checkout:{url:"view/dashboard/content/transactions/checkout/checkout.html",script:"view/dashboard/content/transactions/checkout/checkout.js"},
         billing:{url:"view/dashboard/content/transactions/billing/billing.html",script:null},
         booking_adjustment:{url:"view/dashboard/content/booking_adjustment/adjustment.html",script:null},
-        accommodation:{url:"view/dashboard/content/maintenance/accommodation/accommodation.html",script:null},
+        accommodation:{url:"view/dashboard/content/maintenance/accommodation/accommodation.html",script:"view/dashboard/content/maintenance/accommodation/accommodation.js"},
+        accommodation_category:{url:"view/dashboard/content/maintenance/accommodation/category/category.html",script:"view/dashboard/content/maintenance/accommodation/category/category.js"},
+        accommodation_features:{url:"view/dashboard/content/maintenance/accommodation/accommodation.html",script:null},
+        accommodation_room:{url:"view/dashboard/content/maintenance/accommodation/room/room.html",script:"view/dashboard/content/maintenance/accommodation/room/room.js"},
         facilities:{url:"view/dashboard/content/maintenance/facilities/facilities.html",script:null},
         gallery: {url:"view/dashboard/content/maintenance/gallery/gallery.html",script:null},
-        usermaintenance: {url:"view/dashboard/content/util/user_maintenance/usermaintenance.html",script:null},
+        usermaintenance: {url:"view/dashboard/content/util/user_maintenance/usermaintenance.html",script:"view/dashboard/content/util/user_maintenance/user.js"},
         audit: {url:"view/dashboard/content/util/audit/audit.html",script:"view/dashboard/content/util/audit/audit.js"},
         createuser: {url:"view/dashboard/content/util/user_maintenance/createuser.html",script:"view/dashboard/content/util/user_maintenance/createuser.js"},
         manageposition: {url:"view/dashboard/content/util/user_maintenance/manageposition/manageposition.html",script:"view/dashboard/content/util/user_maintenance/manageposition/manageposition.js"},
@@ -102,13 +109,19 @@ const checkNonNav = (hash) => {
     let nonNavs = {
         createuser: "#usermaintenance",
         manageposition: "#usermaintenance",
-        createposition: "#usermaintenance"
+        createposition: "#usermaintenance",
+        accommodation_category: "#accommodation",
+        accommodation_features : "#accommodation",
+        accommodation_room: "#accommodation",
+        guestinfo:"#checkin",
+        billinfo:"#checkin"
+
     }
     subMenuEffect((hash.substring(1) in nonNavs) ? nonNavs[`${hash.substring(1)}`] : "#dashboard")
 }
 
 const getURLHash = () =>{
-    var hash = window.location.hash
+    var hash = window.location.hash.split('?')[0]
     return hash === "" ? "#dashboard":hash
      
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .top-container h1{
+            margin-top:1em;
+        }
+        .content-feature .card-body{
+            justify-content: center;
+            align-items: center;
+        }
+        .content-feature .card h3{
+            font-size: 50px;
+            text-decoration: none;
+            color:#b69100cc;
+            float: left;
+            margin-right:.5em;
+            padding-left:.25em;
+        }
+        .content-feature .card span{
+            font-size: 1.5rem;
+            text-decoration: none;
+            color:inherit;
+        }
+        .content-feature .card p{
+            text-decoration: none;
+            color:inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+        .content-feature .card{
+            border-radius: 10px;
+            color:#222;
+            margin:0 1em;
+        }
+        .content-feature .card-body{
+            width:100%;
+        }
+        .content-feature .card small{
+            color:#9f9f9f;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-container">
+        <h1 style="color:#fff">Create Reservation</h1>
+    </div>
+    <div class="container-main">
+            <div class="content-feature">
+                <div class="card col3">
+                    <div class="card-body">
+                        <h3>16</h3>
+                        <p><span>Available Rooms</span><small>shows number of all unoccupied and reserved rooms</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-table">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">Booking Details</h5>
+                            
+                            <form id="checkin_form">
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Select Dates for your booking</p>
+                                <hr>
+                                <div class="form-group row">
+                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Check-In Date : </label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group mb-3">
+                                            <input type="text" autocomplete="off" class="form-control w-50"  id="datecheck_in" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2" required>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" id="btn_checkin" type="button"><i class="fas fa-calendar"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Check-Out Date : </label>
+                                    <div class="col-sm-5">
+                                        <div class="input-group mb-3">
+                                            <input type="text" autocomplete="off" class="form-control w-50"  id="datecheck_out" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2" required>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" id="btn_checkout" type="button"><i class="fas fa-calendar"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Room Details</p>
+                                <hr>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Number of Guest</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control form-control-lg" id="inputGuestCount" required>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputFirstName" class="col-sm-2 col-form-label">Room</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control form-control-lg" id="inputRoomType" required>
+                                            <option value="">Select Room</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                <p style="margin-top:1em;float:right"><button type="submit" class="btn btn-lg btn-warning">Next <i class="fas fa-arrow-right"></i></button></p>
+                                </div>
+                            </form>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

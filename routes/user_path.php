@@ -9,3 +9,7 @@ Router::route('/app/user/login', function(){
 Router::route('/app/user/list', function(){
     User::userList();
 });
+
+Router::route('/app/user/add', function(){
+    User::addUser();
+});

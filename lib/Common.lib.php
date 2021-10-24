@@ -187,3 +187,31 @@ class Pagination{
         }
     }
 }
+class FileUsage{
+    public static function generateFilename($path = "",$ext){
+        $bytes = random_bytes(20);
+        $filename = bin2hex(($bytes));
+        if(!self::filenameCheck($filename,$path,$ext)){
+            return $path . $filename .'.'. $ext;
+        }
+        self::generateFilename($path,$ext);
+    }
+
+    public static function filenameCheck($file,$path = '/upload/',$ext){
+        switch($ext){
+            case 'jpg':
+            if(file_exists($path . $file . ".jpg")){
+                return true;
+            }
+            case 'jpeg':
+            if(file_exists($path . $file . ".jpeg")){
+                return true;
+            }
+            case 'png':
+            if(file_exists($path . $file . ".png")){
+                return true;
+            }
+        }
+        return false;
+    }
+}

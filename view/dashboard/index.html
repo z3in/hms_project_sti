@@ -174,14 +174,16 @@
             height: auto!important;
         }
         .col3{
-            max-width:33%;
+            max-width:40%;
             width:auto;
+            min-width:250px;
         }
         .col2{
             max-width:50%;
             min-width:200px;
             width:auto;
         }
+        
     </style>
 </head>
 <body>
@@ -194,7 +196,7 @@
             <nav>
                 <ul class="top-level">
                     <li class="main-menu" data-nav="dashboard"><a class="main-link" href="#dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
-                    <li class="main-menu withsub" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Transactions</span></a>
+                    <li class="main-menu withsub" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-money-check-alt"></i><span>Transactions</span></a>
                         <ul class="submenu hidden" data-nav="sub-transactions">
                             <li><a href="#booking"><span>Booking</span></a></li>
                             <li><a href="#billing"><span>Billing</span></a></li>
@@ -202,7 +204,6 @@
                             <li><a href="#checkout"><span>Check-Out</span></a></li>
                         </ul>
                     </li>
-                    <li class="main-menu" data-nav="booking_adjustment"><a class="main-link" href="#booking_adjustment"><i class="fas fa-money-check-alt"></i><span>Booking Adjustments</span></a></li>
                     <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
                         <ul class="submenu hidden" data-nav="sub-maintenance">
                             <li><a href="#accommodation"><span>Accomodation</span></a></li>
@@ -242,6 +243,8 @@
     <script src="view/dashboard/js/common.lib.js"></script>
     <script src="view/dashboard/js/validate.security.js"></script>
     <script src="view/dashboard/js/load.content.js"></script>
+    <script type="text/javascript" src="view/dashboard/js/card.js"></script>
+    <script type="text/javascript" src="view/dashboard/js/helpers.js"></script>
     <script src="" type="text/javascript" id="script-adapter"></script>
 </body>
 </html>

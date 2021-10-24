@@ -33,6 +33,7 @@ $(document).ready(()=>{
     card.cvc = "123"
     
     const pKey = "sk_test_TZwovKaLAX3enGqj5VLm1M9m";
+    
     const paymentID = await createPaymentIntent(pKey);
     const client_id = paymentID.data.attributes.client_key;
     const paymentMethod = await createPaymentMethod(pKey);

@@ -20,8 +20,7 @@ Class User {
         Validate::errorvalue($error);
 
         $user = self::createInstance();
-        $user->setCredentials($data['username'],$data['password']);
-        $result = $user->getAllData();
+        $result = $user->selectRowByUsername($data['username']);
         $count = $result->rowCount();
         if($count > 0) {
             $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -30,7 +29,7 @@ Class User {
                 Audit::createLog($id,'Authentication','user login : ' . $fname .' ' . $mname . ' ' . $lname);
                 exit(Response::send(200,'Logged in.','user',$row));
             }
-                exit(Response::send(401,'Unauthorized.'));
+            exit(Response::send(401,'Unauthorized.'));
         }
         exit(Response::send(401,'No User Found.'));
     }

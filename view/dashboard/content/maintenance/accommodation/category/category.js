@@ -5,26 +5,29 @@ $(document).ready(()=>{
         requestJson.get(`app/room/category/list?limit=100`)
         .then(data=>{
             if(data.response === "OK"){
-                if(data.result.hasOwnProperty("list")){
-                    const container = document.querySelector("#roomcategory-container");
-                    container.innerHTML = "";
-                    const requestcontent = data.result.list.map(item =>{
-                        return `<tr>
-                                    <td>${item.id}</td>
-                                    <td><img src="${item.photo}" alt="${item.category}" style="width:100px;height:100px;object-fit: cover;" /></td>
-                                    <td>${item.category}</td>
-                                    <td>${item.bed}</td>
-                                    <td>${item.room_description}</td>
-                                    <td><button class="btn btn-sm btn-info"><i class="fas fa-user-edit"></i> modify</button></td>
-                                </tr>`
-                    })
-        
-                    requestcontent.forEach(el=>{
-                        container.innerHTML += el
-                    })
-                    return 
+                const container = document.querySelector("#roomcategory-container");
+                if(container){
+                    if(data.result.hasOwnProperty("list")){
+                    
+                        container.innerHTML = "";
+                        const requestcontent = data.result.list.map(item =>{
+                            return `<tr>
+                                        <td>${item.id}</td>
+                                        <td><img src="${item.photo}" alt="${item.category}" style="width:100px;height:100px;object-fit: cover;" /></td>
+                                        <td>${item.category}</td>
+                                        <td>${item.bed}</td>
+                                        <td>${item.room_description}</td>
+                                        <td><button class="btn btn-sm btn-info"><i class="fas fa-user-edit"></i> modify</button></td>
+                                    </tr>`
+                        })
+            
+                        requestcontent.forEach(el=>{
+                            container.innerHTML += el
+                        })
+                        return 
+                    }
+                    container.innerHTML = `<tr><td colspan="5" style="text-align:center">No Result Found</td></tr>`
                 }
-                container.innerHTML = `<tr><td colspan="5" style="text-align:center">No Result Found</td></tr>`
             }
         })
     }

@@ -15,7 +15,7 @@ $(document).ready(()=>{
         let contact = `&phone=${$("#inputPhoneNumber").val()}&email=${$("#inputEmail").val()}`
         let address = `&address=${$("#inputStreetAddress").val()}&city=${$("#inputCity").val()}&zipcode=${$("#inputZipCode").val()}`
         let data = prev_data + personal + contact + address
-        window.location.href=`#billinfo?${data}`
+        window.location.href=`dashboard?url=billinfo&${data}`
         event.preventDefault();
     })
 })

@@ -2,7 +2,7 @@
 
 Class View {
     public static function dashboardDisplay(){
-        $path = ROOT . DS . 'view'. DS . 'dashboard'. DS . 'index.html';
+        $path = ROOT . DS . 'view'. DS . 'dashboard'. DS . 'index.php';
         require_once($path);
     }
 

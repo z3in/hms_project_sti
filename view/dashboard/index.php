@@ -10,6 +10,14 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="view/dashboard/js/common.lib.js" type="text/javascript"></script>
+    <script src="view/dashboard/js/validate.security.js"></script>
+    <script src="view/dashboard/js/load.content.js"></script>
+    <script type="text/javascript" src="view/dashboard/js/card.js"></script>
+    <script type="text/javascript" src="view/dashboard/js/helpers.js"></script>
     <title>Hip Nautic Beach Resort</title>
     <style>
         body {
@@ -195,35 +203,35 @@
             </div>
             <nav>
                 <ul class="top-level">
-                    <li class="main-menu" data-nav="dashboard"><a class="main-link" href="#dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
+                    <li class="main-menu selected" data-nav="dashboard"><a class="main-link" href="dashboard"  data-url="dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
                     <li class="main-menu withsub" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-money-check-alt"></i><span>Transactions</span></a>
                         <ul class="submenu hidden" data-nav="sub-transactions">
-                            <li><a href="#booking"><span>Booking</span></a></li>
-                            <li><a href="#billing"><span>Billing</span></a></li>
-                            <li><a href="#checkin"><span>Check-In</span></a></li>
-                            <li><a href="#checkout"><span>Check-Out</span></a></li>
+                            <li><a href="dashboard?url=booking" data-url="booking"><span>Booking</span></a></li>
+                            <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
+                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Check-In</span></a></li>
+                            <li><a href="dashboard?url=checkout" data-url="checkout"><span>Check-Out</span></a></li>
                         </ul>
                     </li>
                     <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
                         <ul class="submenu hidden" data-nav="sub-maintenance">
-                            <li><a href="#accommodation"><span>Accomodation</span></a></li>
-                            <li><a href="#facilities"><span>Facilities and Services</span></a></li>
-                            <li><a href="#events"><span>Events</span></a></li>
-                            <li><a href="#gallery"><span>Gallery</span></a></li>
+                            <li><a href="dashboard?url=accommodation" data-url="accommodation"><span>Accomodation</span></a></li>
+                            <li><a href="dashboard?url=facilities" data-url="facilities"><span>Facilities and Services</span></a></li>
+                            <li><a href="dashboard?url=events" data-url="events"><span>Events</span></a></li>
+                            <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li>
                         </ul>
                     </li>
                     <li class="main-menu withsub" data-nav="utilities" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Utilities</span></a>
                         <ul class="submenu hidden" data-nav="sub-utilities">
-                            <li><a href="#usermaintenance"><span>User Maintenance</span></a></li>
-                            <li><a href="#backup"><span>Back up and Restore</span></a></li>
-                            <li><a href="#audit"><span>Audit Trail</span></a></li>
+                            <li><a href="dashboard?url=usermaintenance" data-url="usermaintenance"><span>User Maintenance</span></a></li>
+                            <li><a href="dashboard?url=backup" data-url="backup"><span>Back up and Restore</span></a></li>
+                            <li><a href="dashboard?url=audit" data-url="audit"><span>Audit Trail</span></a></li>
                         </ul>
                     </li>
                     <li class="main-menu withsub" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-file-alt"></i><span>Reports</span></a>
                         <ul class="submenu hidden" data-nav="sub-reports">
-                            <li><a href="#incomereport"><span>Income Reports</span></a></li>
-                            <li><a href="#dailyaudit"><span>Daily Audit</span></a></li>
-                            <li><a href="#bookingreport"><span>Booking Report</span></a></li>
+                            <li><a href="dashboard?url=incomereport" data-url="incomereport"><span>Income Reports</span></a></li>
+                            <li><a href="dashboard?url=dailyaudit" data-url="dailyaudit"><span>Daily Audit</span></a></li>
+                            <li><a href="dashboard?url=bookingreport"  data-url="bookingreport"><span>Booking Report</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -233,18 +241,43 @@
             </div>
             </header>
             <main>
-                
+                <?php 
+                $url = isset($_REQUEST['url']) ? $_REQUEST['url'] : "" ;
+                switch($url){
+                    case 'booking' : 
+                        return include 'content/transactions/booking/booking.html';
+                    case 'billing' : 
+                        return include 'content/transactions/billing/billing.html'; 
+                    case 'checkin' :
+                        return include 'content/transactions/checkin/checkin.html';
+                    case 'guestinfo' :
+                        return include 'content/transactions/checkin/guestdetails.html';
+                    case 'billinfo' :
+                        return include 'content/transactions/checkin/billinfo.html';
+                    case 'accommodation' :
+                        return include 'content/maintenance/accommodation/accommodation.html';
+                    case 'accommodation_category' :
+                        return include 'content/maintenance/accommodation/category/category.html';
+                    case 'accommodation_room' :
+                        return include 'content/maintenance/accommodation/room/room.html';
+                    case 'usermaintenance' :
+                        return include 'content/util/user_maintenance/usermaintenance.html';
+                    case 'createuser' :
+                        return include 'content/util/user_maintenance/createuser.html';
+                    case 'manageposition' :
+                        return include 'content/util/user_maintenance/manageposition/manageposition.html';
+                    case 'audit' :
+                        return include 'content/util/audit/audit.html';
+                    case 'backup' :
+                        return include 'content/util/backupandrestore/backup.html';
+                    default :
+                        return include 'content/dashboard/dashboard.html';
+                }
+                ?>
             </main>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/7262583124.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script src="view/dashboard/js/common.lib.js"></script>
-    <script src="view/dashboard/js/validate.security.js"></script>
-    <script src="view/dashboard/js/load.content.js"></script>
-    <script type="text/javascript" src="view/dashboard/js/card.js"></script>
-    <script type="text/javascript" src="view/dashboard/js/helpers.js"></script>
-    <script src="" type="text/javascript" id="script-adapter"></script>
+    
+   
 </body>
 </html>

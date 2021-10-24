@@ -5,13 +5,15 @@ $(document).ready(()=>{
         .then(data=>{
             if(data.response === "OK"){
                 const container = document.querySelector("#inputRoomType");
-                const requestcontent = data.result.list.map(item =>{
-                    return `<option value="${item.id}">${item.category}</option>`
-                })
-                container.innerHTML = `<option value="" selected>Choose Room Type...</option>`
-                requestcontent.forEach(el=>{
-                    container.innerHTML += el
-                })
+                if(container){
+                    const requestcontent = data.result.list.map(item =>{
+                        return `<option value="${item.id}">${item.category}</option>`
+                    })
+                    container.innerHTML = `<option value="" selected>Choose Room Type...</option>`
+                    requestcontent.forEach(el=>{
+                        container.innerHTML += el
+                    })
+                }
             }
         })
     }
@@ -21,6 +23,7 @@ $(document).ready(()=>{
         .then(data=>{
             if(data.response === "OK"){
                 const container = document.querySelector("#inputRoomStatus");
+                if(container){
                 const requestcontent = data.result.list.map(item =>{
                     return `<option value="${item.id}">${item.status_name}</option>`
                 })
@@ -28,10 +31,11 @@ $(document).ready(()=>{
                 requestcontent.forEach(el=>{
                     container.innerHTML += el
                 })
+                }
             }
         })
     }
-    
+
     $("#room_details").submit(function(event) {
         body = JSON.stringify({
             id : getCookie('sessionid'),

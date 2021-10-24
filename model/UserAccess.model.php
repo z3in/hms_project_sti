@@ -11,19 +11,21 @@ Class UserAccess extends Helpers{
         $this->_pass = $pass;
     }
 
-    public function getAllData($user = null){
+    public function getAllData(){
 
         $sql = "SELECT * FROM `user_access`";
 
-        $data = [];
-        if(!is_null($user) || !is_null($this->_id)){
-            $sql .= " WHERE email=:email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
 
-            $data = [
-                "email" => isset($user) ? $user : $this->_id
-            ];
-        }
+    public function selectRowByUsername($user){
+        $sql = "SELECT * FROM `user_access` WHERE email=:email";
 
+        $data = [
+                "email" => isset($user) ? $user : $this->_user
+        ];
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
         return $stmt;

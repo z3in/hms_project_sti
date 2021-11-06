@@ -60,7 +60,7 @@ $(document).ready(()=>{
             return alert("Please select Room Type");
         }
         var data = `checkin=${$('#datecheck_in').val()}&checkout=${$('#datecheck_out').val()}&person=${$("#inputGuestCount").val()}&roomtype=${$("#inputRoomType").val()}&roomname=${$("#inputRoomType option:selected" ).text()}`
-        window.location.href=`dashboard?url=guestinfo&${data}`
+        window.location.href=`dashboard?url=room_select&${data}`
         event.preventDefault();
     })
 

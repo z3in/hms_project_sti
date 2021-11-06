@@ -73,8 +73,8 @@
                     <div class="card-body">
                         <p><span>No reservation or Checking out? </span><small>create new reservation here or check-out guest's reservation</small></p>
                         <div class="btn-group mb-0" role="group" aria-label="checkin">
-                            <a href="#checkin" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check In</a>
-                            <a href="#checkout" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> Check Out</a>
+                            <a href="dashboard?url=checkin" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check In</a>
+                            <a href="dashboard?url=checkin" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> Check Out</a>
                             
                         </div>
                     </div>
@@ -108,15 +108,14 @@
                                                 <table class="table">
                                                     <thead>
                                                     <tr>
-                                                        <th scope="col">Booking number #</th>
+                                                        <th scope="col">Reference number #</th>
                                                         <th scope="col">Name</th>
-                                                        <th scope="col">Date of Birth</th>
                                                         <th scope="col">Date of Stay</th>
                                                         <th scope="col">Status</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="booking_container">
                                                     </tbody>
                                                 </table>    
                                             
@@ -129,5 +128,6 @@
                 </div>
             </div>
     </div>
+    <script src="view/dashboard/content/transactions/booking/booking.js"></script>
 </body>
 </html>

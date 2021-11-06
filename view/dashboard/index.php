@@ -250,6 +250,8 @@
                         return include 'content/transactions/billing/billing.html'; 
                     case 'checkin' :
                         return include 'content/transactions/checkin/checkin.html';
+                    case 'room_select' :
+                        return include 'content/transactions/checkin/room_select.html';
                     case 'guestinfo' :
                         return include 'content/transactions/checkin/guestdetails.html';
                     case 'billinfo' :

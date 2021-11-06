@@ -96,16 +96,16 @@
 	        			<div class="col-md d-flex py-md-4">
 	        				<div class="form-group align-self-stretch d-flex align-items-end">
 	        					<div class="wrap bg-white align-self-stretch py-3 px-4">
-				    					<label for="#">Check-in Date</label>
-				    					<input type="text" class="form-control checkin_date" placeholder="Check-in date">
+				    					<label for="datecheck_in">Check-in Date</label>
+				    					<input type="text" id="datecheck_in" class="form-control checkin_date" placeholder="Check-in date">
 			    					</div>
 			    				</div>
 	        			</div>
 	        			<div class="col-md d-flex py-md-4">
 	        				<div class="form-group align-self-stretch d-flex align-items-end">
 	        					<div class="wrap bg-white align-self-stretch py-3 px-4">
-				    					<label for="#">Check-out Date</label>
-				    					<input type="text" class="form-control checkout_date" placeholder="Check-out date">
+				    					<label for="datecheck_out">Check-out Date</label>
+				    					<input type="text" id="datecheck_out" class="form-control checkout_date" placeholder="Check-out date">
 			    					</div>
 			    				</div>
 	        			</div>
@@ -116,13 +116,8 @@
 			      					<div class="form-field">
 			        					<div class="select-wrap">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control">
-			                    	<option value="">Suite</option>
-			                      <option value="">Family Room</option>
-			                      <option value="">Deluxe Room</option>
-			                      <option value="">Classic Room</option>
-			                      <option value="">Superior Room</option>
-			                      <option value="">Luxury Room</option>
+			                    <select name="" id="inputRoomType" class="form-control">
+			                    	
 			                    </select>
 			                  </div>
 				              </div>
@@ -136,13 +131,8 @@
 			      					<div class="form-field">
 			        					<div class="select-wrap">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control">
-			                    	<option value="">1 Adult</option>
-			                      <option value="">2 Adult</option>
-			                      <option value="">3 Adult</option>
-			                      <option value="">4 Adult</option>
-			                      <option value="">5 Adult</option>
-			                      <option value="">6 Adult</option>
+			                    <select name="" id="inputGuestCount" class="form-control">
+			                    	
 			                    </select>
 			                  </div>
 				              </div>
@@ -151,7 +141,7 @@
 	        			</div>
 	        			<div class="col-md d-flex">
 	        				<div class="form-group d-flex align-self-stretch">
-			              <a href="#" class="btn btn-black py-5 py-md-3 px-4 align-self-stretch d-block"><span>Check Availability <small>Best Price Guaranteed!</small></span></a>
+			              <a href="#" onclick="checkReservation()" class="btn btn-black py-5 py-md-3 px-4 align-self-stretch d-block"><span>Check Availability <small>Best Price Guaranteed!</small></span></a>
 			            </div>
 	        			</div>
 	        		</div>
@@ -520,13 +510,15 @@
   <script src="view/web/js/jquery.magnific-popup.min.js"></script>
   <script src="view/web/js/aos.js"></script>
   <script src="view/web/js/jquery.animateNumber.min.js"></script>
-  <script src="view/web/js/jquery.mb.YTPlayer.min.js"></script>
+  <!-- <script src="view/web/js/jquery.mb.YTPlayer.min.js"></script> -->
   <script src="view/web/js/bootstrap-datepicker.js"></script>
   <!-- // <scri./pt src="js/jquery.timepicker.min.js"></scri.> -->
   <script src="view/web/js/scrollax.min.js"></script>
-  <script src="view/web/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="view/web/js/google-map.js"></script>
+  <!-- <script src="view/web/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+  <!-- <script src="view/web/js/google-map.js"></script> -->
   <script src="view/web/js/main.js"></script>
+  <script src="view/web/js/common.lib.js"></script>
+  <script src="view/web/js/reservation.js"></script>
     
   </body>
 </html>

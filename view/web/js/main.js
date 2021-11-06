@@ -346,10 +346,10 @@
 	});
 
 
-  var bgVideo = function() {
-		$('.player').mb_YTPlayer();
-	};
-	bgVideo();
+//   var bgVideo = function() {
+// 		$('.player').mb_YTPlayer();
+// 	};
+// 	bgVideo();
 
 
 

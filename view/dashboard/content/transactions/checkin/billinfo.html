@@ -111,24 +111,42 @@
                     <div class="card-body">
                     <h5 class="card-title mt-4">Almost Done! Complete Card Details to proceed with your Booking</h5>
                     <div class="progress mt-2">
-                        <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">75%</div>
+                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                     </div>
                             
                             <form id="billinginfo_form" class="mt-4">
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Charge Breakdown</p>
+                                <div class="card" style="width:50%">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <p class="col">Room Rate</p><p class="col" id="displayRate" style="text-align:right">PHP </p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col">Nights/Stay</p><p class="col" id="displayNights" style="text-align:right"> </p>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            
+                                            <p class="col">Total</p><p class="col" id="displayTotal" style="text-align:right"> </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <hr>
                                 <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Card information</p>
                                 <hr>
                                 <div class="form-group row px-3">
                                         <label for="inputCardNumber">Card Number</label>
-                                        <input type="text" class="form-control" id="inputCardNumber" aria-describedby="emailHelp" placeholder="Enter card number">
+                                        <input type="text" class="form-control" id="inputCardNumber" aria-describedby="emailHelp" placeholder="Enter card number" required  autocomplete="off">
                                        
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="inputCardNumber">Expiration</label>
+                                            <label>Expiration</label>
                                             <div class="input-group row col-sm">
-                                                <input type="text" class="form-control" placeholder="Month" maxlength="2">
-                                                <input type="text" class="form-control" placeholder="Year" maxlength="2">
+                                                <input type="text" class="form-control" id="inputExpMonth" placeholder="Month" maxlength="2"  required  autocomplete="off">
+                                                <input type="text" class="form-control" id="inputExpYear" placeholder="Year" maxlength="2"  required  autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +154,7 @@
                                         <div class="form-group">
                                             <label for="inputCardNumber">Security CVV</label>
                                             <div class="col-sm">
-                                                <input type="text" class="form-control" id="inputSecurity" placeholder="CVV" required>
+                                                <input type="password" class="form-control" id="inputSecurity" placeholder="CVV" required  autocomplete="off">
                                                 <small id="emailHelp" class="form-text text-muted">Found in the back of the credit card.</small>
                                             </div>
                                         </div>

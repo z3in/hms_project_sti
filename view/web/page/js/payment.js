@@ -1,3 +1,53 @@
+class Card{
+    amount = 0;
+    payment_method_allowed = ["card"];
+    payment_method_options = {"card": { "request_three_d_secure": "any"}}
+    currency;
+    type;
+    card_num;
+    exp_month = 0;
+    exp_year = 0;
+    cvc;
+ 
+    constructor(currency = "PHP",type = "card") {
+        this.currency = currency;
+        this.type = type;
+    }
+ 
+    getIntentAttributes(){
+        let data = {
+            "data": {
+                 "attributes" : {
+                    "amount": this.amount,
+                    "payment_method_allowed": this.payment_method_allowed,
+                    "payment_method_options": this.payment_method_options,
+                    "currency" : this.currency
+                 }
+            }
+        }
+        return data;
+    }
+ 
+    getPMAttributes(){
+        let data = {
+         "data": {
+             "attributes" : {
+                 type: this.type,
+                 details : {
+                     card_number : this.card_num,
+                     exp_month: parseInt(this.exp_month),
+                     exp_year : parseInt(this.exp_year),
+                     cvc: this.cvc
+                 }
+             }
+         }
+        }
+        return data;
+ 
+    }
+ }
+
+
 $(document).ready(()=>{
     let $nights = convertMiliseconds(Math.abs(new Date(getParameterByName('checkout')) - new Date(getParameterByName('checkin'))),'d')
     $("#checkin").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkin'))))
@@ -160,13 +210,13 @@ $(document).ready(()=>{
       params['bill_street_add'] =  $("#inputStreetAddress").val();
       params['bill_city_add'] =  $("#inputCity").val();
       params['bill_zip_add'] =  $("#inputZipCode").val();
-      fetch('app/reservation/save', {method : "POST",body : JSON.stringify(params)})
+      fetch('../../../app/reservation/save', {method : "POST",body : JSON.stringify(params)})
       .then(data => data.json())
       .then(data => {
         if(data.response){
           if(data.hasOwnProperty("message")){
             alert(data.message + `  REF#: ${params['ref_num']}`)
-            window.location.href="dashboard?url=booking"
+            window.location.href="../../../"
           }
         }
       })

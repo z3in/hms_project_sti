@@ -33,14 +33,15 @@ class Booking extends Helpers{
     }
 
     public function selectAvailableRooms($offset,$rowsperpage){
-        $sql = "SELECT a.id,a.room_number,a.room_type,a.room_occupancy,a.status,a.room_rate,a.adtl_adult,a.adtl_kid,a.policy,c.room_description,c.category,c.bed,c.photo FROM `rooms` a LEFT JOIN `room_types` c ON a.`room_type` = c.id
+        $sql = "SELECT a.id,a.room_number,a.room_type,a.room_occupancy,a.status,a.room_rate,a.adtl_adult,a.adtl_kid,
+            a.policy,c.room_description,c.category,c.bed,c.photo FROM `rooms` a LEFT JOIN `room_types` c ON a.`room_type` = c.id
                     WHERE (a.`status` = 3 
                     AND a.`room_type` =? AND a.`id` NOT IN
                         (
                         SELECT b.`room_id` FROM `booking` b
-                            WHERE (b.`date_from` > ? 
-                            AND b.`date_to` < ? 
-                            AND b.`status` = 3)
+                            WHERE b.`date_from` <= ? 
+                            AND b.`date_to` >= ? 
+                            AND b.`status` = 1
                         )) LIMIT ?,?";
 
         $stmt = $this->conn->prepare($sql);

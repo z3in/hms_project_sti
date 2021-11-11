@@ -6,6 +6,10 @@ $(document).ready(() =>{
             let container = document.querySelector("#room_list")
             
             if(data.hasOwnProperty("result")){
+                if(data.result.list.length < 1){
+                    alert(`All ${getParameterByName('roomname')} room type has been booked, Please choose another room or another date. Thank you!`)
+                    return window.location.href = '../../../'
+                }
                 const arrayUniqueByKey = [...new Map(data.result.list.map(item =>
                     [item['category'], item])).values()];
                 const requestcontent = arrayUniqueByKey.map(item =>{ 
@@ -38,7 +42,8 @@ $(document).ready(() =>{
                 return
             }
             if(!data.hasOwnProperty("result")){
-                alert(`No Rooms Available for Room Type : ${getParameterByName('roomtype')}`)
+                alert(`No Rooms Available for Room Type : ${getParameterByName('roomname')}`)
+                return window.location.href ="../../../"
             }
         }
 

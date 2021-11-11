@@ -55,7 +55,7 @@
                 <div class="card col3">
                     <div class="card-body">
                         <h3>3</h3>
-                        <p><span>Due for today</span><small>number of expected checkout for today</small></p>
+                        <p><span>Due for today</span><small>number of expected payment for reservation</small></p>
                         <div class="form-group mb-0" aria-label="user management">
                             <a href="#manageposition" data-nonnav=true type="button" class="btn btn-block btn-secondary" ><i class="fas fa-list-ul"></i> view reservatons</a>
                         </div>
@@ -74,7 +74,7 @@
                                     <label for="datecheck_in" class="col-sm-2 col-form-label">Search : </label>
                                     <div class="col-sm">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control w-50"  id="datecheck_in" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
+                                            <input autocomplete="off" type="text" class="form-control w-50"  id="datecheck_in" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary" id="btn_checkin" type="button"><i class="fas fa-search"></i> Search</button>
                                             </div>
@@ -92,13 +92,13 @@
                                                     <tr>
                                                         <th scope="col">Booking number #</th>
                                                         <th scope="col">Name</th>
-                                                        <th scope="col">Date of Birth</th>
                                                         <th scope="col">Date of Stay</th>
+                                                        <th scope="col">Amount</th>
                                                         <th scope="col">Status</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="billing_container">
                                                     </tbody>
                                                 </table>    
                                             
@@ -111,5 +111,6 @@
                 </div>
             </div>
     </div>
+    <script src="view/dashboard/content/transactions/billing/billing.js" type="text/javascript"></script>
 </body>
 </html>

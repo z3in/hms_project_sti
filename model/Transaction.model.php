@@ -26,4 +26,23 @@ class Transaction extends Helpers{
                     }
                     return false;
     }
+
+    public function countAllRow(){
+
+        $sql = "SELECT COUNT(*) FROM billing_list";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+        
+    }
+
+    public function selectAllTransactions($offset,$rowsperpage){
+        $sql = "SELECT * FROM billing_list LIMIT ?, ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(1, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(2, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
 }

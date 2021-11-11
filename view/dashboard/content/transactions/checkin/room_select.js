@@ -1,6 +1,8 @@
 $(document).ready(()=>{
-    $("#checkin").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkin'))))
-    $("#checkout").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkout'))))
+    var $checkin = new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkin')))
+    var $checkout = new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkout')))
+    $("#checkin").text($checkin)
+    $("#checkout").text($checkout)
     $("#nights").text(convertMiliseconds(Math.abs(new Date(getParameterByName('checkout')) - new Date(getParameterByName('checkin'))),'d'))
     $("#guestnum").text(getParameterByName('person'))
     $("#roomtype").text(getParameterByName('roomname'))
@@ -12,6 +14,9 @@ $(document).ready(()=>{
             let container = document.querySelector("#room_container")
             
             if(data.result.hasOwnProperty("list")){
+                if(data.result.list.length < 1){
+                    return container.innerHTML = `<div style="width:100%;text-align:center;">No Available room for reservation dates : ${$checkin} to ${$checkout}</div>`
+                }
                 const requestcontent = data.result.list.map(item =>{ 
                                         return `
                                                 <div class="card p-2" style="max-width:300px;">
@@ -32,7 +37,6 @@ $(document).ready(()=>{
                 })
                 return
             }
-            container.innerHTML = `<div style="width:100%;text-align:center;">No Result Found</div>`
         }
             
     })

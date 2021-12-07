@@ -128,13 +128,54 @@ class Reservation{
             exit(Response::send(422,$e->errorMessage()));
         }
 
-        $logs = self::createBookingInstance();
-        $count = $logs->countAllRow()->fetchColumn();
+        $booking = self::createBookingInstance();
+        $count = $booking->countAllRow()->fetchColumn();
         $response = Array();
         $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
         $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
         $response['page_info'] = $page_info->getPaginatedInfo();
-        $result = $logs->selectAllBooking($page_info->getOffset(),$page_info->getRowsPerPage());
+        $result = $booking->selectAllBooking($page_info->getOffset(),$page_info->getRowsPerPage());
+        if($count > 0){
+            $response['list'] = Array();
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                array_push($response['list'],$row);
+            }
+        }
+        exit(Response::send(200,'Showing Result','result',$response));
+    }
+
+    public static function searchReservation(){
+        $data = Validate::JSONdata();
+        Validate::defineMethod("GET");
+
+        $error = '';
+        $error .= Validate::defineError(!isset($data['limit']) && !isset($_GET['limit']),$error,'limit');
+        
+        Validate::errorvalue($error);
+
+        try{
+            if(isset($data['limit'])){
+                if(!is_int($data['limit'])){
+                    throw new ErrorValueException('`limit` parameter cannot be ' . gettype($data['limit']));
+                }
+            }
+            if(isset($_GET['limit'])){
+                if(!is_numeric($_GET['limit'])){
+                    throw new ErrorValueException('`limit` parameter cannot be ' . gettype($_GET['limit']));
+                }
+            }
+        }catch(ErrorValueException $e){
+            exit(Response::send(422,$e->errorMessage()));
+        }
+
+        $booking = self::createBookingInstance();
+        $booking->setSearch($_GET['search']);
+        $count = $booking->countAllSearchedRow()->fetchColumn();
+        $response = Array();
+        $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
+        $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
+        $response['page_info'] = $page_info->getPaginatedInfo();
+        $result = $booking->selectSearchAllBooking($page_info->getOffset(),$page_info->getRowsPerPage());
         if($count > 0){
             $response['list'] = Array();
             while($row = $result->fetch(PDO::FETCH_ASSOC)){

@@ -11,3 +11,7 @@ Router::route('/app/reservation/save', function(){
 Router::route('/app/reservation', function(){
     Reservation::listAllBookings();
 });
+
+Router::route('/app/reservation/search', function(){
+    Reservation::searchReservation();
+});

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="view/dashboard/css/popup.css" />
     <style>
         .card{
             background-color: none!important;
@@ -74,16 +75,21 @@
             align-items: flex-start;
             justify-content: space-between;
         }
-        .content-feature .card:first-child .card-body {
-            flex-direction: row;
-        }
+       
         .content-feature .card .card-body p,.content-feature .card .card-body div {
             width:100%;
         }
         .content-table .card-body  { overflow: auto; height: 100px; }
         .content-table .card-body thead { background:#e9ecef ;position: sticky; top: -21px; z-index: 1;}
-        table tr:nth-child(even){
-            background:rgba(240, 240, 240, 0.521);
+        table {
+        counter-reset: rowNumber;
+        }
+
+        table tbody tr::before {
+        display: table-cell;
+        counter-increment: rowNumber;
+        content: counter(rowNumber);
+        padding: 0.75rem;
         }
     </style>
     <title>Document</title>
@@ -97,46 +103,36 @@
             <div class="content-feature">
                 <div class="card col3">
                     <div class="card-body">
-                        <h3 id="user-count">0</h3>
-                        <p><span>Active Users</span><small>shows number of total users in the system</small></p>
-                    </div>
-                </div>
-                <div class="card col3">
-                    <div class="card-body">
-                        <p><span>User Management</span><small>create or deactivate users</small></p>
-                        <div class="form-group mb-0" aria-label="user management">
-                            <a href="dashboard?url=createuser" data-nonnav=true type="button" class="btn btn-block btn-warning"><i class="fas fa-plus-square"></i>create new user</a>
+                        <div style="display:flex;flex-direction: row;">
+                            <h3 id="total_active">0</h3>
+                            <p><span>Discount</span><small>shows number of total active non-expired discount </small></p>
+                        </div>
+                        <div class="form-group mb-0 w-100" aria-label="user management">
+                            <label  class="btn btn-block btn-secondary"  for="modal1" id="btnAddNew"><i class="fa fa-plus"></i> Add New Code</label>
                         </div>
                     </div>
                 </div>
-                <div class="card col3">
-                    <div class="card-body">
-                        <p><span>Manage Roles/Position</span><small>create or modify position/roles for your employees</small></p>
-                        <div class="form-group mb-0" aria-label="user management">
-                            <a href="dashboard?url=manageposition" data-nonnav=true type="button" class="btn btn-block btn-secondary"><i class="fas fa-tasks"></i>manage</a>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="content-table">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">List of User</h5>
+                        <h5 class="card-title">List of Discount</h5>
                             
                         <table class="table" >
                             <thead>
                             <tr>
-                                <th scope="col">User ID</th>
-                                <th scope="col">Full Name</th>
-                                <th scope="col">Email/Username</th>
-                                <th scope="col">Position</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Discount Code</th>
+                                <th scope="col">Validity</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Discount Rate</th>
+                                <th scope="col">Discount Limit</th>
                                 <th scope="col">Date Created</th>
-                                <th scope="col">Created By</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody id="userdata-container">
+                            <tbody id="discount-container">
                             </tbody>
                         </table>    
                         
@@ -144,6 +140,37 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="view/dashboard/content/util/user_maintenance/user.js"></script>
+        <div id="css-only-modals"><input class="css-only-modal-check" id="modal1" type="checkbox" />
+            <div class="css-only-modal">
+            <label class="css-only-modal-btn btn btn-danger btn-lg" for="modal1" id="btnEscape" style="padding:5px 10px;float:right">X</label>
+            <h2>Fill up details to add new discount code</h2>
+        <form style="text-align:left;margin-top:2em">
+            <div class="mb-3">
+            <label for="input_discount_code" class="form-label">Discount Code</label>
+            <input type="text" class="form-control" id="input_discount_code" aria-describedby="DiscountCode">
+            </div>
+            <div class="mb-3">
+            <label for="input_validity" class="form-label">Validity</label>
+            <div class="input-group mb-3">
+                <input type="text" autocomplete="off" class="form-control w-50"  id="input_validity" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" id="btn_validity" type="button"><i class="fas fa-calendar"></i></button>
+                </div>
+            </div>
+            </div>
+            <div class="mb-3">
+                <label for="input_discount_rate" class="form-label">Discount Rate</label>
+                <input type="text" class="form-control" id="input_discount_rate" aria-describedby="DiscountRate">
+            </div>
+            <div class="mb-3">
+                <label for="input_discount_limit" class="form-label">Discount Limit</label>
+                <input type="text" class="form-control" id="input_discount_limit" aria-describedby="DiscountLimit">
+            </div>
+            <button type="submit" id="btnNewSubmit" class="btn btn-warning">Submit</button>
+            </form>
+            </div>
+            <div id="screen-shade"> </div>
+        </div>
+        <script type="text/javascript" src="view/dashboard/content/maintenance/discount/discount.js"></script>
 </body>
 </html>

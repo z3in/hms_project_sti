@@ -38,6 +38,10 @@ Class User {
         $data = Validate::JSONdata();
         Validate::defineMethod("GET");
         
+        if(isset($_GET['edit']) || isset($data['edit'])){
+            return self::viewUser();
+        }
+
         $error = '';
         $error .= Validate::defineError(!isset($data['limit']) && !isset($_GET['limit']),$error,'limit');
 
@@ -97,6 +101,22 @@ Class User {
             exit(Response::send(201,'Account Created'));
         }
 
+    }
+
+    public static function viewUser(){
+        
+        $error = '';
+        $error .= Validate::defineError(!isset($data['id']) && !isset($_GET['id']),$error,'id');
+
+        Validate::errorvalue($error);
+        $user = self::createInstance();
+        $result = $user->selectRowByID($_GET['id']);
+        $count = $result->rowCount();
+        if($count > 0) {
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            exit(Response::send(200,'Showing Result','result',$row));
+        }
+        exit(Response::send(200,'No Result Found.'));
     }
     
 }

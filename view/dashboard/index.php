@@ -208,14 +208,14 @@
                         <ul class="submenu hidden" data-nav="sub-transactions">
                             <li><a href="dashboard?url=booking" data-url="booking"><span>Booking</span></a></li>
                             <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
-                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Check-In</span></a></li>
-                            <li><a href="dashboard?url=checkout" data-url="checkout"><span>Check-Out</span></a></li>
+                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Create Reservation</span></a></li>
                         </ul>
                     </li>
                     <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
                         <ul class="submenu hidden" data-nav="sub-maintenance">
                             <li><a href="dashboard?url=accommodation" data-url="accommodation"><span>Accomodation</span></a></li>
                             <li><a href="dashboard?url=facilities" data-url="facilities"><span>Facilities and Services</span></a></li>
+                            <li><a href="dashboard?url=discount" data-url="discount"><span>Discount Codes</span></a></li>
                             <li><a href="dashboard?url=events" data-url="events"><span>Events</span></a></li>
                             <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li>
                         </ul>
@@ -229,9 +229,9 @@
                     </li>
                     <li class="main-menu withsub" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-file-alt"></i><span>Reports</span></a>
                         <ul class="submenu hidden" data-nav="sub-reports">
-                            <li><a href="dashboard?url=incomereport" data-url="incomereport"><span>Income Reports</span></a></li>
-                            <li><a href="dashboard?url=dailyaudit" data-url="dailyaudit"><span>Daily Audit</span></a></li>
-                            <li><a href="dashboard?url=bookingreport"  data-url="bookingreport"><span>Booking Report</span></a></li>
+                            <li><a href="dashboard?url=report_income" data-url="report_income"><span>Income Reports</span></a></li>
+                            <li><a href="dashboard?url=report_audit" data-url="report_audit"><span>Daily Audit</span></a></li>
+                            <li><a href="dashboard?url=report_booking"  data-url="report_booking"><span>Booking Report</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -246,6 +246,8 @@
                 switch($url){
                     case 'booking' : 
                         return include 'content/transactions/booking/booking.html';
+                    case 'reservation' : 
+                        return include 'content/transactions/booking/view/reservation.html';
                     case 'billing' : 
                         return include 'content/transactions/billing/billing.html'; 
                     case 'checkin' :
@@ -262,6 +264,8 @@
                         return include 'content/maintenance/accommodation/category/category.html';
                     case 'accommodation_room' :
                         return include 'content/maintenance/accommodation/room/room.html';
+                    case 'discount' :
+                        return include 'content/maintenance/discount/discount.html';
                     case 'usermaintenance' :
                         return include 'content/util/user_maintenance/usermaintenance.html';
                     case 'createuser' :
@@ -271,6 +275,12 @@
                     case 'audit' :
                         return include 'content/util/audit/audit.html';
                     case 'backup' :
+                        return include 'content/util/backupandrestore/backup.html';
+                    case 'report_income' :
+                        return include 'content/reports/income_report/backup.html';
+                    case 'report_audit' :
+                        return include 'content/reports/daily_audit/audit.html';
+                    case 'report_booking' :
                         return include 'content/util/backupandrestore/backup.html';
                     default :
                         return include 'content/dashboard/dashboard.html';

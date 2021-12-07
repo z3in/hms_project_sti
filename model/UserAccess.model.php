@@ -31,9 +31,20 @@ Class UserAccess extends Helpers{
         return $stmt;
     }
 
+    public function selectRowByID($user){
+        $sql = "SELECT * FROM `user_access` WHERE id=:id";
+
+        $data = [
+                "id" => isset($user) ? $user : $this->_id
+        ];
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($data);
+        return $stmt;
+    }
+
     public function getAllActiveData($offset,$rowsperpage){
 
-        $sql = "SELECT * FROM `user_access` WHERE `status`= ? LIMIT ?,?";
+        $sql = "SELECT u.id,u.fname,u.lname,u.mname,u.position_name,u.userid,u.status,u.role,u.created_by,u.email,u.date_created,CONCAT(e.fname, ' ',e.lname) as created_by_name FROM `user_access` u LEFT JOIN employee e on e.userid = u.created_by WHERE u.`status`= ? LIMIT ?,?";
         $status = 1;
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(1, $status);

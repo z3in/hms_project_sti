@@ -48,8 +48,8 @@ const checkNonNav = (hash) => {
         accommodation_features : "accommodation",
         accommodation_room: "accommodation",
         guestinfo:"checkin",
-        billinfo:"checkin"
-
+        billinfo:"checkin",
+        reservation:"booking"
     }
     subMenuEffect((hash in nonNavs) ? nonNavs[`${hash}`] : "dashboard")
 }

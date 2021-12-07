@@ -86,7 +86,7 @@ $(document).ready(()=>{
 
 
     const card = new Card();
-    var $payment_source;
+    var $payment_source,$discount_id = 0,$discount_value = 0;
 
     $("#billinginfo_form").submit(async function(event){
     event.preventDefault()
@@ -210,6 +210,8 @@ $(document).ready(()=>{
       params['bill_street_add'] =  $("#inputStreetAddress").val();
       params['bill_city_add'] =  $("#inputCity").val();
       params['bill_zip_add'] =  $("#inputZipCode").val();
+      params['discount_id'] = $discount_id
+      params['discount_total'] = $discount_value
       fetch('../../../app/reservation/save', {method : "POST",body : JSON.stringify(params)})
       .then(data => data.json())
       .then(data => {
@@ -267,6 +269,47 @@ $(document).ready(()=>{
           return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
       });
     }
+
+    $("#btn_discount").click(function(){
+      raw ={
+        promo_code : $("#input_discount").val()
+      }
+      fetch('../../../app/discount/find',{method:"POST",body:JSON.stringify(raw)})
+      .then(data => data.json())
+      .then(data =>{ 
+        console.log(data)
+        if(data.response === "OK"){
+          if(data.hasOwnProperty("result")){
+              const { validity,promo_code,discount_rate,discount_limit } = data.result
+              $discount_id = data.response.id
+              expiration = new Date(validity)
+              if(expiration < new Date()){
+                alert('Coupon Expired')
+              }
+              if(expiration > new Date()){
+                alert('Coupon Applied')
+                $("#discount_code").text(`${promo_code} (${discount_rate})`)
+                $("#input_discount").val("")
+                var percent_value = (parseFloat(discount_rate) / 100) * (getParameterByName('roomrate') * $nights)
+                if(discount_limit != "0" || discount_limit != "N/A"){
+                  $("#discount_note").text(`Maximum discount is ${discount_limit}`)
+
+                  if(percent_value > parseInt(discount_limit)){
+                    percent_value = parseInt(discount_limit)
+                  }
+                }
+                $discount_value = percent_value
+                $("#discount_rate").text(parseFloat(percent_value).toFixed(2))
+                var $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
+                $("#displayTotal").text(`PHP ${$totalReservation}`)
+              }
+
+
+          }
+        }
+      })
+      
+    })
 })
 
 

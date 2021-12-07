@@ -36,6 +36,18 @@ Router::route('/app/room/maxperson', function(){
    Rooms::getMaxOccupancy();
 });
 
+Router::route('/app/discount',function(){
+   Discount::getDiscountList();
+});
+
+Router::route('/app/discount/add',function(){
+   Discount::addDiscount();
+});
+
+Router::route('/app/discount/find',function(){
+   Discount::getDiscount();
+});
+
 Router::route('/app/debug', function(){
    
    $password = '$2y$10$qOAPAitOtM5.SQwlM9Hd4uITUOzUCu.UQcNKYVZ8FFCL/VJeh8Obq';

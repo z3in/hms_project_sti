@@ -4,12 +4,21 @@ class Booking extends Helpers{
 
     private $from,
             $to,
-            $type;
+            $type,
+            $search,
+            $date;
 
     public function setBooking($type,$from,$to){
         $this->type = $type;
         $this->from = date('Y-m-d',strtotime($from));
         $this->to = date('Y-m-d',strtotime($to));
+    }
+    
+    public function setSearch($search){
+        $this->search = $search;
+    }
+    public function setDateSearch($date){
+        $this->date = date('Y-m-d',strtotime($date));
     }
 
     public function countAvailableRooms(){
@@ -111,6 +120,49 @@ class Booking extends Helpers{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(1, $offset, PDO::PARAM_INT);
         $stmt->bindParam(2, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function countAllSearchedRow(){
+        $sql = "SELECT COUNT(*) FROM booking_list WHERE ref_id like ? or fullname like ?";
+        $stmt = $this->conn->prepare($sql);
+        $data = '%'. $this->search . '%';
+        $stmt->bindParam(1, $data);
+        $stmt->bindParam(2,$data);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function selectSearchAllBooking($offset,$rowsperpage){
+        $sql = "SELECT * FROM booking_list WHERE ref_id like ? or fullname like ? LIMIT ?, ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $data = '%'. $this->search . '%';
+        $stmt->bindParam(1, $data);
+        $stmt->bindParam(2, $data);
+        $stmt->bindParam(3, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(4, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function countAllSearchedDate(){
+        $sql = "SELECT COUNT(*) FROM booking_list WHERE `date` like ?";
+        $stmt = $this->conn->prepare($sql);
+        $date = $this->date . '%';
+        $stmt->bindParam(1, $date);
+        $stmt->execute();
+        return $stmt;
+    }
+    
+    public function selectDateSearch($offset,$rowsperpage){
+        $sql = "SELECT * FROM booking_list WHERE `date` like ? LIMIT ?, ?";
+        $stmt = $this->conn->prepare($sql);
+        $date = $this->date . '%';
+        $stmt->bindParam(1, $date);
+        $stmt->bindParam(2, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(3, $rowsperpage, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }

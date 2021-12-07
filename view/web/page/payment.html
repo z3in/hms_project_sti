@@ -58,13 +58,13 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a href="../../../" class="nav-link">Home</a></li>
-				<li class="nav-item active"><a href="Accomodation.html" class="nav-link">Accomodation</a></li>
-				<li class="nav-item"><a href="Facilities.html" class="nav-link">Facilities</a></li>
-				<li class="nav-item"><a href="Activities.html" class="nav-link">Activities</a></li>
-				<li class="nav-item"><a href="Events.html" class="nav-link">Events</a></li>
-				<li class="nav-item"><a href="FAQ.html" class="nav-link">FAQ</a></li>
-				<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-				<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+				<li class="nav-item active"><a href="../Accomodation.html" class="nav-link">Accomodation</a></li>
+				<li class="nav-item"><a href="../Facilities.html" class="nav-link">Facilities</a></li>
+				<li class="nav-item"><a href="../Activities.html" class="nav-link">Activities</a></li>
+				<li class="nav-item"><a href="../Events.html" class="nav-link">Events</a></li>
+				<li class="nav-item"><a href="../FAQ.html" class="nav-link">FAQ</a></li>
+				<li class="nav-item"><a href="../contact.html" class="nav-link">Contact</a></li>
+				<li class="nav-item"><a href="../about.html" class="nav-link">About</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -105,6 +105,17 @@
                                         </div>
                                         <div class="row">
                                             <p class="col">Nights/Stay</p><p class="col" id="displayNights" style="text-align:right"> </p>
+                                        </div>
+                                        <div class="row" style="background:#ffc1073f;padding:1em;border-radius: 5px;border:1px solid #ffc10798">
+                                          <div class="pb-3" style="display:flex;width:100%;justify-content:space-between;border-bottom: 1px solid #ffc10798;">
+                                              <p><span id="discount_code"></span><br><small id="discount_note"></small></p><i>PHP (<span id="discount_rate">0.00</span>)</i>
+                                          </div>
+                                          <div class="input-group input-group-sm mt-3 mb-3">
+                                              <input id="input_discount" type="text" class="form-control" placeholder="DISCOUNT CODE" aria-label="DISCOUNT CODE" aria-describedby="button-addon2">
+                                              <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button" id="btn_discount">Apply</button>
+                                              </div>
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="row">

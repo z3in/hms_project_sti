@@ -146,3 +146,16 @@ function formatNumber(n) {
     input[0].setSelectionRange(caret_pos, caret_pos);
   }
 
+function CSV(array) {
+// Use first element to choose the keys and the order
+var keys = Object.keys(array[0]);
+
+// Build header
+var result = keys.join("\,") + "\n";
+// Add the rows
+array.forEach(function(obj){
+    result += keys.map(k => obj[k] ? obj[k].replace(/\n|,/g," ") : obj[k] ).join("\,") + "\n"
+});
+
+return result;
+}

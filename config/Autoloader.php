@@ -15,6 +15,7 @@ spl_autoload_register(function($className){
     $path_src_user = ROOT . DS . 'src' . DS . 'user'. DS . $className . '.class.php';
     $path_src_ref = ROOT . DS . 'src' . DS . 'references'. DS . $className . '.class.php';
     $path_src_trans = ROOT . DS . 'src' . DS . 'transactions'. DS . $className . '.class.php';
+    $path_src_reports = ROOT . DS . 'src' . DS . 'reports'. DS . $className . '.class.php';
 
     if(file_exists($path_config)){
         require_once($path_config);
@@ -34,6 +35,8 @@ spl_autoload_register(function($className){
             require_once($path_lib);
     }else if(file_exists($path_src_trans)){
         require_once($path_src_trans);
+    }else if(file_exists($path_src_reports)){
+        require_once($path_src_reports);
     }else{
         echo '404 Page not Found';
     }

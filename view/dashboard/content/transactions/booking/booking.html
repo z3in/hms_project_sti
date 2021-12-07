@@ -71,11 +71,10 @@
                 </div>
                 <div class="card col3">
                     <div class="card-body">
-                        <p><span>No reservation or Checking out? </span><small>create new reservation here or check-out guest's reservation</small></p>
+                        <p><span>No reservation or Bill Concern? </span><small>create walk-in reservation here or review guest's bill</small></p>
                         <div class="btn-group mb-0" role="group" aria-label="checkin">
-                            <a href="dashboard?url=checkin" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check In</a>
-                            <a href="dashboard?url=checkin" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> Check Out</a>
-                            
+                            <a href="dashboard?url=checkin" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Create Reservation</a>
+                            <a href="dashboard?url=checkin" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> View Billing</a>
                         </div>
                     </div>
                 </div>
@@ -85,16 +84,15 @@
                     <div class="card-body">
                     <h5 class="card-title">Guest's Reservations</h5>
                             
-                            <form>
                                 <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Start by Searching Guest Name or Booking Number.</p>
                                 <hr>
                                 <div class="form-group row">
-                                    <label for="datecheck_in" class="col-sm-2 col-form-label">Search : </label>
+                                    <label for="input_res_search" class="col-sm-2 col-form-label">Search : </label>
                                     <div class="col-sm">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control w-50"  id="datecheck_in" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
+                                            <input type="text" id="input_res_search" autocomplete="off" class="form-control w-50" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" id="btn_checkin" type="button"><i class="fas fa-search"></i> Search</button>
+                                                <button class="btn btn-outline-secondary" id="btn_search" type="button"><i class="fas fa-search"></i> Search</button>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +120,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                         
                     </div>
                 </div>

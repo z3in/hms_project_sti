@@ -14,6 +14,7 @@ $(document).ready(()=>{
                                                     <td>${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_from))} to ${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_to))}</td>
                                                     <td>${item.currency} ${parseFloat(item.total_amount).toFixed(2)}</td>
                                                     <td>${item.status_name}</td>
+                                                    <td><button class="btn btn-sm btn-warning">VIEW</button></td>
                                                 </tr>
                                                 `
                 })

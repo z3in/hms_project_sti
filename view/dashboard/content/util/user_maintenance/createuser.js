@@ -15,6 +15,25 @@ requestJson.get('app/user/role/list?limit=100')
 })
 
 $(document).ready(function() {
+    const params = (new URL(document.location)).searchParams
+    const edit = params.get('edit')
+    if(edit){
+        let id = params.get('id')
+        requestJson.get(`app/user/list?edit=1&id=${id}`)
+        .then(data => {
+            if(data.response === "OK"){
+                if(data.hasOwnProperty('result')){
+                    $(".page-title").text('Edit User')
+                    let { email,fname,lname,mname,position } = data.result
+                    $("#inputEmail").val(email)
+                    $("#inputPosition").val(position)
+                    $("#inputFirstName").val(fname)
+                    $("#inputLastName").val(lname)
+                    $("#inputMiddleName").val(mname)
+                }
+            }
+        })
+    }
     $("#btnCreateUserSubmit").click((event)=>{
         event.preventDefault();
         var email = $("#inputEmail").val()

@@ -17,7 +17,6 @@ $(document).ready(() =>{
                                                 <div class="col-lg-6 p-0" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
                                                     <div class="room-wrap d-md-flex">
                                                         <a href="#" class="img" style="background-image: url(../../../${item.photo});"></a>
-                                                       
                                                         <div class="half left-arrow d-flex align-items-center">
                                                         
                                                             <div class="text p-4 p-xl-5 text-center">

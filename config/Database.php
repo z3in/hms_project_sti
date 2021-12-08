@@ -2,10 +2,10 @@
 
 class Database{
 
-        private $_host = 'localhost'; // change credentials here servername
-        private $_username = 'root'; // change credentials here username
+        private $_host = '%'; // change credentials here servername
+        private $_username = 'remote'; // change credentials here username
         private $_db_name = null; // DO NOT CHANGE THIS
-        private $_password = '';// change credentials here password
+        private $_password = 'TUBoYWJhaGFiYW5nUEA1NXcwcmQxdDAh';// change credentials here password
         private $_port = 3306; // change port here/
         private $_conn;
 

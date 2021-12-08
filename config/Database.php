@@ -2,7 +2,7 @@
 
 class Database{
 
-        private $_host = 'localhost'; // change credentials here servername
+        private $_host = 'http://3.15.209.24'; // change credentials here servername
         private $_username = 'remote'; // change credentials here username
         private $_db_name = null; // DO NOT CHANGE THIS
         private $_password = 'TUBoYWJhaGFiYW5nUEA1NXcwcmQxdDAh';// change credentials here password

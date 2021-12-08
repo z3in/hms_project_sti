@@ -24,31 +24,20 @@ class Database{
         }
 
         public function backup(){
-
-            $filename = ROOT . DS . 'backup';
-            if (!file_exists($filename)) {
-                mkdir($filename, 0777);
+        
+            $backup_file = $this->_db_name . "_" . date("Y-m-d-H-i-s") . '.gz';
+            $path_backup = "backup/" . $backup_file;
+            $command = "mysqldump --opt -h " . $this->_host . " -u " . $this->_username . " -p ". $this->_password  . " " . $this->_db_name . " | gzip > " . $path_backup;
+            if(function_exists('shell_exec')) {
+                exec("C:\\\\xampp\mysql\binmysqldump.exe --opt -h " .$this->_host." -u " .  $this->_username . " -p ".$this->_password." ".$this->_db_name ." > ".$path_backup, $output, $return);
             }
-            $remove = array(":"," ");
-            $file = str_replace($remove, "",TimeAndDate::timestamp()) . '.sql.gz';
-            $mysqlExportPath  = ROOT . DS . "backup" . DS . 'backup' . $file;
-
-            $command = 'mysqldump -h ' .$this->_host .' -u ' .$this->_username .' -p ' .$this->_password . ' ' . $this->_db_name .'| gzip > ' .$mysqlExportPath;
-            shell_exec($command);
-
-            header("Content-type: application/octet-stream");
-            header("Content-Disposition: attachment; filename=\"$filename\"");
-
-            passthru("cat {ROOT}{$file}");
-            // switch($worked){
-            //     case 0:
-            //         return 'The database ' . $this->_db_name .' was successfully stored in the following path '. getcwd() .'/' .$mysqlExportPath;
-            //     case 1:
-            //         return 'An error occurred when exporting ' . $this->_db_name . getcwd() . '/' .$mysqlExportPath;
-            //     case 2:
-            //         return 'An export error has occurred, please check the following information [MySQL Database Name:' . $this->_db_name .' MySQL User Name:' .  $this->_username .' MySQL Password: NOTSHOWN MySQL Host Name:' . $this->_hostname;
-            // }
-            
+            if($return !== 0){
+                return ["backup_name" => $backup_file, "ref_path" => $path_backup ];
+            }
+            if(system($command)){
+                return ["backup_name" => $backup_file, "ref_path" => $path_backup ];
+            }
+            return false;
         }
 
 }

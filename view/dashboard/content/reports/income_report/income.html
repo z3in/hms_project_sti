@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card{
+            background-color: none!important;
+        }
+        .top-container h1{
+            margin-top:1em;
+        }
+        table tr:nth-child(even){
+            background:rgba(240, 240, 240, 0.521);
+        }
+        .content-feature .card-body{
+            justify-content: center;
+            align-items: center;
+        }
+        .content-feature .card h3{
+            font-size: 50px;
+            text-decoration: none;
+            color:#b69100cc;
+            float: left;
+            margin-right:.5em;
+            padding-left:.25em;
+        }
+        .content-feature .card span{
+            font-size: 1.5rem;
+            text-decoration: none;
+            color:inherit;
+        }
+        .content-feature .card p{
+            text-decoration: none;
+            color:inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+        .content-feature .card{
+            border-radius: 10px;
+            color:#222;
+            margin:0 1em;
+        }
+        .content-feature .card-body{
+            width:100%;
+        }
+        .content-feature .card small{
+            color:#9f9f9f;
+        }
+        .content-feature .card .card-body {
+            display:flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+        <div class="top-container">
+            <h1 style="color:#fff;">Income Report</h1>
+        </div>
+        
+        <div class="container-main">
+            <div class="content-feature">
+                <div class="card col3">
+                    <div class="card-body">
+                        <div>
+                        <h3 id="res_count">0</h3>
+                        <p><span>Reservations count</span><small>Search a date and click generate report to view list</small></p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="month" class="form-control" id="date_select"/>
+                            <div class="input-group-append">
+                                <button style="color:#fff" class="btn btn-secondary" id="search_report">Generate Report</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="card col3">
+                    <div class="card-body">
+                        <p><span>Export Report</span><small>file will be downloadable as "CSV" and can then be imported into spreadsheet application.</small></p>
+                        <div class="form-group mb-0 w-100" aria-label="user management">
+                            <button type="button" class="btn btn-block btn-warning" id="report_download"><i class="fas fa-download"></i> Download Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">Showing search result</h5>
+                    </div>
+                </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Account</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Payer</th>
+                            </tr>
+                            </thead>
+                            <tbody id="data-container">
+                            </tbody>
+                        </table>    
+                    
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="view/dashboard/content/reports/income_report/income.js"></script>
+</body>
+</html>

@@ -40,7 +40,7 @@ Class Discount{
         $response = Array();
         $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
         $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
-        $page_info->setUrl('app/user/role/list');
+        $page_info->setUrl('app/discount');
         $response['page_info'] = $page_info->getPaginatedInfo();
         $result = $dis->selectAllDiscount($page_info->getOffset(),$page_info->getRowsPerPage());
         if($count > 0) {

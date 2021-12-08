@@ -11,3 +11,8 @@ Router::route('/app/system/audit/all', function(){
 Router::route('/app/system/backup', function(){
 Dbmanage::makeBackup();
 });
+
+
+Router::route('/app/system/backup/list', function(){
+    Dbmanage::getBackupList();
+});

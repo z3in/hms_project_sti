@@ -18,7 +18,11 @@ class Booking extends Helpers{
         $this->search = $search;
     }
     public function setDateSearch($date){
-        $this->date = date('Y-m-d',strtotime($date));
+        $this->date = date('Y-m-d',strtotime($date)) . '%';
+    }
+
+    public function setMonthSearch($month,$year){
+        $this->date = $year . '-' . $month . '%';
     }
 
     public function countAvailableRooms(){
@@ -150,8 +154,7 @@ class Booking extends Helpers{
     public function countAllSearchedDate(){
         $sql = "SELECT COUNT(*) FROM booking_list WHERE `date` like ?";
         $stmt = $this->conn->prepare($sql);
-        $date = $this->date . '%';
-        $stmt->bindParam(1, $date);
+        $stmt->bindParam(1, $this->date);
         $stmt->execute();
         return $stmt;
     }
@@ -159,8 +162,7 @@ class Booking extends Helpers{
     public function selectDateSearch($offset,$rowsperpage){
         $sql = "SELECT * FROM booking_list WHERE `date` like ? LIMIT ?, ?";
         $stmt = $this->conn->prepare($sql);
-        $date = $this->date . '%';
-        $stmt->bindParam(1, $date);
+        $stmt->bindParam(1, $this->date);
         $stmt->bindParam(2, $offset, PDO::PARAM_INT);
         $stmt->bindParam(3, $rowsperpage, PDO::PARAM_INT);
         $stmt->execute();

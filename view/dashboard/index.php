@@ -216,7 +216,7 @@
                             <li><a href="dashboard?url=accommodation" data-url="accommodation"><span>Accomodation</span></a></li>
                             <li><a href="dashboard?url=facilities" data-url="facilities"><span>Facilities and Services</span></a></li>
                             <li><a href="dashboard?url=discount" data-url="discount"><span>Discount Codes</span></a></li>
-                            <li><a href="dashboard?url=events" data-url="events"><span>Events</span></a></li>
+                            <li><a href="dashboard?url=event" data-url="event"><span>Events</span></a></li>
                             <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li>
                         </ul>
                     </li>
@@ -264,6 +264,8 @@
                         return include 'content/maintenance/accommodation/category/category.html';
                     case 'accommodation_room' :
                         return include 'content/maintenance/accommodation/room/room.html';
+                    case 'event' :
+                        return include 'content/maintenance/events/event.html';
                     case 'discount' :
                         return include 'content/maintenance/discount/discount.html';
                     case 'usermaintenance' :
@@ -277,11 +279,11 @@
                     case 'backup' :
                         return include 'content/util/backupandrestore/backup.html';
                     case 'report_income' :
-                        return include 'content/reports/income_report/backup.html';
+                        return include 'content/reports/income_report/income.html';
                     case 'report_audit' :
                         return include 'content/reports/daily_audit/audit.html';
                     case 'report_booking' :
-                        return include 'content/util/backupandrestore/backup.html';
+                        return include 'content/reports/booking_report/booking.html';
                     default :
                         return include 'content/dashboard/dashboard.html';
                 }

@@ -77,16 +77,15 @@
             <div class="content-feature">
                 <div class="card col3">
                     <div class="card-body">
-                        <h3>0</h3>
-                        <p><span>Days ago</span><small>last backup was Oct. 4, 2021</small></p>
+                        <h3 id="backup_count">0</h3>
+                        <p><span>Days ago</span><small>last backup was <span style="font-size:unset" id="backupdate"></span></small></p>
                     </div>
                   </div>
                 <div class="card col3">
                     <div class="card-body">
-                        <p><span>Database Management</span><small>backup or restore your database (email authentication required)</small></p>
+                        <p><span>Database Management</span><small>backup your database or click on the "restore" button to restore backup</small></p>
                         <div class="btn-group" role="group" aria-label="user management">
-                            <a href="#createuser" type="button" class="btn btn-warning"><i class="fas fa-database"></i></i>backup data</a>
-                            <a href="#deleteuser" type="button" class="btn btn-secondary" style="color:#fff!important"><i class="fas fa-clock"></i></i>restore data</a>
+                            <button id="btn_backup" type="button" class="btn btn-warning"><i class="fas fa-database"></i></i>backup data</a>
                         </div>
                     </div>
                   </div>
@@ -101,11 +100,12 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Date and Time</th>
+                                    <th scope="col">File Name</th>
                                     <th scope="col">Backup / Restore</th>
                                     <th scope="col">User ID</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="data-container">
                                 </tbody>
                             </table>    
                         
@@ -113,6 +113,6 @@
                 </div>
             </div>
         </div>
-
+        <script type="text/javascript" src="view/dashboard/content/util/backupandrestore/backup.js"></script>
 </body>
 </html>

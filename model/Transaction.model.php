@@ -2,6 +2,14 @@
 
 class Transaction extends Helpers{
 
+    private $year,$month;
+
+    public function setDateSearch($month,$year){
+        $this->year = $year;
+        $this->month = $month;
+
+    }
+
     public function insertTransaction($id,$data){
             $sql = "INSERT INTO transactions(booking_id,`date`,room_id,room_charge,card_info,currency,payment_ref,total_amount,street_add,city_add,zip_add,discount_id,discount_total)
                                 VALUES
@@ -44,6 +52,29 @@ class Transaction extends Helpers{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(1, $offset, PDO::PARAM_INT);
         $stmt->bindParam(2, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function countAllSearchedDate(){
+
+        $sql = "SELECT COUNT(*) FROM billing_list WHERE billing_list.`date` like ?";
+        $stmt = $this->conn->prepare($sql);
+        $date = $this->year . '-' . $this->month . '%';
+        $stmt->bindParam(1, $date,PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt;
+        
+    }
+
+    public function selectDateSearch($offset,$rowsperpage){
+
+        $sql = "SELECT * FROM billing_list WHERE billing_list.`date` like ? LIMIT ?, ?";
+        $stmt = $this->conn->prepare($sql);
+        $date = $this->year . '-' . $this->month . '%';
+        $stmt->bindParam(1, $date);
+        $stmt->bindParam(2, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(3, $rowsperpage, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }

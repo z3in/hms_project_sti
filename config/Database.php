@@ -13,7 +13,7 @@ class Database{
             $this->_conn = null;
             $this->_db_name = $db;
             try{
-                $this->_conn = new PDO('mysql:host='. $this->_host . ';port='. $this->_port . ';dbname=' .  $this->_db_name,$this->_username,$this->_password);
+                $this->_conn = new PDO('mysql:host='. $this->_host . ';port='. $this->_port . ';dbname='  .  $this->_db_name .";charset=utf8",$this->_username,$this->_password);
                 $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }catch(PDOException $e)
             {

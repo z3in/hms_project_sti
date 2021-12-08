@@ -2,7 +2,7 @@
 
 class Database{
 
-        private $_host = 'http://3.15.209.24'; // change credentials here servername
+        private $_host = '127.0.0.1'; // change credentials here servername
         private $_username = 'remote'; // change credentials here username
         private $_db_name = null; // DO NOT CHANGE THIS
         private $_password = 'TUBoYWJhaGFiYW5nUEA1NXcwcmQxdDAh';// change credentials here password
@@ -13,7 +13,7 @@ class Database{
             $this->_conn = null;
             $this->_db_name = $db;
             try{
-                $this->_conn = new PDO('mysql:host='. $this->_host . ';port='. $this->_port . ';dbname='  .  $this->_db_name .";charset=utf8",$this->_username,$this->_password);
+                $this->_conn = new PDO('mysql:host='. $this->_host . ';port='. $this->_port . ';dbname='  .  $this->_db_name,$this->_username,$this->_password);
                 $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }catch(PDOException $e)
             {

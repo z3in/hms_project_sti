@@ -5,17 +5,16 @@ const getDiscountList = () =>{
     .then(data=>{
         if(data.response === "OK"){
             if(data.result.hasOwnProperty("list")){
-
                 $.each(data.result.list, function (i, item) {
                     $("#discount_list").append(`<li>
                     <div class="card" style="width: 100%">
-                      <div class="card-body">
-                        <h3 class="card-title">${item.promo_code}</h3>
-                        <h4>Discount Rate : ${item.discount_rate}</h4>
-                        <small class="card-text"> valid untily ${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.validity)}(maximum discount ${item.discount_limit}).</small>
-                      </div>
-                    </div>
-                  </li>`);
+                        <div class="card-body">
+                            <h3 class="card-title">${item.promo_code}</h3>
+                            <h4>Discount Rate : ${item.discount_rate}</h4>
+                            <small class="card-text"> valid untily ${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.validity))}(maximum discount ${item.discount_limit}).</small>
+                        </div>
+                        </div>
+                    </li>`);
                 });
                 
                 return

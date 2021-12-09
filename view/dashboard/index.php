@@ -50,6 +50,7 @@
         header nav ul{
             list-style: none;
             padding:0 1em;
+            overflow-y: auto;
         }
         header nav ul.top-level{
             margin-top:100px;
@@ -118,9 +119,8 @@
             padding:1em 2em;
         }
         .signout{
-            position:absolute;
-            bottom:25px;
-            left:55px;
+            text-align: center;
+            margin-top:1em;
         }
         .signout p a span {
             margin-left:.5em;
@@ -128,8 +128,9 @@
         .signout p a {
             background-color:#222222;
             color:#e9ecef;
-            padding:.5em 1.5em;
+            padding:.25em 1.5em;
             border-radius: 5px;
+            font-size:.9rem;
         }
         .logo{
             margin-top:2em;
@@ -201,6 +202,9 @@
             <div class="logo">
                 <h5>HIPNAUTIC BEACH RESORT</h5>
             </div>
+            <div class="signout">
+                <p><a href="#"><i class="fas fa-power-off"></i><span>sign out</span></a></p>
+            </div>
             <nav>
                 <ul class="top-level">
                     <li class="main-menu selected" data-nav="dashboard"><a class="main-link" href="dashboard"  data-url="dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
@@ -236,9 +240,7 @@
                     </li>
                 </ul>
             </nav>
-            <div class="signout">
-                <p><a href="#"><i class="fas fa-power-off"></i><span>sign out</span></a></p>
-            </div>
+            
             </header>
             <main>
                 <?php 

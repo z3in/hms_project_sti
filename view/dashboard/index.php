@@ -221,7 +221,7 @@
                             <li><a href="dashboard?url=facilities" data-url="facilities"><span>Facilities and Services</span></a></li>
                             <li><a href="dashboard?url=discount" data-url="discount"><span>Discount Codes</span></a></li>
                             <li><a href="dashboard?url=event" data-url="event"><span>Events</span></a></li>
-                            <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li>
+                            <!-- <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li> -->
                         </ul>
                     </li>
                     <li class="main-menu withsub" data-nav="utilities" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Utilities</span></a>

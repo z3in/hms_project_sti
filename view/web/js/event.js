@@ -26,17 +26,12 @@ const getDiscountList = () =>{
     })
 }
 
-function range(start, end) {
-    return Array(end - start + 1).fill().map((_, idx) => start + idx)
-}
-
-
-function checkReservation(){
-    var data = `checkin=${$('#datecheck_in').val()}&checkout=${$('#datecheck_out').val()}&person=${$("#inputGuestCount").val()}&roomtype=${$("#inputRoomType").val()}&roomname=${$("#inputRoomType option:selected" ).text()}`
-    window.location.href = "view/web/page/rooms.html?" + data
-}
-
 $(document).ready(()=>{
     getDiscountList()
+    
 })
 
+$("#btn_date_checkout").click(()=>$("#input_date_checkout").focus())
+$("#input_date_checkout").datepicker()
+$("#btn_date_checkin").click(()=>$("#input_date_checkin").focus())
+$("#input_date_checkin").datepicker()

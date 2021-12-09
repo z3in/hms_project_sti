@@ -15,7 +15,7 @@ Class RoomStatus extends Helpers{
 
     public function selectStatus(){
 
-        $sql = "SELECT * FROM `room_Status`";
+        $sql = "SELECT * FROM `room_status`";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt;

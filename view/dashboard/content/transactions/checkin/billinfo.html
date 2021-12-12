@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
         .top-container h1{
             margin-top:1em;
@@ -144,66 +147,92 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Card information</p>
-                                <hr>
-                                <div class="form-group row px-3">
-                                        <label for="inputCardNumber">Card Number</label>
-                                        <input type="text" class="form-control" id="inputCardNumber" aria-describedby="emailHelp" placeholder="Enter card number" required  autocomplete="off">
-                                       
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Expiration</label>
-                                            <div class="input-group row col-sm">
-                                                <input type="text" class="form-control" id="inputExpMonth" placeholder="Month" maxlength="2"  required  autocomplete="off">
-                                                <input type="text" class="form-control" id="inputExpYear" placeholder="Year" maxlength="2"  required  autocomplete="off">
+                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Payment Method</p>
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="cash-tab" data-toggle="tab" href="#cash" role="tab" aria-controls="cash" aria-selected="true">Cash</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="card-tab" data-toggle="tab" href="#card" role="tab" aria-controls="card" aria-selected="false">Card</a>
+                                    </li>
+                                  </ul>
+                                  <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="cash" role="tabpanel" aria-labelledby="cash-tab">
+                                        <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Payment</p>
+                                            <hr>
+                                            <div class="form-group row px-3">
+                                                    <label for="inputCardNumber">Cash Amount</label>
+                                                    <input type="text" class="form-control" id="inputCash" aria-describedby="emailHelp" placeholder="Enter amount without the currency" required  autocomplete="off">
+                                                
                                             </div>
+                                        <div class="col-sm-12">
+                                            <p style="margin-top:1em;float:right"><button type="submit" class="btn btn-lg btn-warning" id="btn_SumbitPaymentCash"><i class="fas fa-check-circle"></i> Submit</button></p>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="inputCardNumber">Security CVV</label>
-                                            <div class="col-sm">
-                                                <input type="password" class="form-control" id="inputSecurity" placeholder="CVV" required  autocomplete="off">
-                                                <small id="emailHelp" class="form-text text-muted">Found in the back of the credit card.</small>
+                                    <div class="tab-pane fade" id="card" role="tabpanel" aria-labelledby="card-tab">
+                                        <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Card information</p>
+                                            <hr>
+                                            <div class="form-group row px-3">
+                                                    <label for="inputCardNumber">Card Number</label>
+                                                    <input type="text" class="form-control" id="inputCardNumber" aria-describedby="emailHelp" placeholder="Enter card number" required  autocomplete="off">
+                                                
                                             </div>
-                                        </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Expiration</label>
+                                                        <div class="input-group row col-sm">
+                                                            <input type="text" class="form-control" id="inputExpMonth" placeholder="Month" maxlength="2"  required  autocomplete="off">
+                                                            <input type="text" class="form-control" id="inputExpYear" placeholder="Year" maxlength="2"  required  autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="inputCardNumber">Security CVV</label>
+                                                        <div class="col-sm">
+                                                            <input type="password" class="form-control" id="inputSecurity" placeholder="CVV" required  autocomplete="off">
+                                                            <small id="emailHelp" class="form-text text-muted">Found in the back of the credit card.</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Address Information</p>
+                                            <hr>
+                                            <div class="form-check mb-4">
+                                                <input class="form-check-input" type="checkbox" value="" id="sameAddress">
+                                                <label class="form-check-label" for="sameAddress">
+                                                Use Permanent Address as Billing Address
+                                                </label>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm">
+                                                    <input type="text" class="form-control" id="inputStreetAddress" placeholder="Street Address" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm">
+                                                            <input type="text" class="form-control" id="inputCity" placeholder="City" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm">
+                                                            <input type="text" class="form-control" id="inputZipCode" placeholder="Zip Code" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <p style="margin-top:1em;float:right"><button type="submit" class="btn btn-lg btn-warning" id="btn_SumbitPayment"><i class="fas fa-check-circle"></i> Submit</button></p>
+                                            </div>
                                     </div>
-                                </div>
-                               
-                                <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Address Information</p>
-                                <hr>
-                                <div class="form-check mb-4">
-                                    <input class="form-check-input" type="checkbox" value="" id="sameAddress">
-                                    <label class="form-check-label" for="sameAddress">
-                                      Use Permanent Address as Billing Address
-                                    </label>
                                   </div>
-                                <div class="form-group row">
-                                    <div class="col-sm">
-                                        <input type="text" class="form-control" id="inputStreetAddress" placeholder="Street Address" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <div class="col-sm">
-                                                <input type="text" class="form-control" id="inputCity" placeholder="City" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group row">
-                                            <div class="col-sm">
-                                                <input type="text" class="form-control" id="inputZipCode" placeholder="Zip Code" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <p style="margin-top:1em;float:right"><button type="submit" class="btn btn-lg btn-warning" id="btn_SumbitPayment"><i class="fas fa-check-circle"></i> Submit</button></p>
-                                </div>
+                                
                             </form>
                         
                     </div>

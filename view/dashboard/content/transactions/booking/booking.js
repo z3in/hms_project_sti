@@ -6,14 +6,14 @@ $(document).ready(()=>{
             let container = document.querySelector("#booking_container")
             
             if(data.result.hasOwnProperty("list")){
-                const requestcontent = data.result.list.map(item =>{ 
+                const requestcontent = data.result.list.filter(item => item.status_name !== "CANCELLED").map(item =>{ 
                                         return `
                                                 <tr>
                                                     <td style="width:100px;max-width:150px;overflow: hidden;text-overflow: ellipsis;">${item.ref_id}</td>
                                                     <td>${item.fullname}</td>
                                                     <td>${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_from))} to ${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_to))}</td>
                                                     <td>${item.status_name}</td>
-                                                    <td><button class="btn btn-sm btn-warning" onclick="view_res(${item.id})" data-nonnav="true">VIEW</button> &nbsp;<button class="btn btn-sm btn-danger">CANCEL</button></td>
+                                                    <td><button class="btn btn-sm btn-warning" onclick="view_res(${item.id})" data-nonnav="true">VIEW</button></td>
                                                 </tr>
                                                 `
                 })
@@ -50,7 +50,7 @@ const searchData = (key) =>{
                                                     <td>${item.fullname}</td>
                                                     <td>${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_from))} to ${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_to))}</td>
                                                     <td>${item.status_name}</td>
-                                                    <td><button class="btn btn-sm btn-warning" onclick="view_res(${item.id})" data-nonnav="true">VIEW</button> &nbsp;<button class="btn btn-sm btn-danger">CANCEL</button></td>
+                                                    <td><button class="btn btn-sm btn-warning" onclick="view_res(${item.id})" data-nonnav="true">VIEW</button></td>
                                                 </tr>
                                                 `
                 })

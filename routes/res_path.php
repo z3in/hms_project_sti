@@ -15,3 +15,11 @@ Router::route('/app/reservation', function(){
 Router::route('/app/reservation/search', function(){
     Reservation::searchReservation();
 });
+
+Router::route('/app/reservation/get', function(){
+    Reservation::viewReservation();
+});
+
+Router::route('/app/reservation/update_status',function(){
+    Reservation::changeStatus();
+});

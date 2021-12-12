@@ -277,11 +277,10 @@ $(document).ready(()=>{
       fetch('../../../app/discount/find',{method:"POST",body:JSON.stringify(raw)})
       .then(data => data.json())
       .then(data =>{ 
-        console.log(data)
         if(data.response === "OK"){
           if(data.hasOwnProperty("result")){
               const { validity,promo_code,discount_rate,discount_limit } = data.result
-              $discount_id = data.response.id
+              $discount_id = data.result.id
               expiration = new Date(validity)
               if(expiration < new Date()){
                 alert('Coupon Expired')
@@ -300,11 +299,13 @@ $(document).ready(()=>{
                 }
                 $discount_value = percent_value
                 $("#discount_rate").text(parseFloat(percent_value).toFixed(2))
-                var $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
+                $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
                 $("#displayTotal").text(`PHP ${$totalReservation}`)
               }
-
-
+              return
+          }
+          if(data.hasOwnProperty("message")){
+            alert(data.message)
           }
         }
       })

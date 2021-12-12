@@ -93,6 +93,9 @@
         .form-group input{
             padding-left:2.5em;
         }
+        .form-verification{
+            display:none;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +110,7 @@
                         <h2 class="tagline-header">Welcome !</h2>
                         <p class="sub-header">please enter your credentials to continue.</p>
                     </div>
-                    <div class="p-5">
+                    <div class="p-5" id="form-signin">
                     <form>
                         <div class="form-group">
                             <i class="far fa-envelope"></i><input type="email" class="form-control" id="email_input" aria-describedby="emailHelp" placeholder="Enter email"><i></i>
@@ -118,7 +121,14 @@
                         <p style="float:right;"><a href="#"><i class="fas fa-key mr-2"></i>Recover Access</a></p>
                         <p style="clear:both"></p>
                         <button type="submit" id="btn_signin" class="btn btn-primary btn-lg btn-block mt-5">SIGN IN</button>
-                      </form>
+                    </form>
+                    </div>
+                    <div class="p-5 form-verification">
+                        <div class="form-group">
+                            <i class="fas fa-lock"></i><input type="text" class="form-control" id="verify_input" placeholder="enter 6 digit code">
+                        </div>
+                        <p style="clear:both"></p>
+                        <button type="submit" id="btn_verify" class="btn btn-primary btn-lg btn-block mt-5">VERIFY</button>
                     </div>
                 </div>
             </div>

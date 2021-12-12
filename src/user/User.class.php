@@ -26,8 +26,14 @@ Class User {
             $row = $result->fetch(PDO::FETCH_ASSOC);
             extract($row);
             if(password_verify($data['password'],$pword)){
-                Audit::createLog($id,'Authentication','user login : ' . $fname .' ' . $mname . ' ' . $lname);
-                exit(Response::send(200,'Logged in.','user',$row));
+                $key = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+                $ret = Mailer::emailsend($email,$key);
+                ob_end_clean();
+                if($ret){
+                    $row['key'] = $key;
+                    Audit::createLog($id,'Authentication','user login(verification sent) : ' . $fname .' ' . $mname . ' ' . $lname);
+                    exit(Response::send(200,'Verification Sent.','user',$row));
+                }
             }
             exit(Response::send(401,'Unauthorized.'));
         }

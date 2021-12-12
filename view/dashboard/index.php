@@ -213,6 +213,7 @@
                             <li><a href="dashboard?url=booking" data-url="booking"><span>Booking</span></a></li>
                             <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
                             <li><a href="dashboard?url=checkin" data-url="checkin"><span>Create Reservation</span></a></li>
+                            <li><a href="dashboard?url=cancelled" data-url="cancelled"><span>Cancelled Reservation</span></a></li>
                         </ul>
                     </li>
                     <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
@@ -254,6 +255,8 @@
                         return include 'content/transactions/billing/billing.html'; 
                     case 'checkin' :
                         return include 'content/transactions/checkin/checkin.html';
+                    case 'cancelled' :
+                        return include 'content/transactions/cancelled/cancelled.html';
                     case 'room_select' :
                         return include 'content/transactions/checkin/room_select.html';
                     case 'guestinfo' :

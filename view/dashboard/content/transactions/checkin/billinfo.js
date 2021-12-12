@@ -34,12 +34,47 @@ $(document).ready(()=>{
       }
     })
 
-
+    
     const card = new Card();
-    var $payment_source,$discount_id = 0,$discount_value = 0;
+    var $payment_source,$discount_id = 0,$discount_value = 0, cash=0;
 
-
+    $("#btn_SumbitPaymentCash").click(function(){ 
+      let params = {};
+      var cash_amount = $("#inputCash").val()
+      if($totalReservation > parseFloat(cash_amount).toFixed(2)){
+        return alert('Invalid Amount! Amount cannot be less than the total charge.')
+      }
+      new URL(document.location).searchParams.forEach(function (val, key) {
+        params[key] = val
+      });
+      params['card_lastnum'] = 0000
+      params['reservation_type'] = "frontdesk"
+      params['payment_ref'] = generateUUID()
+      params['amount'] = $totalReservation
+      params['currency'] = "PHP"
+      params['card_brand'] = "N/A"
+      params['user_id'] = getCookie('sessionid')
+      params['status'] = 1
+      params['nights'] = $nights
+      params['ref_num'] = generateUUID()
+      params['bill_street_add'] =  $("#inputStreetAddress").val()
+      params['bill_city_add'] =  $("#inputCity").val()
+      params['bill_zip_add'] =  $("#inputZipCode").val()
+      params['discount_id'] = $discount_id
+      params['discount_total'] = $discount_value
+      fetch('app/reservation/save', {method : "POST",body : JSON.stringify(params)})
+      .then(data => data.json())
+      .then(data => {
+        if(data.response){
+          if(data.hasOwnProperty("message")){
+            alert(data.message + `  REF#: ${params['ref_num']}`)
+            window.location.href="dashboard?url=booking"
+          }
+        }
+      })
+    });
     $("#billinginfo_form").submit(async function(event){
+    
     event.preventDefault()
     // card.amount = 10000;
     card.currency = "PHP";
@@ -231,7 +266,7 @@ $(document).ready(()=>{
         if(data.response === "OK"){
           if(data.hasOwnProperty("result")){
               const { validity,promo_code,discount_rate,discount_limit } = data.result
-              $discount_id = data.response.id
+              $discount_id = data.result.id
               expiration = new Date(validity)
               if(expiration < new Date()){
                 alert('Coupon Expired')
@@ -250,7 +285,7 @@ $(document).ready(()=>{
                 }
                 $discount_value = percent_value
                 $("#discount_rate").text(parseFloat(percent_value).toFixed(2))
-                var $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
+                $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
                 $("#displayTotal").text(`PHP ${$totalReservation}`)
               }
 

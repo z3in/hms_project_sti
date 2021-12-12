@@ -6,6 +6,9 @@ const getRoomCategory = () =>{
             if(data.result.hasOwnProperty("list")){
 
                 $.each(data.result.list, function (i, item) {
+                    if(item.category === "Full Resort Reservation"){
+                        return
+                    }
                     $("#inputRoomType").append($('<option>', { 
                         value: item.id,
                         text : capitalizeFirstLetter(item.category) 

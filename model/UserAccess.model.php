@@ -95,4 +95,14 @@ Class UserAccess extends Helpers{
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
     }
+
+    public function updateLogin($id,$key){
+        $sql = "UPDATE `user` set `vkey` = :vkey where id=:id";
+        $data = [
+            "id" => $id,
+            "vkey" => $key
+        ];
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($data);
+    }
 }

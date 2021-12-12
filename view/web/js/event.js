@@ -35,3 +35,24 @@ $("#btn_date_checkout").click(()=>$("#input_date_checkout").focus())
 $("#input_date_checkout").datepicker()
 $("#btn_date_checkin").click(()=>$("#input_date_checkin").focus())
 $("#input_date_checkin").datepicker()
+
+$("#modalform").submit((event)=>{
+    if($("#input_date_checkin").val() === "" || $("#input_date_checkout").val() === ""){
+        alert("Please Select Dates for your Reservation")
+        return;
+    }
+    event.preventDefault()
+    fetch(`../../../app/room/available?checkin=${$("#input_date_checkout").val()}&checkout=${$("#input_date_checkout").val()}&type=${1}&limit=1`)
+    .then(data => data.json())
+    .then(data => {
+        if(data.response){
+            if(data.hasOwnProperty("result")){
+                if(data.result.list.length < 1){
+                    alert(`All ${getParameterByName('roomname')} room type has been booked, another date. Thank you!`)
+                }
+            }
+        }
+    })
+    var data = `checkin=${$('#input_date_checkin').val()}&checkout=${$('#input_date_checkout').val()}&person=${$("#inputGuestCount").val()}&roomtype=${1}&roomname=${"Full Resort Reservation"}`
+    window.location.href = "../../view/web/page/rooms.html?" + data
+})

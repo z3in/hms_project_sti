@@ -91,10 +91,18 @@
         <div class="content-feature">
             <div class="card col3">
                 <div class="card-body">
-                    <p><span>End of Stay or Bill Concern? </span><small>Checking out of reservation or review guest's bill</small></p>
+                    <p><span>Helpful Actions</span><small>Checking in/out of reservation or review guest's bill</small></p>
                     <div class="btn-group mb-0" role="group" aria-label="checkin">
-                        <button id="btn_checkout" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check out</button>
-                        <a href="dashboard?url=billing" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> View Billing</a>
+                        <a href="dashboard?url=billing"  data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> View Billing</a>
+                        <button id="btn_check" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> Check out</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card col3">
+                <div class="card-body">
+                    <p><small>Reservation Status : </small><span id="res_status"></span></p>
+                    <div class="btn-group mb-0" role="group" aria-label="checkin">
+                        <button id="btn_cancel" data-nonnav=true type="button" role="group" class="btn btn-danger"><i class="fas fa-ban"></i> Cancel Reservation</button>
                     </div>
                 </div>
             </div>
@@ -103,74 +111,49 @@
             <div class="card">
                 <div class="card-body">
                 <h5 class="card-title">Reservation Details</h5>
-                        
-                        <form>
-                            <p style="color:#9f9f9f;font-weight:500;font-style: italic;">user login credentials</p>
-                            <hr>
-                            <p>
-                                <small>check-in date :</small>
-                                <span>test</span>
-                            </p>
-                            <p>
-                                <small>check-out date :</small>
-                                <span>test</span>
-                            </p>
-                            <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Confirm password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm password">
-                                </div>
+                        <div style="display:flex;">
+                            <form style="width:7 0%;">
+                                <p style="color:#8a6907;font-weight:500;font-style: italic;">Date of Accommodation</p>
+                                <hr>
+                                <p>
+                                    <small>Check-In date :</small>
+                                    <span style="font-weight:700" id="label_checkin"></span>
+                                </p>
+                                <p>
+                                    <small>Check-Out date :</small>
+                                    <span style="font-weight:700" id="label_checkout"></span>
+                                </p>
+                                <p>
+                                    <small>Nights of stay :</small>
+                                    <span style="font-weight:700" id="label_night"></span>
+                                </p>
+                                <p style="color:#8a6907;font-weight:500;font-style: italic;">Guest Information</p>
+                                <hr>
+                                <p>
+                                    <small>Guest Name :</small>
+                                    <span style="font-weight:700" id="label_name"></span>
+                                </p>
+                                <p>
+                                    <small>Address :</small>
+                                    <span style="font-weight:700"id="label_address"></span>
+                                </p>
+                                <p>
+                                    <small>Email :</small>
+                                    <span style="font-weight:700" id="label_email"></span>
+                                </p>
+                                <p>
+                                    <small>Phone number :</small>
+                                    <span style="font-weight:700" id="label_phone"></span>
+                                </p>
+                            </form>
+                            <div>
+                                <p style="color:#969696;font-weight:500;font-style: italic;"></p>
                             </div>
-                            <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">personal information</p>
-                            <hr>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label for="inputFirstName" class="col-sm-4 col-form-label">First Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    
-
-                                    <div class="form-group row">
-                                        <label for="inputMiddleName" class="col-sm-4 col-form-label">Middle Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label for="inputLastName" class="col-sm-4 col-form-label">Last Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group row">
-                                        <label for="inputPosition" class="col-sm-4 col-form-label">Position</label>
-                                        <div class="col-sm-8">
-                                            <select class="custom-select mr-sm-2" id="inputPosition">
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p style="margin-top:3em;"><button type="submit" id="btnCreateUserSubmit" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check out</button></p>
-                            
-                        </form>
-                    
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="view/dashboard/content/util/user_maintenance/createuser.js"></script>
+    <script type="text/javascript" src="view/dashboard/content/transactions/booking/view/view.js"></script>
 </body>
 </html>

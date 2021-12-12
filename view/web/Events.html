@@ -207,7 +207,7 @@
     <div class="css-only-modal">
     <label class="css-only-modal-btn btn btn-danger btn-lg" for="modal1" id="btnEscape" style="padding:5px 10px;float:right">X</label>
     <h2>Select Date to reserve to whole resort</h2>
-<form style="text-align:left;margin-top:2em">
+  <form id="modalform" style="text-align:left;margin-top:2em">
     <div class="mb-3">
     <label for="input_date_checkin" class="form-label">Check-In Date : </label>
     <div class="input-group mb-3">
@@ -215,7 +215,7 @@
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" id="btn_date_checkin" type="button"><i class="fas fa-calendar"></i></button>
         </div>
-    </div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="input_date_checkout" class="form-label">Check-Out Date : </label>
@@ -225,8 +225,14 @@
               <button class="btn btn-outline-secondary" id="btn_date_checkout" type="button"><i class="fas fa-calendar"></i></button>
           </div>
       </div>
+    </div>
+    <div class="mb-3">
+      <label for="input_date_checkout" class="form-label">Max Guest Count: </label>
+      <div class="input-group mb-3">
+          <input type="text" autocomplete="off" class="form-control w-50"  id="input_date_checkout" aria-label="guest count" aria-describedby="basic-addon2" required value="20" disabled>
       </div>
-   
+    </div>
+  
     <button type="submit" id="btnNewSubmit" class="btn btn-warning">Submit</button>
     </form>
     </div>

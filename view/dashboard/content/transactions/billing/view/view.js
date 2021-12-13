@@ -17,7 +17,6 @@ requestJson.get(`app/reservation/get?id=${id}`)
         document.querySelector("#label_phone").innerHTML =  phone
         document.querySelector("#res_status").innerHTML = status_name;
 
-        document.querySelector("#btn_viewbill").href = `dashboard?url=billing&id=${id}`
         var btn_check = document.querySelector("#btn_check")
         if(status_name === "RESERVED"){
             btn_check.innerHTML = `<i class="fas fa-check"></i> Check In`

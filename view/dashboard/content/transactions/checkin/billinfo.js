@@ -262,7 +262,6 @@ $(document).ready(()=>{
       fetch('app/discount/find',{method:"POST",body:JSON.stringify(raw)})
       .then(data => data.json())
       .then(data =>{ 
-        console.log(data)
         if(data.response === "OK"){
           if(data.hasOwnProperty("result")){
               const { validity,promo_code,discount_rate,discount_limit } = data.result
@@ -276,9 +275,9 @@ $(document).ready(()=>{
                 $("#discount_code").text(`${promo_code} (${discount_rate})`)
                 $("#input_discount").val("")
                 var percent_value = (parseFloat(discount_rate) / 100) * (getParameterByName('roomrate') * $nights)
-                if(discount_limit != "0" || discount_limit != "N/A"){
+                $("#discount_note").text(`No Maximum discount.`)
+                if(discount_limit != 0){
                   $("#discount_note").text(`Maximum discount is ${discount_limit}`)
-
                   if(percent_value > parseInt(discount_limit)){
                     percent_value = parseInt(discount_limit)
                   }
@@ -287,10 +286,11 @@ $(document).ready(()=>{
                 $("#discount_rate").text(parseFloat(percent_value).toFixed(2))
                 $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
                 $("#displayTotal").text(`PHP ${$totalReservation}`)
+                
               }
-
-
+             
           }
+          alert(data.message)
         }
       })
       

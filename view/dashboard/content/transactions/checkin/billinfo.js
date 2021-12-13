@@ -41,7 +41,9 @@ $(document).ready(()=>{
     $("#btn_SumbitPaymentCash").click(function(){ 
       let params = {};
       var cash_amount = $("#inputCash").val()
-      if($totalReservation > parseFloat(cash_amount).toFixed(2)){
+      console.log($totalReservation)
+      console.log(parseFloat(cash_amount).toFixed(2))
+      if(parseFloat($totalReservation).toFixed(2) > parseFloat(cash_amount).toFixed(2)){
         return alert('Invalid Amount! Amount cannot be less than the total charge.')
       }
       new URL(document.location).searchParams.forEach(function (val, key) {

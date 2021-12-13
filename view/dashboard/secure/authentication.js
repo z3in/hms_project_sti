@@ -38,6 +38,8 @@ const authenticateUser = (event,user,pass) => {
             $verify_digit = data.user.key;
             $userid = data.user.id
         }
+        btn.innerHTML = 'SIGN IN'
+        btn.style.cssText = "pointer-events:all"
         return alert(data.message)
     })
     

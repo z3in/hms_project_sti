@@ -1,11 +1,11 @@
 
 $(document).ready(()=>{
-    const getRoomCategory = () =>{
+    const getEventList = () =>{
     
-        requestJson.get(`app/room/category/list?limit=100`)
+        requestJson.get(`app/event/list?limit=100`)
         .then(data=>{
             if(data.response === "OK"){
-                const container = document.querySelector("#roomcategory-container");
+                const container = document.querySelector("#event-container");
                 if(container){
                     if(data.result.hasOwnProperty("list")){
                     
@@ -13,11 +13,11 @@ $(document).ready(()=>{
                         const requestcontent = data.result.list.map(item =>{
                             return `<tr>
                                         <td>${item.id}</td>
-                                        <td><img src="${item.photo}" alt="${item.category}" style="width:100px;height:100px;object-fit: cover;" /></td>
-                                        <td>${item.category}</td>
-                                        <td>${item.bed}</td>
-                                        <td>${item.room_description}</td>
-                                        <td><button class="btn btn-sm btn-info"><i class="fas fa-user-edit"></i> modify</button></td>
+                                        <td>${item.requestor}</td>
+                                        <td>${item.request_date}</td>
+                                        <td>${item.phone}</td>
+                                        <td>${item.email}</td>
+                                        <td><button class="btn btn-sm btn-warning"><i class="fas fa-check"></i> approve</button></td>
                                     </tr>`
                         })
             
@@ -31,28 +31,6 @@ $(document).ready(()=>{
             }
         })
     }
-    
-    $("#category").submit(function(event) {
-        var formData = new FormData()
-        const files = document.getElementById('inputFileUpload');
-        formData.append("category", $("#inputTypeName").val())
-        formData.append("room_description", $("#inputRoomDescription").val())
-        formData.append("bed", $("#inputBedNo").val())
-        formData.append("photo", files.files[0]);
-        requestJson.post(`app/rooms/category/add?id=${getCookie('sessionid')}`,formData)
-        .then(data => {
-            if(data.response === "Created"){
-                getRoomCategory()
-                $("#inputTypeName").val("")
-                $("#inputRoomDescription").val("")
-                $("#inputBedNo").val("")
-                $('#inputFileUpload').val("")
-                alert(data.message)
-            }
-        })
-        event.preventDefault()
-    })
-    
-    getRoomCategory()
+    getEventList()
 })
 

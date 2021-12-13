@@ -290,9 +290,9 @@ $(document).ready(()=>{
                 $("#discount_code").text(`${promo_code} (${discount_rate})`)
                 $("#input_discount").val("")
                 var percent_value = (parseFloat(discount_rate) / 100) * (getParameterByName('roomrate') * $nights)
-                if(discount_limit != "0" || discount_limit != "N/A"){
+                $("#discount_note").text(`No Maximum discount is ${discount_limit}`)
+                if(discount_limit != 0 || discount_limit != "N/A" || discount_limit != "0"){
                   $("#discount_note").text(`Maximum discount is ${discount_limit}`)
-
                   if(percent_value > parseInt(discount_limit)){
                     percent_value = parseInt(discount_limit)
                   }

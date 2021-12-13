@@ -13,3 +13,17 @@ Router::route('/app/user/list', function(){
 Router::route('/app/user/add', function(){
     User::addUser();
 });
+
+
+Router::route('/app/contact/send', function(){
+    Mailer::contactSend();
+});
+Router::route('/app/event/request', function(){
+    ManageEvent::addNewEvent();
+});
+
+Router::route('/app/event/list', function(){
+    ManageEvent::getEventList();
+});
+
+

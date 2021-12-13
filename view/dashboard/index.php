@@ -119,8 +119,9 @@
             padding:1em 2em;
         }
         .signout{
-            text-align: center;
-            margin-top:1em;
+            position:absolute;
+            bottom:25px;
+            left:55px;
         }
         .signout p a span {
             margin-left:.5em;
@@ -203,7 +204,7 @@
                 <h5>HIPNAUTIC BEACH RESORT</h5>
             </div>
             <div class="signout">
-                <p><a href="#"><i class="fas fa-power-off"></i><span>sign out</span></a></p>
+                <p><a href="view/dashboard/secure/signout.php"><i class="fas fa-power-off"></i><span>sign out</span></a></p>
             </div>
             <nav>
                 <ul class="top-level">
@@ -279,6 +280,8 @@
                         return include 'content/util/user_maintenance/createuser.html';
                     case 'manageposition' :
                         return include 'content/util/user_maintenance/manageposition/manageposition.html';
+                    case 'createposition' :
+                        return include 'content/util/user_maintenance/manageposition/createposition.html';
                     case 'audit' :
                         return include 'content/util/audit/audit.html';
                     case 'backup' :
@@ -297,6 +300,5 @@
         </div>
     </div>
     
-   
 </body>
 </html>

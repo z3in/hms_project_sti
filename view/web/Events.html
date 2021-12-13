@@ -88,7 +88,7 @@
     					<div class="half left-arrow d-flex align-items-center">
     						<div class="text p-4 p-xl-5 text-center">
     								<h3 class="mb-3"><a href="rooms-single.html">Schedule an Appointment for visit</a></h3>
-	    						<p class="pt-1"><a href="rooms-single.html" class="btn-custom px-3 py-2">View Details <span class="icon-long-arrow-right"></span></a></p>
+	    						<p class="pt-1"><button  type="button" class="btn-custom px-3 py-2" data-toggle="modal" data-target="#exampleModal">View Details <span class="icon-long-arrow-right"></span></button></p>
     						</div>
     					</div>
     				</div>
@@ -229,15 +229,65 @@
     <div class="mb-3">
       <label for="input_date_checkout" class="form-label">Max Guest Count: </label>
       <div class="input-group mb-3">
-          <input type="text" autocomplete="off" class="form-control w-50"  id="input_date_checkout" aria-label="guest count" aria-describedby="basic-addon2" required value="20" disabled>
+          <input type="text" autocomplete="off" class="form-control w-50"  id="inputGuestCount" aria-label="guest count" aria-describedby="basic-addon2" required value="20" disabled>
       </div>
     </div>
   
     <button type="submit" id="btnNewSubmit" class="btn btn-warning">Submit</button>
     </form>
     </div>
+    </div>
     <div id="screen-shade"> </div>
 
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request an appointment for occular visitation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="visit_form">
+        <div class="mb-3">
+          <label for="input_request_date" class="form-label">Request Date : </label>
+          <div class="input-group mb-3">
+              <input type="text" autocomplete="off" class="form-control w-50"  id="input_request_date" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2" required>
+              <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" id="btn_request_date" type="button"><i class="fas fa-calendar"></i></button>
+              </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Name: </label>
+          <div class="input-group mb-3">
+              <input type="text" autocomplete="off" class="form-control w-50"  id="inputName" aria-label="guest count" aria-describedby="basic-addon2" required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputPhoneNumber" class="form-label">Phone number: </label>
+          <div class="input-group mb-3">
+              <input type="text" autocomplete="off" class="form-control w-50"  id="inputPhoneNumber" aria-label="guest count" aria-describedby="basic-addon2"  required>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email Address: </label>
+          <div class="input-group mb-3">
+              <input type="text" autocomplete="off" class="form-control w-50"  id="inputEmail" aria-label="guest count" aria-describedby="basic-addon2"  required>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="btn_request_visit">Submit Request</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>

@@ -98,6 +98,11 @@ class Reservation{
             $trans = self::createTransactionInstance();
             $res = $trans->insertTransaction($result,$data);
             if($res){
+                if($data['reservation_type'] == "online"){
+                    $name = $data['last'] . ", " . $data['first'] . ' ' . $data['middle'];
+                    $res_date = $data['checkin'] . " to " . $data['checkout'];
+                    Mailer::sendReceipt($data['email'],$name,$data['ref_num'],$res_date,TimeAndDate::timestamp());
+                }
                 Audit::createLog($data['user_id'],'Transaction Module','created a new transaction, id : ' . $res);
                 exit(Response::send(201,'Transaction Completed!'));
             }

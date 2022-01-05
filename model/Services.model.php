@@ -1,17 +1,17 @@
 <?php
 
-class PromoCodes extends Helpers{
+class Services extends Helpers{
 
     public function countAllRow(){
-        $sql = "SELECT COUNT(*) FROM `promo_codes`";
+        $sql = "SELECT COUNT(*) FROM `services`";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt;
      }
   
-     public function selectAllDiscount($offset,$rowsperpage){
+     public function selectAllServices($offset,$rowsperpage){
   
-        $sql = "SELECT * FROM `promo_codes` LIMIT ?,?";
+        $sql = "SELECT * FROM `services` LIMIT ?,?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(1, $offset, PDO::PARAM_INT);
         $stmt->bindParam(2, $rowsperpage, PDO::PARAM_INT);
@@ -19,7 +19,7 @@ class PromoCodes extends Helpers{
         return $stmt;
     }
 
-    public function insertDiscount($data){
+    public function insertServices($data){
         $sql = "INSERT INTO promo_codes(`promo_code`,`validity`,`discount_rate`,`created_by`)VALUES(:promo_code,:validity,:discount_rate,:created_by)";
         $stmt = $this->conn->prepare($sql);
         $data['validity'] = date('Y-m-d',strtotime($data['validity']));
@@ -29,8 +29,8 @@ class PromoCodes extends Helpers{
         return false;
     }
 
-    public function getDiscount($data){
-        $sql = "SELECT * FROM `promo_codes` WHERE promo_code = :promo_code";
+    public function getServices($data){
+        $sql = "SELECT * FROM `services` WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
         return $stmt;

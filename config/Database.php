@@ -8,7 +8,7 @@ class Database{
         private $_password = 'TUBoYWJhaGFiYW5nUEA1NXcwcmQxdDAh';// change credentials here password
         private $_port = 3306; // change port here/
         private $_conn;
-        private $_production = true;
+        private $_production = false;
 
         public function __construct(){
             if(!$this->_production){

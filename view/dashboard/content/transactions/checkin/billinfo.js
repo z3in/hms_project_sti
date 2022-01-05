@@ -1,4 +1,5 @@
 $(document).ready(()=>{
+    $('.selectpicker').selectpicker();
     let $nights = convertMiliseconds(Math.abs(new Date(getParameterByName('checkout')) - new Date(getParameterByName('checkin'))),'d')
     $("#checkin").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkin'))))
     $("#checkout").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkout'))))
@@ -39,10 +40,11 @@ $(document).ready(()=>{
     var $payment_source,$discount_id = 0,$discount_value = 0, cash=0;
 
     $("#btn_SumbitPaymentCash").click(function(){ 
+      if(!confirm('Check-in guest ?')){
+          return
+      }
       let params = {};
       var cash_amount = $("#inputCash").val()
-      console.log($totalReservation)
-      console.log(parseFloat(cash_amount).toFixed(2))
       if(parseFloat($totalReservation).toFixed(2) > parseFloat(cash_amount).toFixed(2)){
         return alert('Invalid Amount! Amount cannot be less than the total charge.')
       }
@@ -56,7 +58,7 @@ $(document).ready(()=>{
       params['currency'] = "PHP"
       params['card_brand'] = "N/A"
       params['user_id'] = getCookie('sessionid')
-      params['status'] = 1
+      params['status'] = 2
       params['nights'] = $nights
       params['ref_num'] = generateUUID()
       params['bill_street_add'] =  $("#inputStreetAddress").val()
@@ -78,6 +80,9 @@ $(document).ready(()=>{
     $("#billinginfo_form").submit(async function(event){
     
     event.preventDefault()
+    if(!confirm('Check-in guest ?')){
+      return
+  }
     // card.amount = 10000;
     card.currency = "PHP";
     // card.card_num = "4120000000000007";
@@ -178,6 +183,7 @@ $(document).ready(()=>{
         return await res;
     }
     function saveDetails(pay){
+      
       let params = {};
       var card_lastnum = pay.attributes.payments[0].attributes.source.last4
       var card_brand = pay.attributes.payments[0].attributes.source.brand
@@ -192,7 +198,7 @@ $(document).ready(()=>{
       params['currency'] = pay.attributes.currency
       params['card_brand'] = card_brand
       params['user_id'] = getCookie('sessionid')
-      params['status'] = 1
+      params['status'] = 2
       params['nights'] = $nights
       params['ref_num'] = generateUUID()
       params['bill_street_add'] =  $("#inputStreetAddress").val()
@@ -274,23 +280,23 @@ $(document).ready(()=>{
               }
               if(expiration > new Date()){
                 alert('Coupon Applied')
-                $("#discount_code").text(`${promo_code} (${discount_rate})`)
+                $("#discount_code").text(`CODE : ${promo_code}`)
                 $("#input_discount").val("")
-                var percent_value = (parseFloat(discount_rate) / 100) * (getParameterByName('roomrate') * $nights)
-                $("#discount_note").text(`No Maximum discount.`)
-                if(discount_limit != 0){
-                  $("#discount_note").text(`Maximum discount is ${discount_limit}`)
-                  if(percent_value > parseInt(discount_limit)){
-                    percent_value = parseInt(discount_limit)
-                  }
-                }
-                $discount_value = percent_value
-                $("#discount_rate").text(parseFloat(percent_value).toFixed(2))
-                $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
+                // var percent_value = (parseFloat(discount_rate) / 100) * (getParameterByName('roomrate') * $nights)
+                // $("#discount_note").text(`No Maximum discount.`)
+                // if(discount_limit != 0){
+                //   $("#discount_note").text(`Maximum discount is ${discount_limit}`)
+                //   if(percent_value > parseInt(discount_limit)){
+                //     percent_value = parseInt(discount_limit)
+                //   }
+                // }
+                $discount_value = discount_rate
+                $("#discount_rate").text(parseFloat(discount_rate).toFixed(2))
+                // $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
+                $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - ($discount_value)).toFixed(2)
                 $("#displayTotal").text(`PHP ${$totalReservation}`)
-                
               }
-             
+             return
           }
           alert(data.message)
         }

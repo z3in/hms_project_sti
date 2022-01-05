@@ -32,6 +32,7 @@ $(document).ready(() =>{
                                                     </div>
                                                 </div>
                                                 <input type="hidden" id="inputRoomRate" value="${item.room_rate}" />
+                                                <input type="hidden" id="inputKidRate" value="${item.adtl_kid}" />
                                                 <input type="hidden" id="inputRoomID" value="${item.id}" />
                                                 `
                 })
@@ -57,7 +58,7 @@ $(document).ready(() =>{
             $("#inputGender").focus()
             return alert('Please select Gender')
         }
-        let room = `&roomrate=${$("#inputRoomRate").val()}&roomid=${$("#inputRoomID").val()}`
+        let room = `&roomrate=${$("#inputRoomRate").val()}&roomid=${$("#inputRoomID").val()}&kidrate=${$("#inputKidRate").val()}`
         let personal = `&first=${$("#inputFirstName").val()}&last=${$("#inputLastName").val()}&middle=${$("#inputMiddleName").val()}&gender=${$("#inputGender option:selected" ).text()}`
         let contact = `&phone=${$("#inputPhoneNumber").val()}&email=${$("#inputEmail").val()}`
         let address = `&address=${$("#inputStreetAddress").val()}&city=${$("#inputCity").val()}&zipcode=${$("#inputZipCode").val()}`

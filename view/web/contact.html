@@ -216,6 +216,7 @@
   <script type="text/javascript">
     $("#contact_form").submit(function(event){
       event.preventDefault()
+      $('#ftco-loader').addClass('show')
       var name = $("#input_name").val();
       var email = $("#input_email").val();
       var subject = $("#input_subject").val();
@@ -225,10 +226,11 @@
       .then(data => data.json())
       .then(data => {
         if(data.response === "OK"){
-          $("#input_name").val() = ""
-          $("#input_email").val() = ""
-          $("#input_subject").val() = ""
-          $("#input_message").val() = ""
+          $("#input_name").val("")
+          $("#input_email").val("")
+          $("#input_subject").val("")
+          $("#input_message").val("")
+          $('#ftco-loader').removeClass('show')
         }
         alert(data.message)
         $("#btn_send").html('Send Message')

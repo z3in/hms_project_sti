@@ -11,7 +11,7 @@ const getDiscountList = () =>{
                         <div class="card-body">
                             <h3 class="card-title">${item.promo_code}</h3>
                             <h4>Discount Rate : ${item.discount_rate}</h4>
-                            <small class="card-text"> valid untily ${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.validity))}(maximum discount ${item.discount_limit}).</small>
+                            <small class="card-text"> valid untily ${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.validity))}.</small>
                         </div>
                         </div>
                     </li>`);

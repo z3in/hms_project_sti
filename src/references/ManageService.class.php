@@ -1,17 +1,17 @@
 <?php
 
 
-Class Discount{
+Class ManageService{
 
     protected static function createInstance(){
         $conn = new Database();
         $db = $conn->connect('hms_hipnautic');
-        $user = new PromoCodes($db);
+        $user = new Services($db);
         return $user;
     }
 
 
-    public static function getDiscountList(){
+    public static function getServiceList(){
         $data = Validate::JSONdata();
         Validate::defineMethod("GET");
 
@@ -40,9 +40,9 @@ Class Discount{
         $response = Array();
         $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
         $page_info = new Pagination(isset($data['limit']) ? $data['limit'] : $_GET['limit'],$count,$page_number);
-        $page_info->setUrl('app/discount');
+        $page_info->setUrl('app/services');
         $response['page_info'] = $page_info->getPaginatedInfo();
-        $result = $dis->selectAllDiscount($page_info->getOffset(),$page_info->getRowsPerPage());
+        $result = $dis->selectAllServices($page_info->getOffset(),$page_info->getRowsPerPage());
         if($count > 0) {
             $response['list'] = Array();
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
@@ -52,20 +52,20 @@ Class Discount{
         exit(Response::send(200,'Showing Result','result',$response));
     }
 
-    public static function addDiscount(){
+    public static function addService(){
         Validate::defineMethod("POST");
         $data = Validate::JSONdata();
 
         $error = '';
-        $error .= Validate::defineError(!isset($data['promo_code']),$error,'promo_code');
-        $error .= Validate::defineError(!isset($data['validity']),$error,'validity');
-        $error .= Validate::defineError(!isset($data['discount_rate']),$error,'discount_rate');
+        $error .= Validate::defineError(!isset($data['service_name']),$error,'service_name');
+        $error .= Validate::defineError(!isset($data['service_cost']),$error,'service_cost');
+        $error .= Validate::defineError(!isset($data['status']),$error,'status');
         $error .= Validate::defineError(!isset($data['created_by']),$error,'created_by');
         
         Validate::errorvalue($error);
-        $discount = self::createInstance();
+        $services = self::createInstance();
 
-        $result = $discount->insertDiscount($data);
+        $result = $services->insertServices($data);
         if($result){
             Audit::createLog($data['created_by'],'Discount Module','created a new Discount, id : ' . $result);
             exit(Response::send(201,'Discount Added!'));

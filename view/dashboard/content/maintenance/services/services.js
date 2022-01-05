@@ -8,7 +8,7 @@ $("#btn_validity").click(()=>$("#input_validity").focus())
 $("#input_validity").datepicker()
 
 const fetchList = () =>{
-    fetch('app/discount?limit=100')
+    fetch('app/services?limit=100')
     .then(data => data.json())
     .then(data => {
     if(data.response === "OK"){

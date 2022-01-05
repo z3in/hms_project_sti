@@ -211,7 +211,8 @@
                     <li class="main-menu selected" data-nav="dashboard"><a class="main-link" href="dashboard"  data-url="dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
                     <li class="main-menu withsub" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-money-check-alt"></i><span>Transactions</span></a>
                         <ul class="submenu hidden" data-nav="sub-transactions">
-                            <li><a href="dashboard?url=booking" data-url="booking"><span>Booking</span></a></li>
+                            <li><a href="dashboard?url=reservation_online&type=online" data-url="reservation_online"><span>Online Reservation</span></a></li>
+                            <li><a href="dashboard?url=reservation_walkin&type=walkin" data-url="reservation_walkin"><span>Walk-in Reservation</span></a></li>
                             <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
                             <li><a href="dashboard?url=checkin" data-url="checkin"><span>Create Reservation</span></a></li>
                             <li><a href="dashboard?url=cancelled" data-url="cancelled"><span>Cancelled Reservation</span></a></li>
@@ -220,7 +221,7 @@
                     <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
                         <ul class="submenu hidden" data-nav="sub-maintenance">
                             <li><a href="dashboard?url=accommodation" data-url="accommodation"><span>Accomodation</span></a></li>
-                            <li><a href="dashboard?url=facilities" data-url="facilities"><span>Facilities and Services</span></a></li>
+                            <li><a href="dashboard?url=services" data-url="services"><span>Facilities and Services</span></a></li>
                             <li><a href="dashboard?url=discount" data-url="discount"><span>Discount Codes</span></a></li>
                             <li><a href="dashboard?url=event" data-url="event"><span>Events</span></a></li>
                             <!-- <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li> -->
@@ -248,8 +249,10 @@
                 <?php 
                 $url = isset($_REQUEST['url']) ? $_REQUEST['url'] : "" ;
                 switch($url){
-                    case 'booking' : 
+                    case 'reservation_walkin' : 
                         return include 'content/transactions/booking/booking.html';
+                    case 'reservation_online' : 
+                            return include 'content/transactions/booking/booking.html';
                     case 'reservation' : 
                         return include 'content/transactions/booking/view/reservation.html';
                     case 'billing' : 
@@ -274,6 +277,8 @@
                         return include 'content/maintenance/events/event.html';
                     case 'discount' :
                         return include 'content/maintenance/discount/discount.html';
+                    case 'services' :
+                        return include 'content/maintenance/services/services.html';
                     case 'usermaintenance' :
                         return include 'content/util/user_maintenance/usermaintenance.html';
                     case 'createuser' :

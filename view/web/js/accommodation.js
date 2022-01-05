@@ -65,11 +65,13 @@ $("#modalform").submit((event)=>{
                         alert(`All ${getParameterByName('roomname')} room type has been booked, another date. Thank you!`)
                         return;
                     }
-                    if(data.result.list.length > 1){
+                    if(data.result.list.length > 0){
                         var data = `checkin=${$('#input_date_checkin').val()}&checkout=${$('#input_date_checkout').val()}&person=${$("#inputGuestCount").val()}&roomtype=${$room_id}&roomname=${$category}`
-                        window.location.href = "../../view/web/page/rooms.html?" + data
+                        window.location.href = "../../view/web/page/terms.html?" + data
                     }
                 }
+                alert(`All ${getParameterByName('roomname')} room type has been booked, another date. Thank you!`)
+                return;
             }
         }
     })

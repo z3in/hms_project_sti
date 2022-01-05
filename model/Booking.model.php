@@ -183,8 +183,19 @@ class Booking extends Helpers{
     }
 
     public function updateStatus($stat){
-        $sql = "UPDATE booking set `status` = :stat WHERE id = :id";
+           $sql = "UPDATE booking set `status` = :stat";
+        if($stat == 2){
+             $sql .= " ,check_in = :check";
+        }
+        if($stat == 5){
+            $sql .= " ,check_out = :check";
+        }
+        $sql .= " WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
+        if($stat == 5 || $stat == 2){
+            $date = TimeAndDate::timestamp();
+            $stmt->bindParam("check", $date);
+        }
         $stmt->bindParam("stat", $stat);
         $stmt->bindParam("id", $this->id);
         $stmt->execute();

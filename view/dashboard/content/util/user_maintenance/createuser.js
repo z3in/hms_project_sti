@@ -4,7 +4,7 @@ requestJson.get('app/user/role/list?limit=100')
         const container = document.querySelector("#inputPosition");
         if(container){
             const requestcontent = data.result.list.map(item =>{
-                return `<option value="${item.id}">${item.position}</option>`
+                return `<option value="${item.id}">${item.position} (Access : ${item.priv})</option>`
             })
             container.innerHTML = `<option value="" selected>Choose...</option>`
             requestcontent.forEach(el=>{

@@ -28,4 +28,9 @@ $(document).ready(()=>{
             
     })
     
+    $("#reservation_filter").change(function(){
+        if($(this).val() === ""){
+            return
+        }
+    })
 })

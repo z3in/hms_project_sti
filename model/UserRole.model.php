@@ -74,7 +74,7 @@ Class UserRole extends Helpers{
     }
 
     public function insertPosition(){
-        $sql = "INSERT INTO user_role(`position`,`type`,`status`,`created_by`)VALUES(:pos,:typ,:stats,:user)";
+        $sql = "INSERT INTO user_role(`position`,`priv`,`status`,`created_by`)VALUES(:pos,:typ,:stats,:user)";
 
         $stmt = $this->conn->prepare($sql);
 

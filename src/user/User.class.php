@@ -110,9 +110,10 @@ Class User {
     }
 
     public static function viewUser(){
+        Validate::defineMethod("GET");
         
         $error = '';
-        $error .= Validate::defineError(!isset($data['id']) && !isset($_GET['id']),$error,'id');
+        $error .= Validate::defineError(!isset($_GET['id']),$error,'id');
 
         Validate::errorvalue($error);
         $user = self::createInstance();

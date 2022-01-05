@@ -14,6 +14,11 @@ Router::route('/app/user/add', function(){
     User::addUser();
 });
 
+Router::route('/app/user', function(){
+    User::viewUser();
+});
+
+
 
 Router::route('/app/contact/send', function(){
     Mailer::contactSend();

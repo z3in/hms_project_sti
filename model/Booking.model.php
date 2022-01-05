@@ -2,12 +2,16 @@
 
 class Booking extends Helpers{
 
-    private $from,
+    private $id,
+            $from,
             $to,
             $type,
             $search,
             $date;
 
+    public function set_id($id){
+        $this->id = $id;
+    }
     public function setBooking($type,$from,$to){
         $this->type = $type;
         $this->from = date('Y-m-d',strtotime($from));
@@ -165,6 +169,35 @@ class Booking extends Helpers{
         $stmt->bindParam(1, $this->date);
         $stmt->bindParam(2, $offset, PDO::PARAM_INT);
         $stmt->bindParam(3, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function selectSingleReservation($id){
+        $this->id = $id;
+        $sql = "SELECT * FROM booking_list where `id` = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam("id", $this->id);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function updateStatus($stat){
+           $sql = "UPDATE booking set `status` = :stat";
+        if($stat == 2){
+             $sql .= " ,check_in = :check";
+        }
+        if($stat == 5){
+            $sql .= " ,check_out = :check";
+        }
+        $sql .= " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        if($stat == 5 || $stat == 2){
+            $date = TimeAndDate::timestamp();
+            $stmt->bindParam("check", $date);
+        }
+        $stmt->bindParam("stat", $stat);
+        $stmt->bindParam("id", $this->id);
         $stmt->execute();
         return $stmt;
     }

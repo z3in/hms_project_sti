@@ -6,6 +6,9 @@ const getRoomCategory = () =>{
             if(data.result.hasOwnProperty("list")){
 
                 $.each(data.result.list, function (i, item) {
+                    if(item.category === "Full Resort Reservation"){
+                        return
+                    }
                     $("#inputRoomType").append($('<option>', { 
                         value: item.id,
                         text : capitalizeFirstLetter(item.category) 
@@ -45,8 +48,11 @@ const getMaxOccupancy = () =>{
 
 
 function checkReservation(){
-    var data = `checkin=${$('#datecheck_in').val()}&checkout=${$('#datecheck_out').val()}&person=${$("#inputGuestCount").val()}&roomtype=${$("#inputRoomType").val()}&roomname=${$("#inputRoomType option:selected" ).text()}`
-    window.location.href = "view/web/page/rooms.html?" + data
+    if($('#datecheck_in').val() == "" || $('#datecheck_out').val() == ""){
+        return alert("Please select dates for your reservation!")
+    }
+    var data = `checkin=${$('#datecheck_in').val()}&checkout=${$('#datecheck_out').val()}&person=${$("#inputGuestCount").val()}&roomtype=${$("#inputRoomType").val()}&roomname=${$("#inputRoomType option:selected" ).text()}&kids=${$("#inputKids").val()}`
+    window.location.href = "view/web/page/terms.html?" + data
 }
 
 $(document).ready(()=>{

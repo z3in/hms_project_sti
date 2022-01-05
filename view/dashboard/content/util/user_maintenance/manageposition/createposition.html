@@ -56,12 +56,44 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputType" class="col-sm-2 col-form-label">Access Type</label>
+                                <label for="input_price" class="form-label">Select user privileges</label>
                                 <div class="col-sm-8">
-                                   <select id="inputType" class="form-control">
-                                       <option>Admin</option>
-                                       <option>User</option>
-                                   </select>
+                                    <div class="form-check">
+                                    <input class="form-check-input priveleges" type="checkbox" value="transaction" id="check_transaction" checked>
+                                    <label class="form-check-label" for="check_transaction">
+                                        Transactions
+                                    </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input priveleges" type="checkbox" value="maintenance" id="check_maintenance" checked>
+                                    <label class="form-check-label" for="check_maintenance">
+                                        Maintenance
+                                    </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input priveleges" type="checkbox" value="settings" id="check_settings" checked>
+                                    <label class="form-check-label" for="check_settings">
+                                        Settings
+                                    </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input priveleges" type="checkbox" value="reports" id="check_reports" checked>
+                                    <label class="form-check-label" for="check_reports">
+                                        Reports
+                                    </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input priveleges" type="checkbox" value="utility" id="check_utility" checked>
+                                    <label class="form-check-label" for="check_utility">
+                                        Utilities
+                                    </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input priveleges" type="checkbox" value="identification" id="check_identification" checked>
+                                    <label class="form-check-label" for="check_identification">
+                                        Identity Verification
+                                    </label>
+                                    </div>
                                 </div>
                             </div>
                             <p style="margin-top:3em;"><button type="submit" id="btnCreateUserSubmit" class="btn btn-warning"><i class="fas fa-check-circle"></i>Submit</button></p>

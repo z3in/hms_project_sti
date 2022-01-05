@@ -10,7 +10,7 @@ $(document).ready(()=>{
                     if(data.result.hasOwnProperty("list")){
                         
                         container.innerHTML = "";
-                        const requestcontent = data.result.list.map(item =>{
+                        const requestcontent = data.result.list.filter(item => item.room_number !== "Full Resort Reservation").map(item =>{
                             return `<tr id="row_${item.id}">
                                         <td>${item.room_number}</td>
                                         <td><img src="${item.photo}" alt="${item.category}" style="width:100px;height:100px;object-fit: cover;" /></td>
@@ -24,6 +24,9 @@ $(document).ready(()=>{
                         requestcontent.forEach(el=>{
                             container.innerHTML += el
                         })
+                        if(requestcontent.length < 1){
+                            container.innerHTML = `<tr><td colspan="5" style="text-align:center">No Result Found</td></tr>`
+                        }
                         return 
                     }
                     container.innerHTML = `<tr><td colspan="5" style="text-align:center">No Result Found</td></tr>`

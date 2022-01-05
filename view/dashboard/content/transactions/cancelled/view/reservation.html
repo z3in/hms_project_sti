@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .top-container h1{
+            margin-top:1em;
+        }
+        .top-container small{
+            color:#fff;
+        }
+        .top-container .fas{
+            margin-right:.75em;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        form{
+            margin-top:3em;
+        }
+        hr{
+            margin:0;
+            margin-bottom:.5em;
+        }
+        .top-container h1{
+            margin-top:1em;
+        }
+        .content-feature .card-body{
+            justify-content: center;
+            align-items: center;
+        }
+        .content-feature .card h3{
+            font-size: 50px;
+            text-decoration: none;
+            color:#b69100cc;
+            float: left;
+            margin-right:.5em;
+            padding-left:.25em;
+        }
+        .content-feature .card span{
+            font-size: 1.5rem;
+            text-decoration: none;
+            color:inherit;
+        }
+        .content-feature .card p{
+            text-decoration: none;
+            color:inherit;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+        .content-feature .card{
+            border-radius: 10px;
+            color:#222;
+            margin:0 1em;
+        }
+        .content-feature .card-body{
+            width:100%;
+        }
+        .content-feature .card small{
+            color:#9f9f9f;
+        }
+        .content-feature .card .card-body {
+            display:flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        form p{
+            display:flex;
+            flex-direction: column;
+        }
+        small {
+            color: #9f9f9f;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-container">
+        <h1 style="color:#fff" class="page-title"></h1>
+        <a href="dashboard?url=booking"><small><i class="fas fa-arrow-left"></i>go back</small></a>
+    </div>
+    
+    <div class="container-main">
+        <div class="content-feature">
+            <div class="card col3">
+                <div class="card-body">
+                    <p><span>End of Stay or Bill Concern? </span><small>Checking out of reservation or review guest's bill</small></p>
+                    <div class="btn-group mb-0" role="group" aria-label="checkin">
+                        <button id="btn_checkout" data-nonnav=true type="button" role="group" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check out</button>
+                        <a href="dashboard?url=billing" data-nonnav=true type="button" role="group" class="btn btn-dark"><i class="fas fa-arrow-alt-circle-left"></i> View Billing</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-table">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Reservation Details</h5>
+                        
+                        <form>
+                            <p style="color:#9f9f9f;font-weight:500;font-style: italic;">user login credentials</p>
+                            <hr>
+                            <p>
+                                <small>check-in date :</small>
+                                <span>test</span>
+                            </p>
+                            <p>
+                                <small>check-out date :</small>
+                                <span>test</span>
+                            </p>
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Confirm password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm password">
+                                </div>
+                            </div>
+                            <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">personal information</p>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="inputFirstName" class="col-sm-4 col-form-label">First Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    
+
+                                    <div class="form-group row">
+                                        <label for="inputMiddleName" class="col-sm-4 col-form-label">Middle Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputMiddleName" placeholder="Middle Name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="inputLastName" class="col-sm-4 col-form-label">Last Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row">
+                                        <label for="inputPosition" class="col-sm-4 col-form-label">Position</label>
+                                        <div class="col-sm-8">
+                                            <select class="custom-select mr-sm-2" id="inputPosition">
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top:3em;"><button type="submit" id="btnCreateUserSubmit" class="btn btn-warning"><i class="fas fa-clipboard-check"></i> Check out</button></p>
+                            
+                        </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="view/dashboard/content/transactions/booking/view/view.js"></script>
+</body>
+</html>

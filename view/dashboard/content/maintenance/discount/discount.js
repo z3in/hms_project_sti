@@ -21,7 +21,6 @@ const fetchList = () =>{
                         <td>${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.validity))}</td>
                         <td>${new Date(item.validity) < new Date() ? "expired" : "active"}</td>
                         <td>${item.discount_rate}</td>
-                        <td>${parseFloat(item.discount_limit).toFixed(2)}</td>
                         <td>${new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(item.date_created))}</td>
                         <td><button class="btn btn-secondary" onclick="editRow(${item.id},'${item.promo_code}','${reorder_array_fordate(item.validity.split("-"))}','${item.discount_rate}',${item.discount_limit})"> EDIT</button> <button class="btn btn-danger"> DELETE</button></td>
                     </tr>`
@@ -57,7 +56,6 @@ const editRow = (id,promo,validity,disc_rate,disc_limit) =>{
     selector("#input_discount_code").value = promo
     selector("#input_validity").value = validity
     selector("#input_discount_rate").value = disc_rate
-    selector("#input_discount_limit").value = disc_limit
     $table_id = id;
 }
 
@@ -92,7 +90,6 @@ const clearFields = () =>{
     selector("#input_discount_code").value = ""
     selector("#input_validity").value = ""
     selector("#input_discount_rate").value = ""
-    selector("#input_discount_limit").value = ""
 }
 
 fetchList()
@@ -105,7 +102,6 @@ data = {
     promo_code:selector("#input_discount_code").value,
     validity:selector("#input_validity").value,
     discount_rate:selector("#input_discount_rate").value,
-    discount_limit:selector("#input_discount_limit").value,
     created_by:getCookie("sessionid")
 }
 !$table_id ? saveTable(data) : updateTable(data);

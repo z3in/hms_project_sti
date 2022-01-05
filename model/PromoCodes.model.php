@@ -20,7 +20,7 @@ class PromoCodes extends Helpers{
     }
 
     public function insertDiscount($data){
-        $sql = "INSERT INTO promo_codes(`promo_code`,`validity`,`discount_rate`,`discount_limit`,`created_by`)VALUES(:promo_code,:validity,:discount_rate,:discount_limit,:created_by)";
+        $sql = "INSERT INTO promo_codes(`promo_code`,`validity`,`discount_rate`,`created_by`)VALUES(:promo_code,:validity,:discount_rate,:created_by)";
         $stmt = $this->conn->prepare($sql);
         $data['validity'] = date('Y-m-d',strtotime($data['validity']));
         if($stmt->execute($data)){

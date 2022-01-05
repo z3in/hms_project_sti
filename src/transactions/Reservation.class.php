@@ -98,6 +98,11 @@ class Reservation{
             $trans = self::createTransactionInstance();
             $res = $trans->insertTransaction($result,$data);
             if($res){
+                if($data['reservation_type'] == "online"){
+                    $name = $data['last'] . ", " . $data['first'] . ' ' . $data['middle'];
+                    $res_date = $data['checkin'] . " to " . $data['checkout'];
+                    Mailer::sendReceipt($data['email'],$name,$data['ref_num'],$res_date,TimeAndDate::timestamp());
+                }
                 Audit::createLog($data['user_id'],'Transaction Module','created a new transaction, id : ' . $res);
                 exit(Response::send(201,'Transaction Completed!'));
             }
@@ -183,5 +188,44 @@ class Reservation{
             }
         }
         exit(Response::send(200,'Showing Result','result',$response));
+    }
+
+    public static function viewReservation(){
+        Validate::defineMethod("GET");
+
+        $error = '';
+        $error .= Validate::defineError(!isset($data['id']) && !isset($_GET['id']),$error,'id');
+        
+        Validate::errorvalue($error);
+        
+        $booking = self::createBookingInstance();
+        $result = $booking->selectSingleReservation($_GET['id']);
+        $count = $result->rowCount();
+        if($count > 0) {
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            extract($row);
+            exit(Response::send(200,'Booking Found','booking',$row));
+        }
+    }
+
+    public static function changeStatus(){
+        Validate::defineMethod("POST");
+        $data = Validate::JSONdata();
+
+        $error = '';
+        $error .= Validate::defineError(!isset($data['id']),$error,'id');
+        $error .= Validate::defineError(!isset($data['status']),$error,'status');
+        $error .= Validate::defineError(!isset($data['status_name']),$error,'status_name');
+        $error .= Validate::defineError(!isset($data['user_id']),$error,'user_id');
+        
+        Validate::errorvalue($error);
+        $booking = self::createBookingInstance();
+        $booking->set_id($data['id']);
+        $res = $booking->updateStatus($data['status']);
+        if($res){
+            Audit::createLog($data['user_id'],'Transaction Module','status changed to : ' . $data['status_name']);
+            exit(Response::send(201,'Transaction Completed!'));
+        }
+        exit(Response::send(500,'Something went Wrong.Please try Refreshing!'));
     }
 }

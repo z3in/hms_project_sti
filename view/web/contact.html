@@ -101,21 +101,21 @@
 </section>
 
         <div class="row block-9">
-            <form action="#" class="bg-white p-5 contact-form">
+            <form id="contact_form" class="bg-white p-5 contact-form">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" class="form-control" id="input_name" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input type="text" class="form-control" id="input_email" placeholder="Your Email" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                <input type="text" class="form-control" id="input_subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                <textarea  cols="30" rows="7"  id="input_message" class="form-control" placeholder="Message" required></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                <button type="submit" id="btn_send" class="btn btn-primary py-3 px-5">Send Message</button>
               </div>
             </form>
           
@@ -213,6 +213,29 @@
   <!-- // <script src="js/jquery.timepicker.min.js"></script> -->
   <script src="js/scrollax.min.js"></script>
   <script src="js/main.js"></script>
-    
+  <script type="text/javascript">
+    $("#contact_form").submit(function(event){
+      event.preventDefault()
+      $('#ftco-loader').addClass('show')
+      var name = $("#input_name").val();
+      var email = $("#input_email").val();
+      var subject = $("#input_subject").val();
+      var message = $("#input_message").val();
+      $("#btn_send").html('<i class="fa fa-circle-o-notch fa-spin" id="spinny_loading"></i> Sending Message')
+      fetch("../../app/contact/send",{method : "POST",body:JSON.stringify({name,email,subject,message})})
+      .then(data => data.json())
+      .then(data => {
+        if(data.response === "OK"){
+          $("#input_name").val("")
+          $("#input_email").val("")
+          $("#input_subject").val("")
+          $("#input_message").val("")
+          $('#ftco-loader').removeClass('show')
+        }
+        alert(data.message)
+        $("#btn_send").html('Send Message')
+      })
+    })
+  </script>
   </body>
 </html>

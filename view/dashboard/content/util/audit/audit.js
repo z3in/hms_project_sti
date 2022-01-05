@@ -10,7 +10,7 @@ requestJson.get('app/system/audit/all?limit=100')
                                 <td>${item.fullname}</td>
                                 <td>${item.action}</td>
                                 <td>${item.module}</td>
-                                <td>${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.timestamp))}</td>
+                                <td>${new Intl.DateTimeFormat('en', { dateStyle:'full', timeStyle:'medium' }).format(new Date(item.timestamp))}</td>
                             </tr>`
                 })
 

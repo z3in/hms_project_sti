@@ -15,6 +15,7 @@ const startBackup = () =>{
     .then(data =>{
         if(data.hasOwnProperty("message")){
             alert(data.message)
+            getBackupList()
         }
     })
 }

@@ -1,0 +1,80 @@
+/*---------------Pop up css------------*/ 
+#css-only-modals { 
+    position:fixed; 
+    pointer-events:none;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    z-index:2;
+    text-align:center;
+    white-space:nowrap;
+    height:100%;
+    }
+    #css-only-modals:before {
+    content:'';
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+    margin-right:-.25em;
+    }
+    .css-only-modal-check {
+    pointer-events:auto;
+    display:none;
+    }
+    .css-only-modal-check:checked ~ .css-only-modal {
+    opacity:1;
+    pointer-events:auto;
+    }
+    .css-only-modal {
+    width: 700px;
+    background:#fff;
+    z-index:2;
+    display:inline-block;
+    position:relative;
+    pointer-events:auto;
+    padding:25px;
+    text-align:right;
+    border-radius:4px;
+    white-space:normal;
+    display:inline-block;
+    vertical-align:middle;
+    opacity:0;
+    pointer-events:none;
+    max-width: 90%;
+    }
+    .css-only-modal h2 {
+    text-align:center;
+    }
+    .css-only-modal p {
+    text-align:left;
+    }
+    .btn-primary:hover {
+    color:#fff;
+    background-color:#999;
+    border-color:#999;
+    }
+    .btn-primary {
+    color:#fff;
+    background-color:#777;
+    border-color:#777;
+    border-radius: 4px;
+    padding: 6px 12px;
+    }
+    .css-only-modal-check:checked ~ #screen-shade {
+    opacity:.5;
+    pointer-events:none;
+    }
+    #modal1 { display: none; }
+    #screen-shade {
+    opacity:0;
+    background:#000;
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    pointer-events:none;
+    transition:opacity .8s;
+    }
+    /*------------End pop up css------*/ 

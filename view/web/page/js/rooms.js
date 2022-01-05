@@ -17,7 +17,6 @@ $(document).ready(() =>{
                                                 <div class="col-lg-6 p-0" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
                                                     <div class="room-wrap d-md-flex">
                                                         <a href="#" class="img" style="background-image: url(../../../${item.photo});"></a>
-                                                       
                                                         <div class="half left-arrow d-flex align-items-center">
                                                         
                                                             <div class="text p-4 p-xl-5 text-center">
@@ -33,6 +32,7 @@ $(document).ready(() =>{
                                                     </div>
                                                 </div>
                                                 <input type="hidden" id="inputRoomRate" value="${item.room_rate}" />
+                                                <input type="hidden" id="inputKidRate" value="${item.adtl_kid}" />
                                                 <input type="hidden" id="inputRoomID" value="${item.id}" />
                                                 `
                 })
@@ -58,7 +58,7 @@ $(document).ready(() =>{
             $("#inputGender").focus()
             return alert('Please select Gender')
         }
-        let room = `&roomrate=${$("#inputRoomRate").val()}&roomid=${$("#inputRoomID").val()}`
+        let room = `&roomrate=${$("#inputRoomRate").val()}&roomid=${$("#inputRoomID").val()}&kidrate=${$("#inputKidRate").val()}`
         let personal = `&first=${$("#inputFirstName").val()}&last=${$("#inputLastName").val()}&middle=${$("#inputMiddleName").val()}&gender=${$("#inputGender option:selected" ).text()}`
         let contact = `&phone=${$("#inputPhoneNumber").val()}&email=${$("#inputEmail").val()}`
         let address = `&address=${$("#inputStreetAddress").val()}&city=${$("#inputCity").val()}&zipcode=${$("#inputZipCode").val()}`

@@ -60,7 +60,6 @@ Class Discount{
         $error .= Validate::defineError(!isset($data['promo_code']),$error,'promo_code');
         $error .= Validate::defineError(!isset($data['validity']),$error,'validity');
         $error .= Validate::defineError(!isset($data['discount_rate']),$error,'discount_rate');
-        $error .= Validate::defineError(!isset($data['discount_limit']),$error,'discount_limit');
         $error .= Validate::defineError(!isset($data['created_by']),$error,'created_by');
         
         Validate::errorvalue($error);

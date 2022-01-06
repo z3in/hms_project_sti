@@ -59,7 +59,7 @@ Class PositionManagement{
 
         $error = '';
         $error .= Validate::defineError(!isset($data['position']),$error,'position');
-        $error .= Validate::defineError(!isset($data['type']),$error,'type');
+        $error .= Validate::defineError(!isset($data['priv']),$error,'priv');
         $error .= Validate::defineError(!isset($data['status']),$error,'status');
         $error .= Validate::defineError(!isset($data['userid']),$error,'userid');
         
@@ -68,7 +68,7 @@ Class PositionManagement{
         $user = self::createInstance();
 
         $user->setPosition($data['position']);
-        $user->setType($data['type']);
+        $user->setType($data['priv']);
         $user->setStatus($data['status']);
         $user->setUser($data['userid']);
 

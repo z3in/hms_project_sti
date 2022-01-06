@@ -43,6 +43,9 @@
         .content-feature .card small{
             color:#9f9f9f;
         }
+        .form-select{
+            padding:.10em .75em;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -66,7 +69,14 @@
                 <div class="card">
                     <div class="card-body">
                     <h5 class="card-title">View Guest's Bill</h5>
-                            
+                    <p style="float:right">
+                        <label>Filter result : </label>
+                        <select id="reservation_filter" class="form-select" aria-label="">
+                        <option selected value="">Select from option</option>
+                        <option value="CHECK-IN">Check-In</option>
+                        <option value="CHECK-OUT">Check-Out</option>
+                        <option value="Reserved">Reserved</option>
+                    </select></p>        
                             <form>
                                 <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Start by Searching Guest Name or Booking Number.</p>
                                 <hr>

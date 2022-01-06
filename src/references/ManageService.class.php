@@ -57,9 +57,9 @@ Class ManageService{
         $data = Validate::JSONdata();
 
         $error = '';
-        $error .= Validate::defineError(!isset($data['service_name']),$error,'service_name');
+        $error .= Validate::defineError(!isset($data['servicename']),$error,'service_name');
         $error .= Validate::defineError(!isset($data['service_cost']),$error,'service_cost');
-        $error .= Validate::defineError(!isset($data['status']),$error,'status');
+        $error .= Validate::defineError(!isset($data['stats']),$error,'stats');
         $error .= Validate::defineError(!isset($data['created_by']),$error,'created_by');
         
         Validate::errorvalue($error);
@@ -67,30 +67,11 @@ Class ManageService{
 
         $result = $services->insertServices($data);
         if($result){
-            Audit::createLog($data['created_by'],'Discount Module','created a new Discount, id : ' . $result);
+            Audit::createLog($data['created_by'],'Service Module','created a new Service/Facility, id : ' . $result);
             exit(Response::send(201,'Discount Added!'));
         }
         exit(Response::send(500,'Opps, Something went wrong! Please Try again.'));
     }
 
-    public static function getDiscount(){
-        Validate::defineMethod("POST");
-        $data = Validate::JSONdata();
-
-        $error = '';
-        $error .= Validate::defineError(!isset($data['promo_code']),$error,'promo_code');
-
-        Validate::errorvalue($error);
-        $discount = self::createInstance();
-        $result = $discount->getDiscount($data);
-        $count = $result->rowCount();
-        if($count > 0) {
-            $row = $result->fetch(PDO::FETCH_ASSOC);
-            exit(Response::send(200,'Showing Result','result',$row));
-        }
-        if($count < 1){
-            exit(Response::send(200,'No Result Found'));
-        }
-        exit(Response::send(500,'Opps, Something went wrong! Please Try again.'));
-    }
+    
 }

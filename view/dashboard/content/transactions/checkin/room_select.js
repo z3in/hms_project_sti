@@ -27,7 +27,7 @@ $(document).ready(()=>{
                                                     <p class="card-text mb-0"><span style="font-weight:500;width:120px;display:inline-block">Occupancy </span>: ${item.room_occupancy}</p>
                                                     <p class="card-text mb-0"><span style="font-weight:500;width:120px;display:inline-block">Room Type </span>: ${item.category}.</p>
                                                     <p class="card-text mb-2"><span style="font-weight:500;width:120px;display:inline-block">Description </span>:  ${item.room_description}</p>
-                                                    <button onclick="gotoLink(${item.id},${item.room_rate})" class="btn btn-warning mt-4">Select this Room</button>
+                                                    <button onclick="gotoLink(${item.id},${item.room_rate},${item.adtl_adult},${item.adtl_kid})" class="btn btn-warning mt-4">Select this Room</button>
                                                 </div>
                                                 </div>
                                                 `
@@ -43,11 +43,13 @@ $(document).ready(()=>{
     
 })
 
-const gotoLink = (id,rate) =>{
+const gotoLink = (id,rate,adult,kid) =>{
     let searchParams = new URLSearchParams(window.location.search);
     searchParams.set('url', 'guestinfo');
     searchParams.append('roomid', id);
     searchParams.append('roomrate', rate);
+    searchParams.append('adtl_adult', adult);
+    searchParams.append('adtl_kid', kid);
     window.location.href = `dashboard?${searchParams}`
 }
 

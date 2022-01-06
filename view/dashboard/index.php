@@ -18,6 +18,18 @@
     <script src="view/dashboard/js/load.content.js"></script>
     <script type="text/javascript" src="view/dashboard/js/card.js"></script>
     <script type="text/javascript" src="view/dashboard/js/helpers.js"></script>
+    <script type="text/javascript">
+        fetch(`app/user?id=${getCookie('sessionid')}`)
+        .then(data => data.json())
+        .then(data => {
+            if(data.hasOwnProperty("result")){
+            var priv_indi = data.result.priv.split(",")
+            priv_indi.forEach(element => {
+                $(`.nav-${element}`).show()
+            });
+            }
+        })
+    </script>
     <title>Hip Nautic Beach Resort</title>
     <style>
         body {
@@ -193,7 +205,9 @@
             min-width:200px;
             width:auto;
         }
-        
+        .hide-menu {
+            display:none;
+        }
     </style>
 </head>
 <body>
@@ -209,16 +223,16 @@
             <nav>
                 <ul class="top-level">
                     <li class="main-menu selected" data-nav="dashboard"><a class="main-link" href="dashboard"  data-url="dashboard"><i class="fas fa-hotel"></i><span>Dashboard</span></a></li>
-                    <li class="main-menu withsub" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-money-check-alt"></i><span>Transactions</span></a>
+                    <li class="main-menu withsub nav-transaction hide-menu" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-money-check-alt"></i><span>Transactions</span></a>
                         <ul class="submenu hidden" data-nav="sub-transactions">
                             <li><a href="dashboard?url=reservation_online&type=online" data-url="reservation_online"><span>Online Reservation</span></a></li>
                             <li><a href="dashboard?url=reservation_walkin&type=walkin" data-url="reservation_walkin"><span>Walk-in Reservation</span></a></li>
                             <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
-                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Create Reservation</span></a></li>
+                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Check-In</span></a></li>
                             <li><a href="dashboard?url=cancelled" data-url="cancelled"><span>Cancelled Reservation</span></a></li>
                         </ul>
                     </li>
-                    <li class="main-menu withsub" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
+                    <li class="main-menu withsub nav-maintenance hide-menu" data-nav="maintenance" data-withsub=true><a class="main-link"><i class="fas fa-cogs"></i><span>Maintenance</span></a>
                         <ul class="submenu hidden" data-nav="sub-maintenance">
                             <li><a href="dashboard?url=accommodation" data-url="accommodation"><span>Accomodation</span></a></li>
                             <li><a href="dashboard?url=services" data-url="services"><span>Facilities and Services</span></a></li>
@@ -227,14 +241,14 @@
                             <!-- <li><a href="dashboard?url=gallery" data-url="gallery"><span>Gallery</span></a></li> -->
                         </ul>
                     </li>
-                    <li class="main-menu withsub" data-nav="utilities" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Utilities</span></a>
+                    <li class="main-menu withsub nav-utility hide-menu" data-nav="utilities" data-withsub=true><a class="main-link"><i class="fas fa-tools"></i><span>Utilities</span></a>
                         <ul class="submenu hidden" data-nav="sub-utilities">
                             <li><a href="dashboard?url=usermaintenance" data-url="usermaintenance"><span>User Maintenance</span></a></li>
                             <li><a href="dashboard?url=backup" data-url="backup"><span>Back up and Restore</span></a></li>
                             <li><a href="dashboard?url=audit" data-url="audit"><span>Audit Trail</span></a></li>
                         </ul>
                     </li>
-                    <li class="main-menu withsub" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-file-alt"></i><span>Reports</span></a>
+                    <li class="main-menu withsub nav-reports hide-menu" data-nav="reports" data-withsub=true><a class="main-link"><i class="fas fa-file-alt"></i><span>Reports</span></a>
                         <ul class="submenu hidden" data-nav="sub-reports">
                             <li><a href="dashboard?url=report_income" data-url="report_income"><span>Income Reports</span></a></li>
                             <li><a href="dashboard?url=report_audit" data-url="report_audit"><span>Daily Audit</span></a></li>

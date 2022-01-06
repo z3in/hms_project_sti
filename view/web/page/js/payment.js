@@ -66,7 +66,7 @@ $(document).ready(()=>{
     var $totalReservation = parseFloat(getParameterByName('roomrate') * $nights).toFixed(2)
 
     $("#displayRate").text(`PHP ${parseFloat(getParameterByName('roomrate')).toFixed(2)}`)
-    $("#displayNights").text(`${$nights} ${$nights > 1 ? "Days": "Day"}`)
+    $("#displayNights").text(`${$nights} ${$nights > 1 ? "Nights": "Night"}`)
     $("#displayTotal").text(`PHP ${$totalReservation}`)
 
     $("#sameAddress").click(()=>{

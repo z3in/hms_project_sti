@@ -10,7 +10,7 @@ requestJson.get('app/user/role/list?limit=10')
                     return `<tr>
                                 <td>${item.id}</td>
                                 <td>${item.position}</td>
-                                <td>${item.type}</td>
+                                <td>${item.priv}</td>
                                 <td>${item.status}</td>
                                 <td>${item.date_created}</td>
                                 <td>${item.created_by}</td>

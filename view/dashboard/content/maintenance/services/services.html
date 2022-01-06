@@ -108,7 +108,7 @@
                             <p><span>Facilities/Services</span><small>counts the active services and facilites</small></p>
                         </div>
                         <div class="form-group mb-0 w-100" aria-label="user management">
-                            <label  class="btn btn-block btn-secondary"  for="modal1" id="btnAddNew"><i class="fa fa-plus"></i> Add New Code</label>
+                            <label  class="btn btn-block btn-secondary"  for="modal1" id="btnAddNew"><i class="fa fa-plus"></i> Add New Facility Charge/Service Charge</label>
                         </div>
                     </div>
                 </div>
@@ -123,15 +123,13 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Discount Code</th>
-                                <th scope="col">Validity</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Discount Amount (Php)</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Price</th>
                                 <th scope="col">Date Created</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody id="discount-container">
+                            <tbody id="service-container">
                             </tbody>
                         </table>    
                         
@@ -142,29 +140,16 @@
         <div id="css-only-modals"><input class="css-only-modal-check" id="modal1" type="checkbox" />
             <div class="css-only-modal">
             <label class="css-only-modal-btn btn btn-danger btn-lg" for="modal1" id="btnEscape" style="padding:5px 10px;float:right">X</label>
-            <h2>Fill up details to add new discount code</h2>
+            <h2>Fill up details to add new Service</h2>
         <form style="text-align:left;margin-top:2em">
             <div class="mb-3">
-            <label for="input_discount_code" class="form-label">Discount Code</label>
-            <input type="text" class="form-control" id="input_discount_code" aria-describedby="DiscountCode">
+            <label for="input_service" class="form-label">Service/Facility</label>
+            <input type="text" class="form-control" id="input_service" aria-describedby="DiscountCode">
             </div>
             <div class="mb-3">
-            <label for="input_validity" class="form-label">Validity</label>
-            <div class="input-group mb-3">
-                <input type="text" autocomplete="off" class="form-control w-50"  id="input_validity" placeholder="Select Date" aria-label="Select Date" aria-describedby="basic-addon2" required>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" id="btn_validity" type="button"><i class="fas fa-calendar"></i></button>
-                </div>
+                <label for="input_cost" class="form-label">Price</label>
+                <input type="text" class="form-control" data-type="currency" id="input_cost" aria-describedby="DiscountCode">
             </div>
-            </div>
-            <div class="mb-3">
-                <label for="input_discount_rate" class="form-label">Discount Amount (Php)</label>
-                <input type="text" class="form-control" id="input_discount_rate" aria-describedby="DiscountRate">
-            </div>
-            <!-- <div class="mb-3">
-                <label for="input_discount_limit" class="form-label">Discount Limit</label>
-                <input type="text" class="form-control" id="input_discount_limit" aria-describedby="DiscountLimit">
-            </div> -->
             <button type="submit" id="btnNewSubmit" class="btn btn-warning">Submit</button>
             </form>
             </div>

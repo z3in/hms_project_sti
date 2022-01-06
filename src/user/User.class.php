@@ -27,8 +27,9 @@ Class User {
             extract($row);
             if(password_verify($data['password'],$pword)){
                 $key = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+                ob_start();
                 $ret = Mailer::emailsend($email,$key);
-                ob_end_clean();
+                if (ob_get_contents()) ob_end_clean();
                 if($ret){
                     $row['key'] = $key;
                     Audit::createLog($id,'Authentication','user login(verification sent) : ' . $fname .' ' . $mname . ' ' . $lname);
@@ -110,9 +111,10 @@ Class User {
     }
 
     public static function viewUser(){
+        Validate::defineMethod("GET");
         
         $error = '';
-        $error .= Validate::defineError(!isset($data['id']) && !isset($_GET['id']),$error,'id');
+        $error .= Validate::defineError(!isset($_GET['id']),$error,'id');
 
         Validate::errorvalue($error);
         $user = self::createInstance();

@@ -52,6 +52,10 @@ Router::route('/app/services',function(){
    ManageService::getServiceList();
 });
 
+Router::route('/app/services/add',function(){
+   ManageService::addService();
+});
+
 Router::route('/app/debug', function(){
    
    $password = '$2y$10$qOAPAitOtM5.SQwlM9Hd4uITUOzUCu.UQcNKYVZ8FFCL/VJeh8Obq';

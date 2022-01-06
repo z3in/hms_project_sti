@@ -1,5 +1,83 @@
+class Inventory{
+  items = Array()
+  
+  addItems(item = {}){
+      this.items.push(item);
+  }
+
+  reducequantity(id){
+      var current = this.items.find(x => x.id == id)
+      
+      if(current.quantity == 1){
+          return this.removeitem(current.id)
+      }
+      this.items.find(x => x.id === current.id ).quantity--;
+  }
+
+  addquantity(id){
+     this.items.find(x => x.id == id).quantity++
+  }
+
+  removeitem(id){
+      this.items = this.items.filter(function(ele){
+          return ele.id != id
+      })
+  }
+
+}
+
+var $Inventory = new Inventory()
+var $totalReservation
+var $subtotal
+var $totaldiscount = 0
+
+function updateTotalRes(val = null){
+  let additional = 0
+  $totalReservation = 0;
+  if(val){
+    if($Inventory.items.length > 0){
+      additional = $Inventory.items.reduce((current_sum, a) => current_sum + (a.quantity * parseInt(a.cost)),0)
+      let new_sum = parseInt($subtotal) + additional
+      $("#subTotal").text(`PHP ${parseFloat(new_sum).toFixed(2)}`)
+    }
+  }
+  let temp_total = parseInt($subtotal) + parseInt(additional)
+  $totalReservation = temp_total
+  $totalReservation = parseInt($totalReservation) - parseInt($totaldiscount)
+  $("#displayTotal").text(`PHP ${$totalReservation < 0 ? parseFloat(0.00).toFixed(2) : parseFloat($totalReservation).toFixed(2)}`)
+}
+
+function decrease_service_count(el){
+  let value = parseInt($(`#quantity_service_${el}`).text())
+  if(value === 1 || value == 1 || value == "1" || value === "1"){
+    if(!confirm("Are you sure you want to remove this service/facility ?")){
+      return
+    }
+    $(`#service_list_${el}`).remove()
+    $(`#additional_service_list_data_${el}`).remove()
+  }
+  $(`#quantity_service_${el}`).text(--value)
+  $(`#additional_service_quantity_${el}`).text(value)
+  let total = value * parseInt($(`#option_service_${el}`).data("cost"))
+  $(`#additional_service_amount_${el}`).text(`Php ${parseFloat(total).toFixed(2)}`)
+  $Inventory.reducequantity(el)
+  updateTotalRes(1)
+}
+
+function increase_service_count(el){
+  let value = parseInt($(`#quantity_service_${el}`).text())
+  
+  $(`#quantity_service_${el}`).text(++value)
+  $(`#additional_service_quantity_${el}`).text(value)
+  let total = value * parseInt($(`#option_service_${el}`).data("cost"))
+  $(`#additional_service_amount_${el}`).text(`Php ${parseFloat(total).toFixed(2)}`)
+  $Inventory.addquantity(el)
+  updateTotalRes(1)
+}
 $(document).ready(()=>{
     $('.selectpicker').selectpicker();
+    services()
+    
     let $nights = convertMiliseconds(Math.abs(new Date(getParameterByName('checkout')) - new Date(getParameterByName('checkin'))),'d')
     $("#checkin").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkin'))))
     $("#checkout").text(new Intl.DateTimeFormat('en', { month:'long', day:'numeric',year: 'numeric' }).format(new Date(getParameterByName('checkout'))))
@@ -11,10 +89,11 @@ $(document).ready(()=>{
     $("#emailadd").text(getParameterByName('email'))
 
 
-    var $totalReservation = parseFloat(getParameterByName('roomrate') * $nights).toFixed(2)
-
+    $subtotal = parseFloat(getParameterByName('roomrate') * $nights).toFixed(2)
+    $totalReservation = $subtotal
+    $("#subTotal").text(`PHP ${$subtotal}`)
     $("#displayRate").text(`PHP ${parseFloat(getParameterByName('roomrate')).toFixed(2)}`)
-    $("#displayNights").text($nights)
+    $("#displayNights").text(`${$nights} ${$nights > 1 ? "Nights": "Night"}`)
     $("#displayTotal").text(`PHP ${$totalReservation}`)
 
     $("#sameAddress").click(()=>{
@@ -33,7 +112,53 @@ $(document).ready(()=>{
         $("#inputCity").prop( "disabled", false );
         $("#inputZipCode").prop( "disabled", false );
       }
+      
     })
+    $("#services_button").click(addService)
+
+    
+
+    function addService(){
+      var picker = $("#services_picker").val();
+      let check = $Inventory.items.find(item => item.id === picker);
+        if(check){
+          return alert("services/facility has already been added")
+        }
+        
+        $("#additional_service_list").append(`<p class="d-flex flex-row justify-content-between" id="additional_service_list_data_${picker}"><span>${$(`#option_service_${picker}`).data("sname")} (Php ${ parseFloat($(`#option_service_${picker}`).data("cost")).toFixed(2)}) x <span id="additional_service_quantity_${picker}">1</span></span><span id="additional_service_amount_${picker}">Php ${ parseFloat($(`#option_service_${picker}`).data("cost")).toFixed(2)}</span></p>`)
+          $("#service_append").append(`<li class="list-group-item d-flex justify-content-between align-items-center" id="service_list_${picker}">
+          <div style="width:70%">${$(`#option_service_${picker}`).data("sname")}</div>
+          <div>
+            <button class="btn btn-warning" style="width:40px;" onclick="decrease_service_count('${picker}')">-</button>
+            <button class="btn btn-warning" style="width:40px;" onclick="increase_service_count('${picker}')">+</button>
+            <span class="badge badge-dark badge-pill" id="quantity_service_${picker}">1</span>
+          </div>
+          
+        </li>`)
+        
+        $Inventory.addItems({id:picker,quantity:1,cost:$(`#option_service_${picker}`).data("cost")})
+        updateTotalRes(1)
+    }
+
+   
+
+    function services(){
+      fetch('app/services?limit=100')
+        .then(data => data.json())
+        .then(data => {
+          if(data.response === "OK"){
+            $("#services_picker").html("")
+            $("#services_picker").append("<option value=''>Search Additional Service Here</option>")
+            $("#services_picker").append(`<option value='ADD_GUEST' data-cost="${parseFloat(getParameterByName('adtl_adult')).toFixed(2)}" id='option_service_ADD_GUEST' data-sname='Additional Guest'>Additional Guest</option>`)
+            $("#services_picker").append(`<option value='ADD_KIDS'  data-cost="${parseFloat(getParameterByName('adtl_kid')).toFixed(2)}" id='option_service_ADD_KIDS' data-sname='Additional Child/Children'>Additional Child/Children</option>`)
+            $("#services_picker").append(function(){
+              return data.result.hasOwnProperty("list") ? data.result.list.map(item => `<option value="${item.id}" id="option_service_${item.id}" data-sname="${item.service_name}" data-cost="${item.service_cost}" data-tokens="${item.service_name}">${item.service_name}</option>`) : ``
+            })
+           
+            $('.selectpicker').selectpicker('refresh')
+          }
+      })
+    }
 
     
     const card = new Card();
@@ -77,12 +202,13 @@ $(document).ready(()=>{
         }
       })
     });
+
     $("#billinginfo_form").submit(async function(event){
     
     event.preventDefault()
     if(!confirm('Check-in guest ?')){
       return
-  }
+    }
     // card.amount = 10000;
     card.currency = "PHP";
     // card.card_num = "4120000000000007";
@@ -293,8 +419,8 @@ $(document).ready(()=>{
                 $discount_value = discount_rate
                 $("#discount_rate").text(parseFloat(discount_rate).toFixed(2))
                 // $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - (percent_value)).toFixed(2)
-                $totalReservation = parseFloat((getParameterByName('roomrate') * $nights) - ($discount_value)).toFixed(2)
-                $("#displayTotal").text(`PHP ${$totalReservation}`)
+                $totaldiscount = parseFloat(discount_rate).toFixed(2)
+                updateTotalRes()
               }
              return
           }

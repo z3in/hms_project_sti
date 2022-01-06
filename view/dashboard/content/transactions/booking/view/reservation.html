@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <style>
         .top-container h1{
             margin-top:1em;
@@ -78,6 +85,9 @@
         small {
             color: #9f9f9f;
         }
+        .dropdown.bootstrap-select.form-control .btn.dropdown-toggle.btn-light{
+            border:1px solid #6c757d;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -112,7 +122,7 @@
                 <div class="card-body">
                 <h5 class="card-title">Reservation Details</h5>
                         <div style="display:flex;">
-                            <form style="width:7 0%;">
+                            <form style="width:50%;">
                                 <p style="color:#8a6907;font-weight:500;font-style: italic;">Date of Accommodation</p>
                                 <hr>
                                 <p>
@@ -150,8 +160,30 @@
                                     <span style="font-weight:700" id="label_phone"></span>
                                 </p>
                             </form>
-                            <div>
-                                <p style="color:#969696;font-weight:500;font-style: italic;"></p>
+                            
+                            <div class="card ml-5" style="width:59%" id="additional_service_box">
+                                <div class="card-body" style="height:150px;flex:0">
+                                    <p><small>Total Additional Charge  : </small><span id="additional_charge_display" style="font-weight: 700;">Php 0.00</span></p>
+                                    <div class="btn-group mb-0" role="group" aria-label="checkin">
+                                        <button id="btn_add_service" data-nonnav="true" type="button" role="group" class="btn btn-warning"><i class="fas fa-check" aria-hidden="true"></i> Add All Services listed below to reservation</button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Facilites and Additional Service</h5>
+
+                                    <div class="input-group">
+                                        <select class="form-control selectpicker" id="services_picker" data-live-search="true">
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" id="services_button" type="button"><i class="fas fa-plus"></i> Add</button>
+                                        </div>
+                                        </div>
+                                    <div class="mt-4">
+                                        <ul class="list-group" id="service_append">
+                                            
+                                            </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 </div>

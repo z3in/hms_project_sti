@@ -74,7 +74,7 @@ class Response{
             'timestamp' => TimeAndDate::timestamp(),
             $data_name => $data
         );
-        header('Content-type: application/json');
+        // header('Content-type: application/json');
         $filtered_res = array_filter($suc_msg);
         print_r(json_encode(self::utf8ize($filtered_res)));
         http_response_code($code);

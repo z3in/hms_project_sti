@@ -129,7 +129,7 @@
                         <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                     </div>
                             
-                            <form id="billinginfo_form" class="mt-4">
+                            
                                 <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Charge Breakdown</p>
                                 <div style="display:flex;justify-content: space-between;">
                                     <div class="card" style="width:49%">
@@ -143,6 +143,12 @@
                                             </div>
                                             <div class="row" style="background:#c4c3c998;padding:1em;border-radius: 5px;border:1px solid #c4c3c998;margin-bottom:1em">
                                                 <h6>Fee & Other charges</h6>
+                                                <div class="d-flex flex-column w-100" id="additional_service_list">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row mb-4">
+                                                <h5 class="col">Sub-Total</h5><p class="col" id="subTotal" style="text-align:right;font-weight: 700;"> </p>
                                             </div>
                                             <div class="row" style="background:#ffc1073f;padding:1em;border-radius: 5px;border:1px solid #ffc10798">
                                                 <h6>Discount</h6>
@@ -159,7 +165,7 @@
                                             <hr>
                                             <div class="row">
                                                 
-                                                <p class="col">Total</p><p class="col" id="displayTotal" style="text-align:right"> </p>
+                                                <h4 class="col">Total</h4><h4 class="col" id="displayTotal" style="text-align:right"> </h4>
                                             </div>
                                             
                                         </div>
@@ -170,20 +176,22 @@
                                             <h5 class="card-title">Facilites and Additional Service</h5>
 
                                             <div class="input-group">
-                                                <select class="form-control selectpicker" data-live-search="true">
-                                                    <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                                                    <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                                    <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                                                <select class="form-control selectpicker" id="services_picker" data-live-search="true">
                                                 </select>
                                                 <div class="input-group-append">
-                                                  <button class="btn btn-outline-secondary" type="button"><i class="fas fa-plus"></i> Add</button>
+                                                  <button class="btn btn-outline-secondary" id="services_button" type="button"><i class="fas fa-plus"></i> Add</button>
                                                 </div>
                                               </div>
-                                            
+                                            <div class="mt-4">
+                                                <ul class="list-group" id="service_append">
+                                                    
+                                                  </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
+                                
                                 <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Payment Method</p>
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
@@ -207,6 +215,7 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="card" role="tabpanel" aria-labelledby="card-tab">
+                                        <form id="billinginfo_form" class="mt-4">
                                         <p style="color:#9f9f9f;font-weight:500;font-style: italic;margin-top:2em;">Card information</p>
                                             <hr>
                                             <div class="form-group row px-3">
@@ -267,11 +276,12 @@
                                             <div class="col-sm-12">
                                                 <p style="margin-top:1em;float:right"><button type="submit" class="btn btn-lg btn-warning" id="btn_SumbitPayment"><i class="fas fa-check-circle"></i> Submit</button></p>
                                             </div>
+                                        </form>
+                        
                                     </div>
                                   </div>
                                 
-                            </form>
-                        
+                            
                     </div>
                 </div>
             </div>

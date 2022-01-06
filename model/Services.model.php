@@ -20,9 +20,10 @@ class Services extends Helpers{
     }
 
     public function insertServices($data){
-        $sql = "INSERT INTO promo_codes(`promo_code`,`validity`,`discount_rate`,`created_by`)VALUES(:promo_code,:validity,:discount_rate,:created_by)";
+        $sql = "INSERT INTO services(`service_name`,`service_cost`,`status`,`date_created`)VALUES(:servicename,:service_cost,:stats,:date_created)";
+        $data['date_created'] = TimeAndDate::timestamp();
+        unset($data['created_by']);
         $stmt = $this->conn->prepare($sql);
-        $data['validity'] = date('Y-m-d',strtotime($data['validity']));
         if($stmt->execute($data)){
             return $this->conn->lastInsertId();
         }

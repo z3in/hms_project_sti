@@ -25,7 +25,6 @@
             if(data.hasOwnProperty("result")){
             var priv_indi = data.result.priv.split(",")
             priv_indi.forEach(element => {
-                console.log(element)
                 $(`.nav-${element}`).show()
             });
             }
@@ -229,7 +228,7 @@
                             <li><a href="dashboard?url=reservation_online&type=online" data-url="reservation_online"><span>Online Reservation</span></a></li>
                             <li><a href="dashboard?url=reservation_walkin&type=walkin" data-url="reservation_walkin"><span>Walk-in Reservation</span></a></li>
                             <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
-                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Create Reservation</span></a></li>
+                            <li><a href="dashboard?url=checkin" data-url="checkin"><span>Check-In</span></a></li>
                             <li><a href="dashboard?url=cancelled" data-url="cancelled"><span>Cancelled Reservation</span></a></li>
                         </ul>
                     </li>

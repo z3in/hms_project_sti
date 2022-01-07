@@ -19,7 +19,7 @@ const getRoomList = () =>{
                     $("#room_list").html("");
                     $("#room_list").append(`<div class="col-lg-6">
     				    <div class="room-wrap d-md-flex">
-                            <a href="#" class="img" style="background-image: url( ../../${item.photo});"></a>
+                            <a class="img" style="background-image: url( ../../${item.photo});"></a>
                                 <div class="half left-arrow d-flex align-items-center">
                                     <div class="text p-4 p-xl-5 text-center">
                                         <p class="star mb-0"><span class="ion-ios-star"></span><span class="ion-ios-star"></span><span class="ion-ios-star"></span><span class="ion-ios-star"></span><span class="ion-ios-star"></span></p>

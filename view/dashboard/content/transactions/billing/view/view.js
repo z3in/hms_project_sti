@@ -1,37 +1,32 @@
 var url = new URL(document.location.href);
 var id = url.searchParams.get("id");
 var $status;
+$(document).ready(()=>{
+    getReservation()
+})
+
+const getAdditional = (id) =>{
+    requestJson.get(`app/bill/additional?id=${id}`)
+    .then(data =>{
+        console.log(data)
+    })
+}
 
 const getReservation = () =>{
 requestJson.get(`app/bill/get?id=${id}`)
 .then(data => {
     if(data.response === "OK"){
-        // const { ref_id,date_from,date_to,fullname,email,nights,street_add,zip_add,city_add,phone,status_name } = data.booking 
-        // document.querySelector(".page-title").innerHTML = `Reservation # ${ref_id}`
-        // document.querySelector("#label_checkin").innerHTML = new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(date_from))
-        // document.querySelector("#label_checkout").innerHTML =  new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(date_to))
-        // document.querySelector("#label_name").innerHTML = fullname
-        // document.querySelector("#label_email").innerHTML = email
-        // document.querySelector("#label_night").innerHTML = nights
-        // document.querySelector("#label_address").innerHTML =`${street_add} ,${city_add} ${zip_add}`
-        // document.querySelector("#label_phone").innerHTML =  phone
-        // document.querySelector("#res_status").innerHTML = status_name;
-
-        // var btn_check = document.querySelector("#btn_check")
-        // if(status_name === "RESERVED"){
-        //     btn_check.innerHTML = `<i class="fas fa-check"></i> Check In`
-        // }
-        // if(status_name === "OCCUPIED" || status_name === "COMPLETED"){
-        //     btn_check.innerHTML = `<i class="fas fa-arrow-alt-circle-left"></i> Check Out`
-        // }
-        // if(status_name === "CANCELLED"){
-        //     btn_check.style="display:none;"
-        //     $("#btn_cancel").hide()
-        // }
-        // if(status_name === "COMPLETED"){
-        //     $("#btn_cancel").hide()
-        // }
-
+        const { booking_id,payment_ref,date_from,date_to,fname,lname,mname,room_charge,nights,discount_total,total_amount,payment_method,date } = data.billing 
+        document.querySelector(".page-title").innerHTML = `Billing # ${payment_ref}`
+        document.querySelector("#label_name").innerHTML = `${fname} ${mname} ${lname}`
+        document.querySelector("#label_charge").innerHTML = `PHP ${parseFloat(room_charge).toFixed(2)}`
+        document.querySelector("#label_discount").innerHTML = `PHP ${parseFloat(discount_total).toFixed(2)}`
+        document.querySelector("#label_total").innerHTML = `PHP ${parseFloat(total_amount).toFixed(2)}`
+        document.querySelector("#payment_method").innerHTML = payment_method
+        document.querySelector("#label_date").innerHTML = new Intl.DateTimeFormat('en', { dateStyle:"medium"}).format(new Date(date))
+        document.querySelector("#label_nights").innerHTML = `${nights} ${nights > 1 ? "Nights" : "Night" } (${new Intl.DateTimeFormat('en', { dateStyle:"medium"}).format(new Date(date_from))} to ${new Intl.DateTimeFormat('en', { dateStyle:"medium"}).format(new Date(date_to))})`
+        
+        getAdditional(booking_id)
         // $status = status_name
     }
 })
@@ -74,5 +69,3 @@ $("#btn_cancel").click(function(){
         }
     })
 })
-
-getReservation()

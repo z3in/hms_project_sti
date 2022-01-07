@@ -269,6 +269,8 @@
                             return include 'content/transactions/booking/booking.html';
                     case 'reservation' : 
                         return include 'content/transactions/booking/view/reservation.html';
+                    case 'bill_res' : 
+                        return include 'content/transactions/billing/view/reservation.html';
                     case 'billing' : 
                         return include 'content/transactions/billing/billing.html'; 
                     case 'checkin' :

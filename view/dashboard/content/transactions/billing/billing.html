@@ -15,7 +15,7 @@
         .content-feature .card h3{
             font-size: 50px;
             text-decoration: none;
-            color:#dc3545;
+            color:#b69100cc;
             float: left;
             margin-right:.5em;
             padding-left:.25em;
@@ -57,11 +57,9 @@
             <div class="content-feature">
                 <div class="card col3">
                     <div class="card-body">
-                        <h3>3</h3>
-                        <p><span>Due for today</span><small>number of expected payment for reservation</small></p>
-                        <div class="form-group mb-0" aria-label="user management">
-                            <a href="#manageposition" data-nonnav=true type="button" class="btn btn-block btn-secondary" ><i class="fas fa-list-ul"></i> view reservatons</a>
-                        </div>
+                        <h3 id="bill_list">0</h3>
+                        <p><span>Reservation</span><small>number of reservation listed in the table</small></p>
+                        
                     </div>
                 </div>
             </div>
@@ -75,9 +73,9 @@
                         <option selected value="">Select from option</option>
                         <option value="CHECK-IN">Check-In</option>
                         <option value="CHECK-OUT">Check-Out</option>
-                        <option value="Reserved">Reserved</option>
+                        <option value="RESERVED">Reserved</option>
+                        <option value="CANCELLED">Cancelled</option>
                     </select></p>        
-                            <form>
                                 <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Start by Searching Guest Name or Booking Number.</p>
                                 <hr>
                                 <div class="form-group row">
@@ -115,7 +113,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                         
                     </div>
                 </div>

@@ -75,10 +75,10 @@ $("#visit_form").submit((event)=>{
     .then(data => data.json())
     .then(data => {
         if(data.response === "Created"){
-        $("#inputName").val() = "",
-        $("#input_request_date").val() = ""
-        $("#inputPhoneNumber").val() =""
-        $("#inputEmail").val() =""
+        $("#inputName").val("")
+        $("#input_request_date").val("")
+        $("#inputPhoneNumber").val("")
+        $("#inputEmail").val("")
         }
         alert(data.message);
     })

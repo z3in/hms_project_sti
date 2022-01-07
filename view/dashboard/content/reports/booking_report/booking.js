@@ -9,6 +9,48 @@ $(document).ready( function() {
     $("#report_download").click(downloadAuditCSV);
 });
 
+$("#reservation_filter").change(function(){
+    if($(this).val() === ""){
+        return
+    }
+    if($("#date_start").val() === "" || $("#date_end").val() === ""){  
+        return
+    }
+    fetch(`app/reports/booking_report?limit=1000&date_start=${$("#date_start").val()}&date_end=${$("#date_end").val()}`)
+    .then(data => data.json())
+    .then(data => {
+        if(data.response){
+            const container = document.querySelector("#data-container");
+            container.innerHTML = ""
+            if(data.result.hasOwnProperty("list")){
+                var rawdata = data.result.list
+                var requestcontent = rawdata.filter(x => x.status_name == $(this).val()).map(item =>{ 
+                                    return `<tr>
+                                                <td>${item.ref_id}</td>
+                                                <td>${item.status_name}</td>
+                                                <td>${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.date_from))}</td>
+                                                <td>${new Intl.DateTimeFormat('en', { month:'short', day:'numeric',year: 'numeric' }).format(new Date(item.date_to))}</td>
+                                                <td>${item.fullname}</td>
+                                                <td>${item.total_amount}</td>
+                                                <td>${item.employee_name}</td>
+                                            </tr>`
+                })
+                $("#reservation_count").text(requestcontent.length)
+                if(requestcontent.length < 1){
+                    container.innerHTML = `<tr><td colspan="5" style="width:100%;text-align:center;">No Result Found</td></tr>`
+                }
+                requestcontent.forEach(el=>{
+                    container.innerHTML += el
+                })
+                return
+            }
+            container.innerHTML = `<tr><td colspan="5" style="width:100%;text-align:center;">No Result Found</td></tr>`
+        }
+            
+    })
+})
+
+
 async function downloadAuditCSV() {
     // var dateSelect = document.querySelector("#date_select");
     // if(dateSelect.value==""){
@@ -48,7 +90,11 @@ function getReport(){
                 container.innerHTML ="";
                 if(data.result.hasOwnProperty("list")){
                     $("#res_count").text(data.result.list.length)
-                    const requestcontent = data.result.list.sort((a,b)=> a.id - b.id || new Date(a.timestamp) - new Date(b.timestamp)).map(item =>{
+                    var rawdata = data.result.list 
+                    if($("#reservation_filter").val() !== ""){
+                        rawdata = rawdata.filter(x => x.status_name == $("#reservation_filter").val())
+                    }
+                     requestcontent = rawdata.sort((a,b)=> a.id - b.id || new Date(a.timestamp) - new Date(b.timestamp)).map(item =>{
                         return `<tr>
                                     <td>${item.ref_id}</td>
                                     <td>${item.status_name}</td>
@@ -59,10 +105,15 @@ function getReport(){
                                     <td>${item.employee_name}</td>
                                 </tr>`
                     })
-    
-                    requestcontent.forEach(el=>{
-                        container.innerHTML += el
-                    })
+
+                    if(requestcontent.length < 0){
+                        container.innerHTML = `<tr><td colspan="5" style="text-align:center">No Result Found</td></tr>`
+                    }
+                    if(requestcontent.length > 0){
+                        requestcontent.forEach(el=>{
+                            container.innerHTML += el
+                        })
+                    }
                     return
                 }
                 container.innerHTML = `<tr><td colspan="5" style="text-align:center">No Result Found</td></tr>`

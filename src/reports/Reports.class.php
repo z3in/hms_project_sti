@@ -1,4 +1,5 @@
 <?php
+include('vendor/autoload.php');
 
 class Reports{
 
@@ -140,5 +141,9 @@ class Reports{
             }
         }
         exit(Response::send(200,'Showing Result','result',$response));
+    }
+
+    public static function createPdfBookingReport(){
+        
     }
 }

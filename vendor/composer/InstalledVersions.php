@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '3a8ec342fe8551f10238682e6b06bb471fb21ce0',
+    'reference' => '62a41899bebae9d83366962c2e9a8d9706c4a9c3',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '3a8ec342fe8551f10238682e6b06bb471fb21ce0',
+      'reference' => '62a41899bebae9d83366962c2e9a8d9706c4a9c3',
     ),
     'doctrine/lexer' => 
     array (
@@ -104,6 +104,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9a142215a36a3888e30d0a9eeea9766764e96976',
+    ),
+    'tecnickcom/tcpdf' => 
+    array (
+      'pretty_version' => '6.4.4',
+      'version' => '6.4.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '42cd0f9786af7e5db4fcedaa66f717b0d0032320',
     ),
   ),
 );

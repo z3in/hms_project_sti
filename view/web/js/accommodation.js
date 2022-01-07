@@ -66,7 +66,7 @@ $("#modalform").submit((event)=>{
                         return;
                     }
                     if(data.result.list.length > 0){
-                        var data = `checkin=${$('#input_date_checkin').val()}&checkout=${$('#input_date_checkout').val()}&person=${$("#inputGuestCount").val()}&roomtype=${$room_id}&roomname=${$category}`
+                        var data = `checkin=${$('#input_date_checkin').val()}&checkout=${$('#input_date_checkout').val()}&person=${$("#inputGuestCount").val()}&kids=${$("#inputKidsCount").val()}&roomtype=${$room_id}&roomname=${$category}`
                         window.location.href = "../../view/web/page/terms.html?" + data
                     }
                 }

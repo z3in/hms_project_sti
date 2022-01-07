@@ -29,7 +29,7 @@ class AdditionalService extends Helpers{
     }
 
     public function getadditionalServices($id){
-        $sql = "SELECT a.booking_id,a.date_created,a.id,a.payment_status,a.service_id,a.service_cost,a.service_quantity,b.service_name FROM `additional_service` a LEFT JOIN services b ON a.service_id  = b.id  WHERE a.booking_id = ?";
+        $sql = "SELECT a.booking_id,a.date_created,a.id,a.payment_status,a.service_id,a.service_cost as total_cost,a.service_quantity,b.service_name,b.service_cost FROM `additional_service` a LEFT JOIN services b ON a.service_id  = b.id  WHERE a.booking_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();

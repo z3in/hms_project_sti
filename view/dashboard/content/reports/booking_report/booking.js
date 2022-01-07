@@ -10,12 +10,13 @@ $(document).ready( function() {
 });
 
 async function downloadAuditCSV() {
-    var dateSelect = document.querySelector("#date_select");
-    if(dateSelect.value==""){
-        return alert('Select a Month and Year')
-    }
-    const date = dateSelect.value.split("-");
-    requestJson.get(`app/reports/booking_report?limit=1000&month=${date[1]}&year=${date[0]}`)
+    // var dateSelect = document.querySelector("#date_select");
+    // if(dateSelect.value==""){
+    //     return alert('Select a Month and Year')
+    // }
+    // const date = dateSelect.value.split("-");
+    // requestJson.get(`app/reports/booking_report?limit=1000&month=${date[1]}&year=${date[0]}`)
+    requestJson.get(`./report.php`)
     .then(data=>{
         if(data.response === "OK"){
             if(data.result.hasOwnProperty("list")){

@@ -1,3 +1,34 @@
+
+<?php
+include("vendor/autoload.php");
+
+if(isset($_POST['create_pdf'])){
+    $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+    $pdf->setAuthor('Hipnatuic Beach Resort');
+    $pdf->setTitle('Booking Report');
+    
+    $pdf->AddPage();
+    
+    $html = <<<EOD
+    <h1>Welcome to <a href="http://www.tcpdf.org" style="text-decoration:none;background-color:#CC0000;color:black;">&nbsp;<span style="color:black;">TC</span><span style="color:white;">PDF</span>&nbsp;</a>!</h1>
+    <i>This is the first example of TCPDF library.</i>
+    <p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
+    <p>Please check the source code documentation and other examples for further information.</p>
+    <p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
+    EOD;
+    
+    // Print text using writeHTMLCell()
+    $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+    
+    // ---------------------------------------------------------
+    
+    // Close and output PDF document
+    // This method has several options, check the source code documentation for more information.
+    $pdf->Output('Booking Report.pdf');
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,28 +97,36 @@
         
         <div class="container-main">
             <div class="content-feature">
-                <div class="card col3">
+                <div class="card col2">
                     <div class="card-body">
                         <div>
                         <h3 id="res_count">0</h3>
                         <p><span>Reservations count</span><small>Search a date and click generate report to view list</small></p>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="month" class="form-control" id="date_select"/>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text input-group-sm" id="">Dates</span>
+                              </div>
+                            <input type="date" class="form-control" id="date_select"/>
+                            <input type="date" class="form-control" id="date_select"/>
                             <div class="input-group-append">
                                 <button style="color:#fff" class="btn btn-secondary" id="search_report">Generate Report</button>
                             </div>
                           </div>
                     </div>
                 </div>
-                <div class="card col3">
+                
+                <div class="card col">
                     <div class="card-body">
-                        <p><span>Export Report</span><small>file will be downloadable as "CSV" and can then be imported into spreadsheet application.</small></p>
+                        <p><span>Export Report</span><small>file will be downloadable as "PDF" and can then be imported into spreadsheet application.</small></p>
                         <div class="form-group mb-0 w-100" aria-label="user management">
-                            <button type="button" class="btn btn-block btn-warning" id="report_download"><i class="fas fa-download"></i> Download Report</button>
+                            <form method="POST">
+                                <button type="submit" name="create_pdf" class="btn btn-block btn-warning" id="report_download"><i class="fas fa-download"></i> Download Report</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="card">
                 <div class="card-body">

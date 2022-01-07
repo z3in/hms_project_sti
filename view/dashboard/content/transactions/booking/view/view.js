@@ -200,8 +200,11 @@ $("#btn_add_service").click(function(){
         if(!confirm("Are you sure you want to add service to the reservation ?")){
             return
         }
-        if(data.hasOwnProperty("Message")){
+        if(data.hasOwnProperty("message")){
             alert(data.message)
+            $Inventory.items = [{}]
+            $("#service_append").html("")
+            $("#additional_charge_display").text("PHP 0.00")
         }
     })
 })

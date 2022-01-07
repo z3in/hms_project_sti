@@ -226,7 +226,7 @@
                     <li class="main-menu withsub nav-transaction hide-menu" data-nav="transactions" data-withsub=true><a class="main-link"><i class="fas fa-money-check-alt"></i><span>Transactions</span></a>
                         <ul class="submenu hidden" data-nav="sub-transactions">
                             <li><a href="dashboard?url=reservation_online&type=online" data-url="reservation_online"><span>Online Reservation</span></a></li>
-                            <li><a href="dashboard?url=reservation_walkin&type=walkin" data-url="reservation_walkin"><span>Walk-in Reservation</span></a></li>
+                            <li><a href="dashboard?url=reservation_walkin&type=walkin" data-url="reservation_walkin"><span>Walk-in</span></a></li>
                             <li><a href="dashboard?url=billing" data-url="billing"><span>Billing</span></a></li>
                             <li><a href="dashboard?url=checkin" data-url="checkin"><span>Check-In</span></a></li>
                             <li><a href="dashboard?url=cancelled" data-url="cancelled"><span>Cancelled Reservation</span></a></li>
@@ -312,7 +312,7 @@
                     case 'report_audit' :
                         return include 'content/reports/daily_audit/audit.html';
                     case 'report_booking' :
-                        return include 'content/reports/booking_report/booking.html';
+                        return include 'content/reports/booking_report/booking.php';
                     default :
                         return include 'content/dashboard/dashboard.html';
                 }

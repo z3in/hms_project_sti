@@ -8,7 +8,18 @@ $(document).ready(()=>{
 const getAdditional = (id) =>{
     requestJson.get(`app/bill/additional?id=${id}`)
     .then(data =>{
-        console.log(data)
+        if(data.result.hasOwnProperty("list")){
+            $("#additional_container").html("")
+            data.result.list.map(item =>{
+                $("#additional_container").append(`<p> ${item.service_name ? item.service_name : item.service_id == "ADD_GUEST" ? "Additional Guest" : "Additional Child/Children"} x ${item.service_quantity} (${parseFloat(item.total_cost).toFixed(2)})<span style="float:right">Php ${parseFloat(item.total_cost * item.service_quantity).toFixed(2)}</span></p>`)
+            })
+
+            var total = data.result.list.reduce((curr, a) => curr + parseInt(a.total_cost) * parseInt(a.service_quantity),0)
+            console.log(total)
+            $("#additional_total").text(`PHP ${parseFloat(total).toFixed(2)}`)
+        }
+        
+        
     })
 }
 

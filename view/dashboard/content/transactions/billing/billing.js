@@ -29,7 +29,7 @@ $(document).ready(()=>{
                 })
                 return
             }
-            container.innerHTML = `<div style="width:100%;text-align:center;">No Result Found</div>`
+            container.innerHTML = `<tr><td colspan="5" style="width:100%;text-align:center;">No Result Found</td></tr>`
         }
             
     })

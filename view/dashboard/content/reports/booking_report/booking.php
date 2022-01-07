@@ -107,8 +107,8 @@ if(isset($_POST['create_pdf'])){
                             <div class="input-group-prepend">
                                 <span class="input-group-text input-group-sm" id="">Dates</span>
                               </div>
-                            <input type="date" class="form-control" id="date_select"/>
-                            <input type="date" class="form-control" id="date_select"/>
+                            <input type="date" class="form-control" id="date_start"/>
+                            <input type="date" class="form-control" id="date_end"/>
                             <div class="input-group-append">
                                 <button style="color:#fff" class="btn btn-secondary" id="search_report">Generate Report</button>
                             </div>

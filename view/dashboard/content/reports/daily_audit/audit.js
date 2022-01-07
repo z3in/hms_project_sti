@@ -1,12 +1,12 @@
 $(document).ready( function() {
-    document.getElementById('date_select').value = new Date().toISOString().slice(0, 10);
-    getReport()
+    // document.getElementById('date_select').value = new Date().toISOString().slice(0, 10);
+    // getReport()
     $("#search_report").click(getReport)
     $("#report_download").click(downloadAuditCSV);
 });
 
 async function downloadAuditCSV() {
-    requestJson.get(`app/reports/daily_audit?limit=100&date=${$("#date_select").val()}`)
+    requestJson.get(`app/reports/daily_audit?limit=100&date_start=${$("#date_start").val()}&date_end=${$("#date_end").val()}`)
     .then(data=>{
         if(data.response === "OK"){
             if(data.result.hasOwnProperty("list")){
@@ -17,7 +17,7 @@ async function downloadAuditCSV() {
             var dl = document.createElement("a");
             document.body.appendChild(dl); // This line makes it work in Firefox.
             dl.setAttribute("href", url); // pass the node
-            dl.setAttribute("download", `daily_audit_report_${$("#date_select").val()}.csv`);
+            dl.setAttribute("download", `daily_audit_report_${$("#date_start").val()}_${$("#date_end").val()}.csv`);
             dl.click();
             }
             if(!data.result.hasOwnProperty("list")){
@@ -28,7 +28,7 @@ async function downloadAuditCSV() {
 }
 
 function getReport(){
-    requestJson.get(`app/reports/daily_audit?limit=100&date=${$("#date_select").val()}`)
+    requestJson.get(`app/reports/daily_audit?limit=100&date_start=${$("#date_start").val()}&date_end=${$("#date_end").val()}`)
     .then(data => {
         if(data.response === "OK"){
             const container = document.querySelector("#data-container");

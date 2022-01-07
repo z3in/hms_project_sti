@@ -42,7 +42,7 @@ class Reports{
         }
 
         $trans = self::createTransactionInstance();
-        $trans->setDateSearch($_GET['month'],$_GET['year']);
+        $trans->setMonthSearch($_GET['date_start'],$_GET['date_end']);
         $count = $trans->countAllSearchedDate()->fetchColumn();
         $response = Array();
         $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
@@ -84,7 +84,7 @@ class Reports{
         }
 
         $booking = self::createBookingInstance();
-        $booking->setDateSearch($_GET['date']);
+        $booking->setMonthSearch($_GET['date_start'],$_GET['date_end']);
         $count = $booking->countAllSearchedDate()->fetchColumn();
         $response = Array();
         $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 
@@ -126,7 +126,7 @@ class Reports{
         }
 
         $booking = self::createBookingInstance();
-        $booking->setMonthSearch($_GET['month'],$_GET['year']);
+        $booking->setMonthSearch($_GET['date_start'],$_GET['date_end']);
         $count = $booking->countAllSearchedDate()->fetchColumn();
         $response = Array();
         $page_number = isset($_GET['page_number']) ? $_GET['page_number'] : (isset($data['page_number']) ? $data['page_number'] : null); 

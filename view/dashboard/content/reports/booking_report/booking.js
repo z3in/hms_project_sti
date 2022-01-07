@@ -1,10 +1,10 @@
 $(document).ready( function() {
-    const monthControl = document.querySelector('#date_select');
-    var date= new Date()
-    var month=("0" + (date.getMonth() + 1)).slice(-2)
-    var year=date.getFullYear()
-    monthControl.value = `${year}-${month}`
-    getReport()
+    // const monthControl = document.querySelector('#date_select');
+    // var date= new Date()
+    // var month=("0" + (date.getMonth() + 1)).slice(-2)
+    // var year=date.getFullYear()
+    // monthControl.value = `${year}-${month}`
+    // getReport()
     $("#search_report").click(getReport)
     $("#report_download").click(downloadAuditCSV);
 });
@@ -15,8 +15,8 @@ async function downloadAuditCSV() {
     //     return alert('Select a Month and Year')
     // }
     // const date = dateSelect.value.split("-");
-    // requestJson.get(`app/reports/booking_report?limit=1000&month=${date[1]}&year=${date[0]}`)
-    requestJson.get(`./report.php`)
+    requestJson.get(`app/reports/booking_report?limit=1000&date_start=${$("#date_start").val()}&date_end=${$("#date_end").val()}`)
+    // requestJson.get(`./report.php`)
     .then(data=>{
         if(data.response === "OK"){
             if(data.result.hasOwnProperty("list")){
@@ -27,7 +27,7 @@ async function downloadAuditCSV() {
             var dl = document.createElement("a");
             document.body.appendChild(dl); // This line makes it work in Firefox.
             dl.setAttribute("href", url); // pass the node
-            dl.setAttribute("download", `daily_audit_report_${$("#date_select").val()}.csv`);
+            dl.setAttribute("download", `daily_audit_booking_${$("#date_start").val()}.csv`);
             dl.click();
             }
             if(!data.result.hasOwnProperty("list")){
@@ -39,8 +39,8 @@ async function downloadAuditCSV() {
 
 function getReport(){
     var dateSelect = document.querySelector("#date_select");
-    const date = dateSelect.value.split("-");
-    requestJson.get(`app/reports/booking_report?limit=1000&month=${date[1]}&year=${date[0]}`)
+    // const date = dateSelect.value.split("-");
+    requestJson.get(`app/reports/booking_report?limit=1000&date_start=${$("#date_start").val()}&date_end=${$("#date_end").val()}`)
     .then(data => {
         if(data.response === "OK"){
             const container = document.querySelector("#data-container");

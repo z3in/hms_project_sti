@@ -61,7 +61,7 @@
 <body>
 
         <div class="top-container">
-            <h1 style="color:#fff;">Daily Audit</h1>
+            <h1 style="color:#fff;">Booking Report</h1>
         </div>
         
         <div class="container-main">

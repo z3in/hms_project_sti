@@ -44,7 +44,7 @@ $(document).ready(()=>{
             room_occupancy : $("#inputOccupancy").val(),
             stats : $('#inputRoomStatus').val(),
             pol: $('#inputPolicy').val(),
-            room_rate : $('#inputTypeRate').val(),
+            room_rate : $('#inputTypeRate').val().replace(",",""),
             adtl_adult : $('#inputAdtlAdult').val(),
             adtl_kid : $('#inputAdtlChild').val()
         })

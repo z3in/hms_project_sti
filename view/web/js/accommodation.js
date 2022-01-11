@@ -7,25 +7,28 @@ const createBooking = (id,cat) =>{
 
 const getRoomList = () =>{
     
-    fetch(`../../app/room/category/list?limit=100`)
+    fetch(`../../app/room?limit=100`)
     .then(data=>data.json())
     .then(data=>{
         if(data.response === "OK"){
             if(data.result.hasOwnProperty("list")){
-                $.each(data.result.list, function (i, item) {
-                    if(item.category === "Full Resort Reservation"){
+                $("#room_list").html("");
+                $.each([...new Map(data.result.list.map(item => [item['room_type'], item])).values()], function (i, item) {
+                    if(item.room_type === "Full Resort Reservation"){
                         return
                     }
-                    $("#room_list").html("");
+                    
                     $("#room_list").append(`<div class="col-lg-6">
     				    <div class="room-wrap d-md-flex">
                             <a class="img" style="background-image: url( ../../${item.photo});"></a>
                                 <div class="half left-arrow d-flex align-items-center">
                                     <div class="text p-4 p-xl-5 text-center">
-                                        <p class="star mb-0"><span class="ion-ios-star"></span><span class="ion-ios-star"></span><span class="ion-ios-star"></span><span class="ion-ios-star"></span><span class="ion-ios-star"></span></p>
                                         
-                                        <h3 class="mb-3"><a href="#">${item.category}</a></h3>
-                                        <p style="color:#000">${item.room_description}</p>
+                                        <h3 class="mb-3"><a href="#">${item.room_type}</a></h3>
+                                        <h4 style="display: inline-block;
+                                        color: #000000;
+                                        border: 2px solid rgba(0, 0, 0, 0.1);padding:.25em 1em">Php ${parseFloat(item.room_rate).toFixed(2)}</h4>
+                                        <p style="color:#000;">${item.room_description}</p>
                                         <label for="modal1" class="btn btn-black" onclick="createBooking('${item.id}','${item.category}')">Book  Now</label>
                                     </div>
                                 </div>

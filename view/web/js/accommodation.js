@@ -29,7 +29,7 @@ const getRoomList = () =>{
                                         color: #000000;
                                         border: 2px solid rgba(0, 0, 0, 0.1);padding:.25em 1em">Php ${parseFloat(item.room_rate).toFixed(2)}</h4>
                                         <p style="color:#000;">${item.room_description}</p>
-                                        <label for="modal1" class="btn btn-black" onclick="createBooking('${item.id}','${item.category}')">Book  Now</label>
+                                        <label for="modal1" class="btn btn-black" onclick="createBooking('${item.room_type_id}','${item.room_type}')">Book  Now</label>
                                     </div>
                                 </div>
                          </div>
@@ -65,17 +65,17 @@ $("#modalform").submit((event)=>{
             if(data.hasOwnProperty("result")){
                 if(data.result.hasOwnProperty("list")){
                     if(data.result.list.length < 1){
-                        alert(`All ${getParameterByName('roomname')} room type has been booked, another date. Thank you!`)
+                        alert(`All ${$category} room type has been booked, another date. Thank you!`)
                         return;
                     }
                     if(data.result.list.length > 0){
                         var data = `checkin=${$('#input_date_checkin').val()}&checkout=${$('#input_date_checkout').val()}&person=${$("#inputGuestCount").val()}&kids=${$("#inputKidsCount").val()}&roomtype=${$room_id}&roomname=${$category}`
-                        window.location.href = "../../view/web/page/terms.html?" + data
+                        return window.location.href = "../../view/web/page/terms.html?" + data
                     }
                 }
-                alert(`All ${getParameterByName('roomname')} room type has been booked, another date. Thank you!`)
-                return;
             }
+            alert(`All ${$category} room type has been booked, another date. Thank you!`)
+            return;
         }
     })
     

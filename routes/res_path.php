@@ -23,3 +23,8 @@ Router::route('/app/reservation/get', function(){
 Router::route('/app/reservation/update_status',function(){
     Reservation::changeStatus();
 });
+
+
+Router::route('/app/additonal_service/add',function(){
+    Reservation::saveAdditionalService();
+});

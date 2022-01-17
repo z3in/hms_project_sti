@@ -16,6 +16,13 @@ class Reservation{
         return $room;
     }
 
+    protected static function createAdditionalServicesInstance(){
+        $conn = new Database();
+        $db = $conn->connect('hms_hipnautic');
+        $serv = new AdditionalService($db);
+        return $serv;
+    }
+
     public static function availableRooms(){
         Validate::defineMethod("GET");
 
@@ -105,6 +112,41 @@ class Reservation{
                     exit(Response::send(201,'Transaction Completed!'));
             }
         }
+    }
+
+    public static function saveAdditionalService(){
+        $data = Validate::JSONdata();
+        Validate::defineMethod("POST");
+
+        $error = '';
+        $error .= Validate::defineError(!isset($data['ad_service']),$error,'ad_service');
+        $error .= Validate::defineError(!isset($data['booking_id']),$error,'booking_id');
+        $error .= Validate::defineError(!isset($data['payment_status']),$error,'payment_status');
+        $error .= Validate::defineError(!isset($data['userid']),$error,'userid');
+
+        Validate::errorvalue($error);
+        $room = self::createAdditionalServicesInstance();
+        $results = Array();
+        foreach ($data['ad_service'] as $key => $value) {
+            $value = [
+                "booking_id" => $data['booking_id'],
+                "payment_status" => $data['payment_status'],
+                "date_created" => TimeAndDate::timestamp(),
+                "service_id" => $value['id'],
+                "service_cost" => $value['cost'],
+                "service_quantity" => $value['quantity'],
+                "userid" => $data['userid']
+            ];
+            $result = $room->insertadditionalServices($value);
+            if($result){
+                Audit::createLog($data['userid'],'Additional Services Module','added a new service, id : ' . $result);
+            }
+            array_push($results,$result);
+        }
+        if(!in_array(false,$results)){
+            exit(Response::send(201,'Services Added!'));
+        }
+        exit(Response::send(500,'Something went Wrong.Please try Refreshing!'));
     }
 
     public static function listAllBookings(){

@@ -44,9 +44,9 @@ $(document).ready(()=>{
             room_occupancy : $("#inputOccupancy").val(),
             stats : $('#inputRoomStatus').val(),
             pol: $('#inputPolicy').val(),
-            room_rate : $('#inputTypeRate').val(),
-            adtl_adult : $('#inputAdtlAdult').val(),
-            adtl_kid : $('#inputAdtlChild').val()
+            room_rate : $('#inputTypeRate').val().replace(",",""),
+            adtl_adult : $('#inputAdtlAdult').val().replace(",",""),
+            adtl_kid : $('#inputAdtlChild').val().replace(",","")
         })
         requestJson.post(`app/room/new`,body)
         .then(data => {

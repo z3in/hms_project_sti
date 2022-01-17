@@ -94,20 +94,29 @@
                 <div class="card-body">
                 <h5 class="card-title">Reservation Details</h5>
                         <div style="display:flex;">
-                            <form style="width:7 0%;">
-                                <p style="color:#8a6907;font-weight:500;font-style: italic;">Date of Accommodation</p>
+                            <form style="width:40%;">
+                                <p style="color:#8a6907;font-weight:500;font-style: italic;">Charge Information</p>
                                 <hr>
                                 <p>
-                                    <small>Check-In date :</small>
-                                    <span style="font-weight:700" id="label_checkin"></span>
+                                    <small>Room Charge :</small>
+                                    <span style="font-weight:700" id="label_charge"></span>
                                 </p>
                                 <p>
-                                    <small>Check-Out date :</small>
-                                    <span style="font-weight:700" id="label_checkout"></span>
+                                    <small>Nights :</small>
+                                    <span style="font-weight:700" id="label_nights"></span>
                                 </p>
                                 <p>
-                                    <small>Nights of stay :</small>
-                                    <span style="font-weight:700" id="label_night"></span>
+                                    <small>Discount :</small>
+                                    <span style="font-weight:700" id="label_discount"></span>
+                                </p>
+                                
+                                <p>
+                                    <small>Payment Method :</small>
+                                    <span style="font-weight:700" id="payment_method"></span>
+                                </p>
+                                <p>
+                                    <small>Total Amount :</small>
+                                    <span style="font-weight:700" id="label_total"></span>
                                 </p>
                                 <p style="color:#8a6907;font-weight:500;font-style: italic;">Guest Information</p>
                                 <hr>
@@ -116,26 +125,26 @@
                                     <span style="font-weight:700" id="label_name"></span>
                                 </p>
                                 <p>
-                                    <small>Address :</small>
-                                    <span style="font-weight:700"id="label_address"></span>
-                                </p>
-                                <p>
-                                    <small>Email :</small>
-                                    <span style="font-weight:700" id="label_email"></span>
-                                </p>
-                                <p>
-                                    <small>Phone number :</small>
-                                    <span style="font-weight:700" id="label_phone"></span>
+                                    <small>Date Added :</small>
+                                    <span style="font-weight:700" id="label_date"></span>
                                 </p>
                             </form>
-                            <div>
-                                <p style="color:#969696;font-weight:500;font-style: italic;"></p>
+                            <div style="width:40%;margin:3em 2em;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p style="color:#8a6907;font-weight:500;font-style: italic;margin-bottom:2em">Additional Charges</p>
+                                        
+                                        <div id="additional_container" style="margin-bottom:2em">No Additional Charges</div>
+                                        <hr>
+                                        <div>total : <span style="float:right" id="additional_total">Php : 0.00</span></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="view/dashboard/content/transactions/booking/view/view.js"></script>
+    <script type="text/javascript" src="view/dashboard/content/transactions/billing/view/view.js"></script>
 </body>
 </html>

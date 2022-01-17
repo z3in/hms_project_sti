@@ -191,9 +191,22 @@ $("#btn_add_service").click(function(){
     let data = {
         ad_service : $Inventory.items,
         booking_id : id,
-        
+        payment_status : "PENDING",
+        userid : getCookie("sessionid")
     }
-
+    fetch('app/additonal_service/add',{method:"POST",body:JSON.stringify(data)})
+    .then(data => data.json())
+    .then(data => {
+        if(!confirm("Are you sure you want to add service to the reservation ?")){
+            return
+        }
+        if(data.hasOwnProperty("message")){
+            alert(data.message)
+            $Inventory.items = [{}]
+            $("#service_append").html("")
+            $("#additional_charge_display").text("PHP 0.00")
+        }
+    })
 })
 
 async function services(){

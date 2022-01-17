@@ -2,12 +2,14 @@
 
 class Transaction extends Helpers{
 
-    private $year,$month;
+    private $id,$year,$month,$search,$date_start,$date_end;
 
-    public function setDateSearch($month,$year){
-        $this->year = $year;
-        $this->month = $month;
-
+    public function setMonthSearch($ds,$de){
+        $this->date_start = $ds;
+        $this->date_end = $de;
+    }
+    public function setSearch($search){
+        $this->search = $search;
     }
 
     public function insertTransaction($id,$data){
@@ -58,23 +60,55 @@ class Transaction extends Helpers{
 
     public function countAllSearchedDate(){
 
-        $sql = "SELECT COUNT(*) FROM billing_list WHERE billing_list.`date` like ?";
+        $sql = "SELECT COUNT(*) FROM billing_list WHERE `date_from` >= ? AND `date_to` <= ?";
         $stmt = $this->conn->prepare($sql);
-        $date = $this->year . '-' . $this->month . '%';
-        $stmt->bindParam(1, $date,PDO::PARAM_STR);
+        $stmt->bindParam(1, $this->date_start);
+        $stmt->bindParam(2, $this->date_end);
         $stmt->execute();
         return $stmt;
         
     }
 
     public function selectDateSearch($offset,$rowsperpage){
-
-        $sql = "SELECT * FROM billing_list WHERE billing_list.`date` like ? LIMIT ?, ?";
+        $sql = "SELECT * FROM billing_list WHERE `date_from` >= ? AND `date_to` <= ? LIMIT ?, ?";
         $stmt = $this->conn->prepare($sql);
-        $date = $this->year . '-' . $this->month . '%';
-        $stmt->bindParam(1, $date);
-        $stmt->bindParam(2, $offset, PDO::PARAM_INT);
-        $stmt->bindParam(3, $rowsperpage, PDO::PARAM_INT);
+        $stmt->bindParam(1, $this->date_start);
+        $stmt->bindParam(2, $this->date_end);
+        $stmt->bindParam(3, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(4, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function countAllSearchedRow(){
+        $sql = "SELECT COUNT(*) FROM billing_list WHERE payment_ref like ? or concat(fname, ' ',mname, ' ',lname) like ?";
+        $stmt = $this->conn->prepare($sql);
+        $data = '%'. $this->search . '%';
+        $stmt->bindParam(1, $data);
+        $stmt->bindParam(2,$data);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function selectSearchAllBilling($offset,$rowsperpage){
+        $sql = "SELECT * FROM billing_list WHERE payment_ref like ? or concat(fname, ' ',mname, ' ',lname) like ? LIMIT ?, ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $data = '%'. $this->search . '%';
+        $stmt->bindParam(1, $data);
+        $stmt->bindParam(2, $data);
+        $stmt->bindParam(3, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(4, $rowsperpage, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+    public function selectSingleBill($id){
+        $this->id = $id;
+        $sql = "SELECT * FROM billing_list where `id` = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam("id", $this->id);
         $stmt->execute();
         return $stmt;
     }

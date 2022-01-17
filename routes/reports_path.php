@@ -13,4 +13,6 @@ Router::route('/app/reports/booking_report', function(){
     Reports::BookingReport();
 });
 
-
+Router::route('/app/reports/booking_report/pdf', function(){
+    Reports::createPdfBookingReport();
+});

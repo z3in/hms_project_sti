@@ -28,7 +28,11 @@ $(document).ready(()=>{
                                                 </tr>
                                                 `
                 })
+                
                 $("#reservation_count").text(requestcontent.length)
+                if(requestcontent.length < 1){
+                    container.innerHTML = `<tr><td colspan="5" style="width:100%;text-align:center;">No Result Found</td></tr>`
+                }
                 requestcontent.forEach(el=>{
                     container.innerHTML += el
                 })

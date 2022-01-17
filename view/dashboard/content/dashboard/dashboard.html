@@ -61,7 +61,7 @@
         <h1 style="color:#fff">My Dashboard</h1>
     </div>
     <div class="container-main">
-        <div class="content-feature">
+        <!-- <div class="content-feature">
             <div class="card col3">
                 <div class="card-body">
                     <div>
@@ -88,49 +88,52 @@
                 </div>
             </div>
             
-        </div>
-        <div class="content-table">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">Guest's Reservations</h5>
-                        
-                            <p style="color:#9f9f9f;font-weight:500;font-style: italic;">Start by Searching Guest Name or Booking Number.</p>
-                            <hr>
-                            <div class="form-group row">
-                                <label for="input_res_search" class="col-sm-2 col-form-label">Search : </label>
-                                <div class="col-sm">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="input_res_search" autocomplete="off" class="form-control w-50" placeholder="Booking # or Guest's Name" aria-label="Booking # or Guest's Name" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" id="btn_search" type="button"><i class="fas fa-search"></i> Search</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="content-table">
-                                <div class="card">
-                                    <div class="card-body">
-                                    <h5 class="card-title">Search Result</h5>
-                                            
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">Reference number #</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Date of Stay</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody id="booking_container">
-                                                </tbody>
-                                            </table>    
-                                        
-                                    </div>
-                                </div>
-                            </div>
+        </div> -->
+        <div class="content-table d-flex justify-content-between" style="height:500px;">
+            <div class="card" style="width:23%;height:100%;background-color: transparent;border:0">
+                <div class="card-body d-flex flex-column justify-content-center">
+                 
+                 <h5>Welcome to</h5>
+                 <h5>HIPNAUTIC BEACH RESORT's</h5>
+                 <h6>Resort Online Booking and Billing System</h6>
+
+                 <p style="margin-top:1.5em; text-align: justify;">The system will enhance the transaction periods and replace the paper traditional method since it is an online automated system that can be accessed anytime as long as there is internet.</p>
+                </div>
+            </div>
+            <div class="card" style="width:23%">
+                <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                    <h4 class="card-title" style="text-align: center;">Online Reservations</h4>
+                            
+                    <p style="font-size:70px;text-align: center;margin:1em 0"><i class="fas fa-hotel"></i></p>
                     
+                    <p style="text-align: justify;">View the list of reservations made online with filter and search functionality.</p>
+                </div>
+                <a href="dashboard?url=reservation_online&type=online" class="btn btn-lg btn-block btn-warning"> View Online Reservations</a>
+                </div>
+            </div>
+            <div class="card" style="width:23%">
+                <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                    <h4 class="card-title" style="text-align: center;">Walk-in Guest</h4>
+                            
+                    <p style="font-size:70px;text-align: center;margin:1em 0"><i class="fas fa-walking"></i></p>
+                    <p style="text-align: justify;">Accommodate guests who arrive without any reservation and easily check them in.</p>
+                </div>
+                <a href="dashboard?url=checkin" class="btn btn-lg btn-block btn-warning"> Check-in Guests</a>
+                </div>
+            </div>
+            <div class="card" style="width:23%">
+                <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                    <h4 class="card-title" style="text-align: center;">Billing</h4>
+                        
+                    <p style="font-size:70px;text-align: center;margin:1em 0"><i class="fas fa-money-check-alt"></i></p>
+                    <p style="text-align: justify;">This will lead you to the billing list and payment process.
+                    </p>
+                </div>
+                <a href="dashboard?url=billing" class="btn btn-lg btn-block btn-warning"> Go to Billing</a>
+                </div>           
                 </div>
             </div>
         </div>

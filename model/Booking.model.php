@@ -7,7 +7,9 @@ class Booking extends Helpers{
             $to,
             $type,
             $search,
-            $date;
+            $date,
+            $date_start,
+            $date_end;
 
     public function set_id($id){
         $this->id = $id;
@@ -25,8 +27,9 @@ class Booking extends Helpers{
         $this->date = date('Y-m-d',strtotime($date)) . '%';
     }
 
-    public function setMonthSearch($month,$year){
-        $this->date = $year . '-' . $month . '%';
+    public function setMonthSearch($ds,$de){
+        $this->date_start = $ds;
+        $this->date_end = $de;
     }
 
     public function countAvailableRooms(){
@@ -156,19 +159,21 @@ class Booking extends Helpers{
     }
 
     public function countAllSearchedDate(){
-        $sql = "SELECT COUNT(*) FROM booking_list WHERE `date` like ?";
+        $sql = "SELECT COUNT(*) FROM booking_list WHERE `date_from` >= ? AND `date_to` <= ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(1, $this->date);
+        $stmt->bindParam(1, $this->date_start);
+        $stmt->bindParam(2, $this->date_end);
         $stmt->execute();
         return $stmt;
     }
     
     public function selectDateSearch($offset,$rowsperpage){
-        $sql = "SELECT * FROM booking_list WHERE `date` like ? LIMIT ?, ?";
+        $sql = "SELECT * FROM booking_list WHERE `date_from` >= ? AND `date_to` <= ? LIMIT ?, ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(1, $this->date);
-        $stmt->bindParam(2, $offset, PDO::PARAM_INT);
-        $stmt->bindParam(3, $rowsperpage, PDO::PARAM_INT);
+        $stmt->bindParam(1, $this->date_start);
+        $stmt->bindParam(2, $this->date_end);
+        $stmt->bindParam(3, $offset, PDO::PARAM_INT);
+        $stmt->bindParam(4, $rowsperpage, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt;
     }

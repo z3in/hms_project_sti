@@ -61,33 +61,41 @@
 <body>
 
         <div class="top-container">
-            <h1 style="color:#fff;">Daily Audit</h1>
+            <h1 style="color:#fff;">Booking Report</h1>
         </div>
         
         <div class="container-main">
             <div class="content-feature">
-                <div class="card col3">
+                <div class="card col2">
                     <div class="card-body">
                         <div>
                         <h3 id="res_count">0</h3>
                         <p><span>Reservations count</span><small>Search a date and click generate report to view list</small></p>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="month" class="form-control" id="date_select"/>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text input-group-sm" id="">Dates</span>
+                              </div>
+                            <input type="date" class="form-control" id="date_start"/>
+                            <input type="date" class="form-control" id="date_end"/>
                             <div class="input-group-append">
                                 <button style="color:#fff" class="btn btn-secondary" id="search_report">Generate Report</button>
                             </div>
                           </div>
                     </div>
                 </div>
-                <div class="card col3">
+                
+                <div class="card col">
                     <div class="card-body">
-                        <p><span>Export Report</span><small>file will be downloadable as "CSV" and can then be imported into spreadsheet application.</small></p>
+                        <p><span>Export Report</span><small>file will be downloadable as "PDF" and can then be imported into spreadsheet application.</small></p>
                         <div class="form-group mb-0 w-100" aria-label="user management">
-                            <button type="button" class="btn btn-block btn-warning" id="report_download"><i class="fas fa-download"></i> Download Report</button>
+                            <form method="POST">
+                                <button type="submit" name="create_pdf" class="btn btn-block btn-warning" id="report_download"><i class="fas fa-download"></i> Download Report</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="card">
                 <div class="card-body">
@@ -95,6 +103,15 @@
                     <div class="col">
                         <h5 class="card-title">Showing search result</h5>
                     </div>
+                    <p style="float:right">
+                            <label>Filter result : </label>
+                            <select id="reservation_filter" class="form-select" aria-label="">
+                            <option selected value="">Select from option</option>
+                            <option value="CHECK-IN">Check-In</option>
+                            <option value="CHECK-OUT">Check-Out</option>
+                            <option value="RESERVED">Reserved</option>
+                            <option value="CANCELLED">CANCELLED</option>
+                        </select></p>
                 </div>
                         <table class="table">
                             <thead>

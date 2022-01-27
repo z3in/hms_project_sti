@@ -93,14 +93,16 @@ class Reservation{
         $error .= Validate::defineError(!isset($data['amount']),$error,'zipcode');
         $error .= Validate::defineError(!isset($data['currency']),$error,'zipcode');
         $error .= Validate::defineError(!isset($data['card_brand']),$error,'zipcode');
-        $error .= Validate::defineError(!isset($data['user_id']),$error,'user_id');
+        // $error .= Validate::defineError(!isset($data['user_id']),$error,'user_id');
 
         Validate::errorvalue($error);
 
         $room = self::createBookingInstance();
         $result = $room->insertBooking($data);
         if($result){
+            if($data['reservation_type'] != "online"){
             Audit::createLog($data['user_id'],'Booking Module','created a new reservation, id : ' . $result);
+            }
 
             $trans = self::createTransactionInstance();
             $res = $trans->insertTransaction($result,$data);
@@ -108,7 +110,9 @@ class Reservation{
                     $name = $data['last'] . ", " . $data['first'] . ' ' . $data['middle'];
                     $res_date = $data['checkin'] . " to " . $data['checkout'];
                     Mailer::sendReceipt($data['email'],$name,$data['ref_num'],$res_date,TimeAndDate::timestamp());
+                    if($data['reservation_type'] != "online"){
                     Audit::createLog($data['user_id'],'Transaction Module','created a new transaction, id : ' . $res);
+                    }
                     exit(Response::send(201,'Transaction Completed!'));
             }
         }
